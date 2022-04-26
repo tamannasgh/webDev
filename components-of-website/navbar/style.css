@@ -1,0 +1,71 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #333;
+    color: beige;
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    padding: 2.5% 7%;
+    align-items: center;
+    /* border: 2px solid red; */
+
+}
+
+/* .navbar div{
+    border: 2px solid red;
+} */
+
+.logo a{
+    text-decoration: none;
+    color: white;
+    font-size: 2rem;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+.navbar-items ul{
+    display: flex;  
+}
+
+.navbar-items li{
+    padding: 1rem;
+    list-style: none;
+}
+
+.navbar-items a{
+    text-decoration: none;
+    color: white;
+    /* display: block; */
+    font-size: 1.3rem;
+}
+
+.navbar-items a:hover{
+    color: rgb(165, 157, 157);
+}
+
+.toggle-button{
+    position: absolute;
+    top: 1.4rem;
+    right: 2rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+}
+
+.toggle-button .bar{
+    background-color: white;
+    height: 3px;
+    width: 100%;
+    border-radius: 10px;
+}
+
+
