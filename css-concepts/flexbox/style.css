@@ -1,0 +1,18 @@
+.flexbox-container{
+    border: 2px solid;
+    height: 800px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flexbox-item{
+    width: 100px;
+    height: 100px;
+    background-color: gainsboro;
+    border: 2px solid black;
+    /* margin: 30px; */
+}
