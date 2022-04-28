@@ -1,0 +1,34 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+article{
+    padding: 2rem;
+    border-radius: 10px;
+}
+.location{
+    margin-bottom: 10px;
+}
+p{
+    opacity: 0.7;
+}
+.email{
+    margin-top: 10px;
+    float: right;
+}
+
+.article1{
+    background-color: #333;
+    color: white
+}
+
+.article3{
+    background-color: #8003fc;
+    color: white
+}
+.article4{
+    background-color: #fc9803;
+    color: white
+}
