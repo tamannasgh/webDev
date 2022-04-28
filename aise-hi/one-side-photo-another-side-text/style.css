@@ -1,0 +1,100 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/* ---------------------------navbar------------------ */
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2% 9.5%;
+    background-color: #333;
+}
+
+.logo a{
+    text-decoration: none;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2rem;
+}
+
+.navbar-links ul{
+    display: flex;
+}
+
+.navbar-links li{
+    list-style: none;
+}
+
+.navbar-links li a{
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+    margin-left:2rem ;
+}
+.navbar-links li a:hover{
+    color: rgb(134, 133, 133);
+}
+
+
+/* ---------------------------main-------------------- */
+
+.main{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5% 10%;
+background-color: aliceblue;}
+
+.main-text{
+    width: 50%;
+}
+
+.main-text h1{
+    font-size: 3rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: rgba(0, 119, 255, 0.774);
+}
+.main-text p{
+    line-height: 1.3;
+    margin: 7% 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgba(51, 51, 51, 0.626);
+}
+
+.main-img img{
+    width: 100%;
+}
+
+.btn{
+    padding: 2% 4%;
+    margin-right: 3%;
+    border: none;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: all  0.3s;
+}
+
+.btn:hover{
+    transform: scale(1.08);
+    cursor: pointer;
+}
+
+.info-btn{
+    background-color: rgb(0, 179, 255);
+    color: white;
+}
+.info-btn:hover{
+    background-color: rgba(22, 162, 222, 0.755);
+
+}
+
+.action-btn{
+    background-color: #333;
+    color:white
+}
+.action-btn:hover{
+    background-color: rgba(40, 35, 35, 0.819);
+
+}
