@@ -7,14 +7,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>kuch bhi</title>
 
+    <!-- google font -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300&display=swap" rel="stylesheet">
 
+    <!-- css shake -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/csshake/1.5.3/csshake.min.css"
         integrity="sha512-RliK2gk03WxUELn57ddjWLhEfhUiOZ85VvWLImFy8A7FOPMkF4Z9YGQ3VKX5jpwkEerAL6I0nC+JNeCPrxWBTw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-    
+
+    <!-- bootstarp -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+
 
 </head>
 <link rel="stylesheet" href="styles.css">
@@ -41,7 +50,8 @@
     <section class="flexbox part main">
         <div class="width-50 main-text">
             <h1 class="heading shake-slow">Let's Learn Awesome Skills Together!</h1>
-            <p class="detail">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum quidem reprehenderit laborum ducimus quas,
+            <p class="detail">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum quidem reprehenderit laborum
+                ducimus quas,
                 dignissimos in similique placeat perspiciatis non. Adipisci facere exercitationem fuga, voluptatem
                 voluptatibus cum similique minus quo.</p>
             <button class="btn infobtn">Learn More</button>
@@ -61,7 +71,8 @@
                 </div>
                 <div>
                     <h1>Learn HTML & CSS</h1>
-                    <p class="detail">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic officia deserunt natus doloribus
+                    <p class="detail">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic officia deserunt
+                        natus doloribus
                         molestias dignissimos voluptatem fuga excepturi modi qui.</p>
                     <button class="btn">Start Learning!</button>
                 </div>
@@ -71,7 +82,8 @@
             <div class="course">
                 <div>
                     <h1>Explore the world of JavaScript!</h1>
-                    <p class="detail">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic officia deserunt natus doloribus
+                    <p class="detail">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic officia deserunt
+                        natus doloribus
                         molestias dignissimos voluptatem fuga excepturi modi qui.</p>
                     <button class="btn">Start Learning!</button>
                 </div>
@@ -87,13 +99,107 @@
                 </div>
                 <div>
                     <h1>Get into React..</h1>
-                    <p class="detail">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic officia deserunt natus doloribus
+                    <p class="detail">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic officia deserunt
+                        natus doloribus
                         molestias dignissimos voluptatem fuga excepturi modi qui.</p>
                     <button class="btn">Start Learning!</button>
                 </div>
             </div>
         </section>
     </section>
+
+    <section class="testimonials carousel slide part" id="testimonial">
+        <h1 class="heading">What People Say About Us..?</h1>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="images/usrimg.png" alt="user-image" class="user-image">
+                <p class="user-name">Ishika Sharma</p>
+                <h4 class="detail">Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, laboriosam itaque?
+                    Nisi magni odit possimus natus, vero doloribus. Quis atque molestiae unde ab neque cupiditate dolore
+                    deleniti maiores quod provident?</h4>
+                <p class="f-r">~ ishika@gmail.com</p>
+            </div>
+            <div class="carousel-item">
+                <img src="images/usrimg.png" alt="user-image" class="user-image">
+                <p class="user-name">Vanshika Sharma</p>
+                <h4 class="detail">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo odit quod ut nisi,
+                    distinctio sapiente labore nam voluptatum veniam voluptatem at provident assumenda quas. Maiores
+                    assumenda nihil labore veritatis reprehenderit.</h4>
+                <p class="f-r">~ vanshika@gmail.com</p>
+            </div>
+            <div class="carousel-item">
+                <img src="images/usrimg.png" alt="user-image" class="user-image">
+                <p class="user-name">Tamanna Sharma</p>
+                <h4 class="detail">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt vitae saepe magni
+                    voluptate expedita porro consectetur? Fugit voluptate voluptas fugiat aut incidunt iste commodi,
+                    provident eveniet perspiciatis, nulla amet vitae?</h4>
+                <p class="f-r">~ tamanna@gmail.com</p>
+            </div>
+        </div>
+
+        <button class="carousel-control-prev" data-bs-target="#testimonial" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon carousel-btn" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" data-bs-target="#testimonial" data-bs-slide="next">
+            <span class="carousel-control-next-icon carousel-btn" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </section>
+
+    <div class="last part">
+        <h1>😎😎</h1>
+
+        <section class="feedbacks">
+            <div class="feedback1 feedback">
+                <h3>1 title of feedback</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. t atque quasi.</p>
+            </div>
+
+            <div class="feedback2 feedback">
+                <h3>2 title of feedback</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos praesentium excepturi iste,
+                    odio commodi at atque harum explicabo ullam ratione repellendus quos exercitationem provident
+                    impedit dicta accusantium velit ipsam quasi.</p>
+            </div>
+
+            <div class="feedback3 feedback">
+                <h3>3 title of feedback</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos praesentium excepturi iste,
+                    odio commodi at atque quasi. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias
+                    facilis vero in, dolorum dolorem consequatur dicta laudantium ipsum? Lorem ipsum dolor sit amet
+                    consectetur adipisicing elit. Distinctio, sint. Nam asperiores labore quod ab ratione placeat quia
+                    consectetur? Illum dolor omnis repellendus dicta rerum consectetur, necessitatibus veniam corporis
+                    ducimus. Deleniti ullam ab non, autem eius dicta rerum beatae numquam a consequatur?</p>
+            </div>
+
+            <div class="feedback4 feedback">
+                <h3>4 title of feedback</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos praesentium excepturi iste,
+                    odio commodi at atque trepellendus quos exercitationem provident impeditullam ratione repellendus
+                    quos exercitationem provident impedit dicta accusantium velit ipsam quasi.</p>
+            </div>
+
+            <div class="feedback5 feedback">
+                <h3>5 title of feedback</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Aperiam necessiptatibus, distinctea eaque soluta! Necessitatibus, illo architecto. adipisicing elit.
+                    Dignissimos praesentium excepturi iste, odio commodi at atque quasi.</p>
+            </div>
+
+            <div class="feedback6 feedback">
+                <h3>6 title of feedback</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos praesentium excepturi iste,
+                    odio commodi at atque harum explicabo ullam ratione repellendus quos exercitationem provident
+                    impedit dicta accusantium velit ipsam quasi.</p>
+            </div>
+
+        </section>
+       
+    </div>
 </body>
+<footer>
+    radhe radhe
+</footer>
 
 </html>
