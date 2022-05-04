@@ -1,0 +1,110 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+p{
+    color:hsl(224, 23%, 55%) ;
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+.poora{
+    background: url("images/pattern-background-desktop.svg"), hsl(225, 100%, 94%);
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Red Hat Display', sans-serif;
+}
+.gap{
+    margin: 1.5rem 0;
+}
+
+.main{
+    width: 390px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 15px;
+}
+.bottom{
+    padding: 2rem;
+}
+
+.illustration{
+    width: 390px;
+}
+.illustration img{
+    width: 100%;
+    border-radius: 15px 15px 0 0;
+}
+.text{
+    margin-top: 0;
+}
+
+.text h1{
+    color: hsl(223, 47%, 23%);
+    font-weight: 900;
+    font-size: 1.7rem;
+    margin-bottom: 1.3rem;
+}
+
+.card{
+    background-color:hsl(225, 100%, 98%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-radius: 10px;
+}
+.card-price-area{
+    display: flex;
+    align-items: center;
+}
+.card-price-area img{
+    margin-right: 15px;
+}
+.ctd{
+    color: hsl(223, 47%, 23%);
+    font-weight: 900;
+}
+.card a{
+    color: hsl(245, 75%, 52%);
+    font-weight: 900;
+    font-size: 14px;
+}
+.card a:hover{
+    color: hsla(245, 75%, 52%, 0.725);
+    text-decoration: none;
+}
+.action{
+    margin-bottom: .5rem;
+}
+.action > *{
+    display: block;
+}
+.action button{
+    width: 100%;
+    padding: 1rem;
+    background-color: hsl(245, 75%, 52%);
+    border: none;
+    color: #fff;
+    font-weight: 700;
+    margin: 2rem 0;
+    border-radius: 10px;
+    box-shadow: 0 3px 2rem hsl(224, 23%, 55%);
+}
+.action button:hover{
+    background-color: hsla(245, 75%, 52%, 0.725);
+    cursor: pointer;
+}
+.action a{
+    text-decoration: none;
+    color: hsl(224, 23%, 55%);
+    font-weight: 900;
+    font-size: 14px;
+}
+.action a:hover{
+    color: hsl(223, 47%, 23%);
+}

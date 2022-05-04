@@ -1,0 +1,18 @@
+@media (max-width: 400px){
+    .poora{
+        background: url("images/pattern-background-mobile.svg"), hsl(225, 100%, 94%);
+        background-repeat: no-repeat;
+    }
+    .main{
+        width: 340px;
+    }
+    .bottom{
+        padding: 1.8rem;
+    }
+    .illustration{
+        width: 340px;
+    }
+    .card{
+        padding: 1rem;
+    }
+}
