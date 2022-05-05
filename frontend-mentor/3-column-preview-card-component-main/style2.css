@@ -1,0 +1,25 @@
+@media(max-width: 960px){
+    .poora{
+        height: auto;
+    }
+    .main{
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+    .card{
+        border-radius: 0;
+    }
+}
+
+@media(max-width: 640px){
+    .main{
+        grid-template-columns: 1fr;
+        padding: 1rem 0;
+    }
+    .card:first-child{
+        border-radius: 7px 7px 0 0;
+    }
+    .card:last-child{
+        border-radius: 0 0 7px 7px;
+    }
+}

@@ -1,0 +1,76 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.poora{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: hsl(0, 0%, 95%);
+    font-family: 'Lexend Deca', sans-serif;
+}
+.main{
+    width: 70%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.card{
+    padding: 2.5rem;
+}
+.card img{
+    margin-bottom: 2rem;
+}
+.card h1{
+    font-family: 'Big Shoulders Display', cursive;
+    color: hsl(0, 0%, 95%);
+    text-transform: uppercase;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+.card p{
+    font-size: 15px;
+    color: hsla(0, 0%, 100%, 0.75);
+    line-height: 1.5;
+    font-weight: 400;
+    margin-bottom: 4.5rem;
+}
+.card1{
+    background-color: hsl(31, 77%, 52%);
+    border-radius: 7px 0 0 7px;
+}
+.card1 button{
+    color: hsl(31, 77%, 52%);
+}
+.card2{
+    background-color: hsl(184, 100%, 22%);
+}
+.card2 button{
+    color: hsl(184, 100%, 22%);
+}
+.card3{
+    background-color: hsl(179, 100%, 13%);
+    border-radius: 0 7px 7px 0;
+}
+.card3 button{
+    color: hsl(179, 100%, 13%);
+}
+
+button{
+    padding: .8rem 2rem;
+    border-radius: 3.5rem;
+    border: 2px solid white;
+    font-weight: 700;
+}
+button:hover{
+    background: none;
+    border: 2px solid white;
+    color: hsl(0, 0%, 95%);
+    cursor: pointer;
+}
+
+
+
