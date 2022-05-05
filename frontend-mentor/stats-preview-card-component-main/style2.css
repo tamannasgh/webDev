@@ -1,0 +1,39 @@
+@media (max-width: 750px){
+    .main{
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 2.5fr;
+        text-align: center;
+    }
+    .text{
+        grid-row: 2;
+    }
+    .stats{
+        margin-right: 0;
+    }
+    .image{
+        background: url("images/image-header-mobile.jpg");
+        background-size:cover;
+        border-radius: 7px 7px 0 0;
+    }
+}
+
+@media(max-width: 550px){
+    .poora{
+        padding: .5rem 0;
+    }
+    .text{
+        margin-top: 1rem;
+        padding: .5rem;
+    }
+    .text > p{
+        padding: .7rem;
+        margin-bottom: 2rem;
+    }
+    .stats{
+        flex-direction: column;
+    }
+    .stats  p{
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+    }
+}
