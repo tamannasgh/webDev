@@ -1,0 +1,80 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.poora{
+    height: 100vh;
+    background-color: hsl(185, 75%, 39%);
+    background-image: url("images/bg-pattern-top.svg"), url("images/bg-pattern-bottom.svg");
+    background-repeat: no-repeat;
+    background-position: bottom 27rem right 40rem, top 33rem left 35rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-attachment: fixed;
+}
+h1{
+    font-size: 18px;
+    color: hsl(229, 23%, 23%);
+    font-weight: 700;
+}
+hr{
+    margin: -2rem;
+    border: 1px solid hsl(0, 1%, 86%);
+    font-weight: 50px;
+}
+.light{
+    color:  hsl(0, 0%, 59%);
+    font-weight: 400;
+    margin-left: .5rem;
+}
+
+.card{
+    display: grid;
+    grid-template-rows: 1fr 2fr;
+    width: 320px;
+    padding: 2rem;
+    border-radius: 20px;
+    background: url("images/bg-pattern-card.svg") no-repeat, #fff;
+    text-align: center;
+    font-family: 'Kumbh Sans', sans-serif;
+    position: relative;
+}
+.text img{
+    position: absolute;
+    border: 6px solid #fff;
+    border-radius: 50%;
+    top :23%;
+    left: 33.5%;
+    background: #fff;
+}
+.text{
+    margin-top: 4.5rem;
+    margin-bottom: 3.7rem;
+}
+.text > h1{
+    margin-bottom: .3rem;
+}
+.text h4{
+    font-size: 16px;
+}
+.stats{
+    margin-top: 3.7rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+}
+.stats p{
+    font-size: 12px;
+    margin-top: 5px;
+    color: hsl(0, 0%, 59%);
+}
+
+@media (max-width: 400px) {
+    .poora{
+        background-position: bottom 25rem right 8rem, top 25rem left 6rem;
+
+    }
+}
