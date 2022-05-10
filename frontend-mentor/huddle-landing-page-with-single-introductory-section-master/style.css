@@ -1,0 +1,135 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.poora{
+    min-height: 100vh;
+    background: url("images/bg-desktop.svg") no-repeat hsl(257, 40%, 49%);
+    background-size:cover;
+    padding: 3% 5%;
+    display: grid;
+    place-items: center;
+}
+
+
+.main{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.hero{
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    justify-items: flex-start;
+
+}
+.hero-img{
+    width: 100%;
+}
+.hero-img img{
+    width: 100%;
+}
+
+
+.hero-text{
+   color: #fff;
+   padding: 3.5rem;
+   font-size: 1.1rem;
+}
+.hero-text h1{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+.hero-text p{
+    color: rgba(255, 255, 255, 0.737);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+}
+.hero-text button{
+    padding: .9rem 3.1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 23px;
+    color: hsl(257, 40%, 49%);
+    font-weight: 500;
+    box-shadow: 0 5px 10px 1px rgba(0, 0, 0, 0.334);
+}
+.hero-text button:hover{
+    cursor: pointer;
+    background-color: hsl(300, 69%, 71%);
+    color: #fff;
+}
+
+
+.connect{
+    align-self: flex-end;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.connect > *{
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    color: #fff;
+    margin-left: 1rem;
+    font-size: 1.3rem;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+.connect > *:hover{
+    color: hsl(300, 69%, 71%);
+    border-color: hsl(300, 69%, 71%);
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+@media (max-width: 1162px){
+    .poora{
+        height: auto;
+        background-image: url("images/bg-mobile.svg");
+    }
+    .main{
+        text-align: center;
+    }
+    .hero{
+        grid-template-columns: 1fr;
+        place-items: center;
+    }
+    .hero-img{
+        width: 100%;
+    }
+    .hero-img img{
+        width: 100%;
+    }
+    .hero-text{
+        padding: 1.7rem;
+    }
+    .hero-text h1{
+        font-size: 1.5rem;
+    }
+    .connect{
+        align-self: center;
+    }
+
+}
