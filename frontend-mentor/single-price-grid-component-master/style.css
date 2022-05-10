@@ -1,0 +1,126 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+p{
+    font-size: 15px;
+}
+h2{
+    font-size: 1rem;
+}
+.poora{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: hsl(204, 43%, 93%);
+    font-family: 'Karla', sans-serif;
+}
+
+.hero{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0 27%;
+    box-shadow: 0 .7rem  2rem  rgba(89, 88, 88, 0.456);
+    border-radius: 10px;
+    min-width: 350px;
+}
+
+.hero > *{
+    padding: 2rem;
+}
+
+.griditem1{
+    grid-column: span 2;
+    background-color: #fff;
+    border-radius: 10px 10px 0 0 ;
+}
+
+.griditem1 h1{
+    font-size: 1.5rem;
+    color: hsla(179, 62%, 43%, 0.735);
+    margin-bottom: 1rem;
+}
+.griditem1 h2{
+    color: hsl(71, 73%, 54%);
+    margin-bottom: .7rem;
+}
+.griditem1 p{
+    color: hsl(218, 22%, 67%);
+    line-height: 1.5;
+}
+
+
+
+.griditem2{
+    background-color: hsl(179, 62%, 43%);
+    border-radius: 0 0 0 10px;
+    color: hsl(204, 43%, 93%);
+}
+
+.griditem2 h2{
+    margin-bottom: 1rem;
+}
+.pricing{
+    display: flex;
+    align-items: center;
+    margin-bottom: .5rem;
+}
+.pricing h1{
+    margin-right: 1rem;
+}
+.pricing p{
+    color: hsla(203, 44%, 93%, 0.549);
+}
+.griditem2 > p{
+    margin-bottom: 1.3rem;
+}
+.griditem2 button{
+    padding: 1rem 0;
+    width: 100%;
+    background-color: hsl(71, 73%, 54%);
+    border : none;
+    border-radius: 5px;
+    color: hsl(240, 8%, 97%);
+    /* font-size: 1rem; */
+    font-weight: 700;
+    margin-bottom: .5rem;
+    box-shadow: 0 .7rem  2rem  rgba(89, 88, 88, 0.456);
+}
+
+
+
+.griditem3{
+    background-color: hsla(179, 62%, 43%, 0.782);
+    border-radius: 0 0 10px 0;
+    color: hsl(240, 8%, 97%)
+}
+
+.griditem3 h2{
+    margin-bottom: 1rem;
+}
+.griditem3 p{
+    color: hsla(203, 44%, 93%, 0.785);
+    line-height: 1.5;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+
+
+@media (max-width: 950px){
+    .hero{
+        grid-template-columns: 1fr;
+    }
+    .griditem1{
+        grid-column: 1;
+    }
+    .griditem2{
+        border-radius: 0;
+    }
+    .griditem3{
+        border-radius: 0 0 10px 10px;
+    }
+}

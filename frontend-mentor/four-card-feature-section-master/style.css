@@ -1,0 +1,87 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+p{
+    color: hsl(229, 6%, 66%);
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.poora{
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background-color: hsl(0, 0%, 98%);
+}
+
+.hero{
+    padding: 7% 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.text{
+    margin-bottom: 3.5rem;
+}
+
+.text h1{
+    color:  hsl(234, 12%, 34%);
+}
+.text p{
+    margin-top: 1rem;
+    font-size: 15px;
+}
+
+.thin-font{
+    font-weight: 200;
+}
+
+
+.feature-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    text-align: left;
+    align-items: center;
+}
+.feature-grid > *{
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 5px;
+    box-shadow: .1rem .7rem 1rem 1px hsla(222, 73%, 87%, 0.525);
+    
+}
+.feature-grid h2{
+    color: hsl(234, 12%, 34%);
+    margin-bottom: .5rem
+}
+
+.feature-grid img{
+    float: right;
+    margin-top: 2rem;
+}
+
+.griditem1{
+    border-top: .3rem solid hsl(180, 62%, 55%);
+    grid-column: 1;
+    grid-row: span 2;
+}
+.griditem2{
+    border-top: .3rem solid hsl(0, 78%, 62%);
+}
+.griditem3{
+    border-top: .3rem solid hsl(34, 97%, 64%);
+}
+.griditem4{
+    border-top: .3rem solid hsl(212, 86%, 64%);
+    grid-column-end: -1;  
+    grid-row: 1/ span 2;
+}
+
+
+
