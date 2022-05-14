@@ -1,0 +1,177 @@
+*, *::after, *::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+p{
+    font-size: 14px;
+}
+.dark-white{
+    color: hsl(243, 100%, 93%);
+    font-weight: 600;
+}
+
+.poora{
+    min-height: 100vh;
+    width: 100%;
+    background: url("images/bg-desktop.png") hsl(229, 57%, 11%);
+    background-repeat:no-repeat;
+    background-position: 0 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Raleway', sans-serif;
+}
+
+.hero{
+    display: flex;   
+    align-items: flex-end;  
+}
+.hero > *{
+    background-color: hsl(228, 56%, 26%);
+    padding: 2.5rem;
+    margin: 1rem;
+}
+.first{
+    border-radius: 15px;
+    border-top-right-radius: 115px 110px;
+    padding-right: 7rem;
+}
+.logo {
+   margin-bottom: 1.5rem; 
+}
+.icons{
+    display: flex;
+    align-items: stretch;
+}
+.icon-chhota{
+    height: 80%;
+    align-self: center;
+}
+
+.icons > *{
+   display: flex;
+   justify-content: center;
+   background-color: hsl(229, 57%, 11%);
+   border-radius: 10px;
+   padding: .7rem;
+   margin-right: .9rem;
+}
+
+
+
+.second{
+    border-radius: 15px;
+    color: hsla(243, 100%, 93%, 70%);
+    position: relative;
+}
+.second > p{
+    margin-bottom: 1rem;
+}
+.comment{
+    position: absolute;
+    top: -30%;
+    right: 8%;
+    padding: .5rem 1.3rem;
+    color: hsl(229, 57%, 11%);
+    background-color: hsl(240, 7%, 92%);
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+}
+.comment::after{
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -33%;
+    border: 30px solid transparent;
+    border-right: 30px solid hsl(240, 7%, 92%);
+}
+.comment p.firstp{
+    font-weight: 700;
+    font-size: 2.7rem;
+    margin-right: .5rem;
+}
+.comment-small-text{
+    font-size: 12px;
+    font-weight: 700;
+    color: hsl(229, 7%, 55%);
+    text-transform: uppercase;
+}
+
+
+.progress{
+    height: 1.1rem;
+    width: 25rem;
+    background-color: hsl(229, 57%, 11%);
+    opacity: 70%;
+    border-radius: 23px;
+    margin: .4rem auto;
+    position: relative;
+    border: 2px solid hsl(229, 57%, 11%);
+}
+.filled{
+    position: absolute;
+    background: linear-gradient(45deg, hsl(6, 100%, 80%), hsl(335, 100%, 65%));
+    border-radius: 23px;
+    height: 100%;
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.point{
+    width: 10px;
+    height: 70%;
+    background: hsl(0, 0%, 98%);
+    margin-right: .5%;
+    border-radius: 50%;
+}
+
+
+.space{
+    display: flex;
+    font-size: 8px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+@media (max-width: 970px){
+    .hero{
+        flex-direction: column;
+        align-items: center;
+    }
+    .first{
+        margin-bottom: 4rem;
+    }
+}
+
+@media (max-width: 560px){
+    .poora{
+        background-image: url("images/bg-mobile.png");
+        background-position: center;
+        background-size: cover;
+        overflow:hidden;
+    }
+    .first{
+        margin-bottom: 1rem;
+    }
+    .progress{
+        width: 16rem;
+    }
+    .point{
+        width: 10px;
+    }
+    .comment::after{
+        display: none;
+    }
+    .comment{
+        top: 85%;
+        right: 25%;
+
+    }
+}

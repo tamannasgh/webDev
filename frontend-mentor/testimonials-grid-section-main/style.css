@@ -1,0 +1,139 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+}
+
+p{
+   color: hsl(210, 46%, 95%); 
+   font-size: 13px;
+}
+
+.author{
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.author img{
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+.author p.name{
+    color: hsl(0, 0%, 81%);
+}
+.author .name+p{
+    color: hsl(0, 0%, 81%);
+    opacity: 50%;
+}
+
+.poora{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10%;
+    background-color: hsl(210, 46%, 95%);
+}
+.testimonials{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+.item-1{
+    grid-column: span 2;
+    background-color: hsl(263, 55%, 52%);
+    background-image: url("images/bg-pattern-quotation.svg");
+    background-repeat: no-repeat;
+    background-position: 81% 0;
+}
+.item-1 img{
+    border: 3px solid hsla(0, 0%, 81%, 50%);
+}
+.item-2{
+    background-color: hsl(217, 19%, 35%);
+}
+.item-4{
+    grid-column: span 2;
+    background-color: hsl(219, 29%, 14%);
+}
+.item-4 img{
+    border: 3px solid hsl(263, 55%, 52%);
+}
+.item-5{
+    grid-column-end: -1;
+    grid-row: 1/ span 2;
+}
+
+
+.testimonials > *{
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 2px 2px 20px 2px hsla(210, 1%, 42%, 0.295);
+}
+
+.testimonials h1{
+    font-size: 1.2rem;
+    color: hsl(0, 0%, 100%);
+    margin-bottom: 1rem;
+}
+.testimonials > * > p{
+    color:  hsl(210, 46%, 95%);
+    opacity: 70%;
+}
+
+.light-box{
+    background-color: hsl(0, 0%, 100%);
+    color: hsl(217, 19%, 35%);
+}
+.light-box h1{
+    color: hsl(217, 19%, 35%);
+}
+.light-box > p{
+    color: hsl(217, 19%, 35%);
+    opacity: 70%;
+}
+.light-box .author .name{
+    color: hsl(217, 19%, 35%);
+}
+.light-box .author .name+p{     /* .name+p ka mtlb isse just aage wala */
+    color: hsl(217, 19%, 35%);
+    opacity: 50%;
+} 
+
+
+
+@media (max-width: 1150px){
+    .testimonials{
+        grid-template-columns: repeat(2, 1fr);
+        padding: 1rem 0;
+    }
+   .item-1{
+       grid-column: 1;
+   }
+   .item-3{
+       grid-row: 2;
+       grid-column: 2;
+   }
+   .item-4{
+       grid-row: 1;
+       grid-column: 2;
+   }
+   .item-5{
+       grid-row: 3;
+       grid-column: 1/ -1;
+   }
+}
+
+@media (max-width: 750px) {
+    .testimonials{
+        grid-template-columns: 1fr;
+    }
+    .item-3{
+        grid-column: 1;
+    }
+    .item-4{
+        grid-column: 1;
+    }
+}
