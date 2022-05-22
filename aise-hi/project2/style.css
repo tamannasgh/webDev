@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.hero{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url("images/bg.png");
+    background-size:cover;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+}
+h1{
+    color: white;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+}
+
+@media(max-width: 500px){
+    h1{
+        font-size: 2rem;
+    }
+}

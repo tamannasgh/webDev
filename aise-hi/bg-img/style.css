@@ -1,0 +1,47 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #343b46;
+}
+.poora{
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    background:url("bg-img.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+}
+h1{
+    font-size: 4rem;
+    color: rgba(245, 245, 245, 0.766);
+    font-family: 'Macondo', cursive; 
+}
+
+h1::before, h1::after{
+    content: '';
+    position: absolute;
+    height: 2px;
+    background-color:rgba(245, 245, 245, 0.766);
+    width: 21.5%;
+    top: 50%;
+    box-shadow: 1px 0 3px 1px #7868E6;
+}
+h1::after{
+    left: 0;
+}
+h1::before{
+    right: 0;
+}
+
+span{
+   background: linear-gradient(45deg, #7868E6, #7C83FD, #96BAFF, #7C83FD, #7868E6); 
+   background-clip: text;
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+}
+
+
+/* #262134 */
