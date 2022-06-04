@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+}
+:root{
+    font-size: 20px;
+}
+.container{
+    padding: 2em;
+}
+h1{
+    font-size: 3rem;
+    margin-bottom: .2em;
+}
+
+@media (max-width:800px){
+    :root{
+        font-size: 15px;
+    }
+}
+@media (max-width:500px){
+    :root{
+        font-size: 10px;
+    }
+}
+

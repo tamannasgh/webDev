@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>percentages</title>
+</head>
+<link rel="stylesheet" href="style.css">
+<body>
+    <div class="parent-container">
+        im parent
+        <div class="child-container">
+            im child
+            <div class="grand-child-container">
+                im grand child
+            </div>
+        </div>
+
+    </div>
+    <div class="text">
+        <p>they all are divs that has same width of 80% but why they all are varying then?</p>
+        because % are realtive units (relative to their parent) the parent-container's parent is body so 80% of body,
+        child-container's parent is parent-container so 80% of this so on and so forth!!
+    </div>
+</body>
+</html>
