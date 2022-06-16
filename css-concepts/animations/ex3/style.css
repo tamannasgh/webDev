@@ -1,0 +1,36 @@
+.main{
+    min-height: 100vh;
+    background: #333 url(https://unsplash.it/300) no-repeat;
+    background-blend-mode: multiply;
+    background-size: cover;
+    color: white;
+    display: grid;
+    place-items: center;
+    opacity: 0;
+
+    animation: main 2s ease-in .5s;
+    animation-fill-mode: forwards;
+}
+h1{
+    opacity: 0;
+    animation: text 1s ease-in 3s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes main{
+    from{
+        height: 0%;
+    } to{
+        opacity: 1;
+        height: 100vh;
+    }
+}
+
+@keyframes text{
+    from{
+        transform: translateY(-40px);
+    } to{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}

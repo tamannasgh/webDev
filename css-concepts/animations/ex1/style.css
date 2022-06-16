@@ -1,0 +1,26 @@
+.box{
+    width: 100px;
+    height: 100px;
+    background-color: deeppink;
+    animation-name: first;
+    animation-duration: 5s;
+}
+
+/* @keyframes first{
+    from{
+       background-color: aqua;
+    } to{
+        width: 200px;
+        height: 500px;
+        background-color: violet;
+    }
+} */
+
+@keyframes first {
+    50%{
+        background-color: violet;
+        width: 300px;
+    } 70%{
+        height: 300px;
+    }
+}

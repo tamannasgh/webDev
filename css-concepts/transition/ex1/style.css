@@ -1,0 +1,26 @@
+.left, .right{
+    max-width: 700px;
+    margin: 0 auto;
+    transition: transform 1500ms;
+    color: white;
+}
+.left{
+    transform: translateX(-40%);
+}
+.right{
+    transform: translateX(40%);
+    
+}
+.animate{
+    transform: translateX(0);
+    color: black
+}
+.btn{
+    text-align: center;
+}
+#btn{
+    margin-top: 2rem;
+    padding: 1em 2em;
+    border-radius: 10px;
+}
+

@@ -1,0 +1,49 @@
+.box{
+    animation: grow 3s ease-in .5s 3;
+    animation-fill-mode: both;
+}
+/* 
+@keyframes grow{
+    from{
+        width: 10px;
+        height: 10px;
+        background-color: red;
+    } to{
+        width: 50px;
+        height: 50px;
+        background-color: #333;
+    }
+} */
+
+@keyframes grow{
+    0%{
+        width: 10px;
+        height: 10px;
+        background-color: #333;
+    }
+    25%{
+        width: 30px;
+        height: 30px;
+        background-color: purple;
+        transform: translateX(20px);
+    }
+    50%{
+        width: 50px;
+        height: 50px;
+        background-color: violet;
+        transform: translateX(0px);
+        transform: translateY(20px);
+    }
+    75%{
+        width: 75px;
+        height: 75px;
+        background-color: pink;
+        transform: translateY(0px);
+    }
+    100%{
+        width: 10px;
+        height: 10px;
+        background-color: #333;
+        transform: rotate(90deg);
+    }
+}

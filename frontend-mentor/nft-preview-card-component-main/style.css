@@ -62,7 +62,7 @@ hr{
     justify-content: center;
     align-items: center;
     opacity: 0;
-    transition: all 0.25s;
+    transition: opacity 0.25s;
 }
 .overlay img{
     width: 13%;
