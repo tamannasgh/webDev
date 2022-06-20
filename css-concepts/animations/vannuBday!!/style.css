@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #1f1f1f;
+    color: #f1f1f1;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.load{
+    background-color: #3b3939b5;
+    width: 70px;
+    height: 70px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    position: relative;
+
+
+    animation: load .5s ease-in forwards 3s;
+}
+
+.load::after{
+    content: '3';
+    font-size: 2rem;
+    position: absolute;
+    color: #f1f1f1;
+
+    animation: count 3s steps(3);
+    animation-fill-mode: both;
+}
+
+.load::before{
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border-top: 4px solid rgb(229, 36, 229);
+
+    animation: loading 1s ease 3;
+}
+
+@keyframes load{
+    from{
+        opacity: 1;
+        transform: translateY(5px);
+    }
+    to{
+        transform: translateY(10px);
+        opacity: 0;
+    }
+}
+
+@keyframes count{
+    50%{
+        content: '2';
+    }100%{
+        content: '1';
+    }
+}
+
+@keyframes loading{
+    0%{
+        transform: rotate(0deg);
+    }100%{
+        transform: rotate(360deg);
+    }
+}
+
+.animation-2{
+    text-align: center;
+    opacity: 0;
+    width: 10px;
+    animation: anim2 0s forwards 4s;
+}
+
+@keyframes anim2 {
+    to{
+        width: auto;
+        opacity: 1;
+    }
+}
+
+
+.type{
+    letter-spacing: 2px;
+    position: relative;
+    width: max-content;
+    margin: 0 auto 2rem;
+    font-size: clamp(1.5rem, 3vw, 3rem);
+}
+
+.type::before{
+    content:'';
+    position: absolute;
+    inset: 0;
+    background-color: #1f1f1f;
+
+    animation: typewriter 4s steps(12) forwards 4.5s;
+}
+.type::after{
+    content: '';
+    position: absolute;
+    inset: 0;
+    width: 2px;
+    background-color: #f1f1f1;
+
+    animation: typewriter 4s steps(12) forwards 4.5s,
+                blink .5s infinite;
+}
+
+@keyframes typewriter{
+    to{
+        left: 100%;
+    }
+}
+
+@keyframes blink{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+h2{
+    background: linear-gradient(45deg, purple, deeppink, violet, deeppink, purple);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    font-size: clamp(1.7rem, 4vw, 4rem);
+    opacity: 0;
+    transform: translateY(40px);
+    position: relative;
+
+    animation: happybday 1.5s ease forwards 10s;
+}
+
+h2::before{
+    content: '🌟';
+    position: absolute;
+    color: black;
+    left: -2em;
+    bottom: -2em;
+    animation: star 1200ms ease-in infinite 10s;
+
+}
+h2::after{
+    content: '🌟';
+    position: absolute;
+    color: black;
+    right: -2em;
+    bottom: -2em;
+
+    animation: star 1200ms ease-in infinite 10s;
+}
+
+@keyframes star{
+    0%{
+        transform: rotate(0deg);
+        font-size: 3rem;
+    }50%{
+        transform: rotate(90degdeg);
+        font-size: 2rem;
+    }
+    100%{
+        transform: rotate(360deg);
+        font-size: 3rem;
+    }
+}
+
+@keyframes happybday{
+    to{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
