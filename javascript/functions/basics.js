@@ -64,9 +64,9 @@ console.log(sum(2, 3));
 let addition = sum(3,4);
 console.log("3 + 4 is " +addition);
 
-//sometimes we want to return a big, a really big thing we can either store it in a variab;e and than return that variable or we can do it like this return (everything you wanna return)  note(you can't do something like return than leave a line noo js puts a semicolon after the return statemnt)
+//sometimes we want to return a big, a really big thing we can either store it in a variab;e and than return that variable or we can do it like this return (everything you wanna return can be in seperate line)  note(you can't do something like return than leave a line and without parantheses return noo js puts a semicolon after the return statemnt)
 
-//yes you can return just nothing, yes.
+//yes you can return just nothing.
 
 function returningNothing(){
     console.log("really doing nothing and returning nothing");
