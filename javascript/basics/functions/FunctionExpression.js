@@ -37,7 +37,7 @@ let notHoisted = function(){
 
 //not same here
 //You might wonder, why do Function Expressions have a semicolon ; at the end, but Function Declarations do not
-//
+
 
 //FUNCTION IS A VALUE just a special type of.
 
@@ -101,7 +101,7 @@ function wrong(){
 
 function returningFunction(){
     return function(){
-        console.log("im returned from a function");
+        console.log("im a function returned from a function");
     }
 }
 
