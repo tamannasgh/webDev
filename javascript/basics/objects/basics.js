@@ -17,7 +17,7 @@ let obj1 = {
     "the the last key" : () => console.log("hey im the last"),
 }
 
-//huh! this is an object a very powerful data type.
+//huh! it is an object a very powerful data type.
 
 //we can access it's value by dot notation
 console.log(obj1.key);
@@ -112,3 +112,38 @@ console.log("key" in verySpecialObj); //true
 for(let key in user1){  //returns every key of the object and now we can easily get value like user1[key](key is a variable and we can put the variab;es into the brackets and can acces the values)    console.log(key, user1[key]);
     console.log(key, user1[key]);
 }
+
+
+//bss ek last cheez h ki for in loop mai ki jb agr jo keys h vo numbers ho na jse ki ye
+
+let numObj = {
+    "2": "im 2",
+    "3":"im 3",
+    1: "im 1",
+    4: "im 4",
+}
+
+console.log(numObj[2]);   //we can't access this with dot notation, dot notation works only with single string/word.
+console.log(numObj["1"]); //if you have noticed every key is a string even if you write it like 1 or "1" both are the same thing but quotes not required for single word
+
+//lets try to now use for in loop and analyze is the order same as declared or what?
+for( let key in numObj){
+    console.log(key, numObj[key], typeof key);
+}   //as you can see these are in order that's not the case with strings but with numbers and as you can also see the typeof all keys is string only
+
+//ab jaise vo hota ni h ki apni country ka kuch code lgta h number ke peeche to maano india ka to 91 h pr agr for in se object aaega to kya hoga pehle to 1 aaega jo ki bekaar hi lgega na to hum ye chahenge na ki pehle india ka aaye to isko krne ke liye hum kuch aisa krte h ki number na ho pr jb convert kre tb number bn jaye 
+
+let numObjPrblmSolve = {
+    "+1" : "im 1",
+    "+8": "im 8",
+    "+3": "im 3",
+}
+
+for(let key in numObjPrblmSolve){
+    console.log(key, numObjPrblmSolve[key]);
+} //as you can see its in the exact order in which ive declared
+
+//and as its +1 means positive 1 we can cponvert it very easily
+console.log(Number(+1));
+//or with
+console.log(+"+1");
