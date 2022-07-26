@@ -5,7 +5,7 @@
 let obj = {};
 console.log(typeof obj);
 
-//now as i have written that it is a collection of ... so it can store a comma seperated group of something called property that is pair of key and value. key is a string and if the key is one word no string needed but more than one worded key name needs to be wraped inside the "". and value can be anything everything.
+//now as i have written that it is a collection of ... so it can store a comma seperated group of something called property that is pair of key and value. key is a string and if the key is one word no quotes needed but more than one worded key name needs to be wraped inside the "". and value can be anything everything.
 
 let obj1 = {
     key : "value",
@@ -21,12 +21,12 @@ let obj1 = {
 
 //we can access it's value by dot notation
 console.log(obj1.key);
-//but we cant access the values that paired with a key more than one work with this dot notation
+//but we cant access the values that paired with a key more than one word with this dot notation
 //console.log(obj.another key) //will give an error
 
-//so there's an another method in which the name must be qoutes or may be a variable in which the name is stored and wraped inside brackets
+//so there's an another method in which the name must be wraped in qoutes or may be a variable in which the name is stored and wraped inside brackets
 //bracket notation is very powerful!
-console.log(obj1["another key"]);  //like so (this will work with single word key also)
+console.log(obj1["another key"]);  //like so (this will work with single word key also but quotes needed)
 let keyName = "another key";
 console.log(obj1[keyName]);  //also ok
 
@@ -62,7 +62,7 @@ let userInputKey = prompt("name your fav fruit that you eat daily?", "apple");
 let fruits = {};
 fruits[userInputKey] = 7;   //this is doing the same thing but more understandable
 
-console.log("you can eat " +fruits[userInputKey]+ " " +userInputKey+ " in a week");
+console.log("you can eat " +fruits[userInputKey]+ " " +userInputKey+ " in a week");   //definitely not a good example
 
 //it can be more complex like [userinput + 'fruit']: 7..
 
