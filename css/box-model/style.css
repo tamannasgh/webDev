@@ -1,0 +1,41 @@
+.box{
+    width: 100px;
+    height: 100px;
+    padding: 20px;
+    background-color: rgb(206, 206, 248);
+}     
+/* ab dekh tannu mne is box hi height or width kya rakhi h 100 * 100 hna pr aa kya rhi h 140 * 140 or kyu?kyunki dekh css mai hr cheez box h chahe wo div ho ya h1 ya li sb box h or hr box ka kuch size h, isi ke upr ek property h box-sizing kyunki ye sb box h or sbka kuch size h to wo sizing kis tarike se calculate hogi kyunki padding border ye sb bhi judta hna box mai to  */
+
+/* box sizing 2 tarike ki hoti h content-box or border-box*/
+
+.parent{
+    margin-top: 20px;
+    width: 200px;
+    height: 200px;
+    background-color: red;
+}
+.child{
+    width: 100%;  /* % ek relative unit h relative to its parent in this case parent is thered box*/
+    height: 50px;
+    background-color: #333; 
+    padding: 20px;  /* as you can see i have setted its width 100% to its parent but its overflowing from the parent and why so because, 20px padding from left and right is sum up to 40px and default box sizing is content box means the inner part of the box not including padding and border becuase box width deoends on what the content size, the padding and the border marging is out of the box so we dont count it
+
+    now, thw width that ive setted is 100% maens 200px as the parent is 200px but its 240px why we know that now why is that? becuase default box sizing means how the browser calculates the width is content box means if thw width is 200px it will just consider the content of the box not padding and border but as you can qsee becuase of this the child is overflowing so, there is another way of calculating the size of the box that is border-box maens including til border and thats what we want so lets do it
+    */
+}
+
+.parent2{
+    width: 200px;
+    height: 200px;
+    margin-top: 20px;
+    background-color: blueviolet;
+}
+.child2{
+    box-sizing: border-box;
+    width: 100%;
+    padding: 20px;
+    background-color: cornflowerblue;
+    /* thats it! now its calcultaing the size including the border padding and the content*/
+}
+
+
