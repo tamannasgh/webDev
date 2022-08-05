@@ -1,0 +1,16 @@
+*{
+    color: gray;
+}
+
+h1{
+    margin: 50px 0;
+}
+.my-class{
+    color: purple;
+}
+#my-id{
+    color: green;
+}
+input[type = "range"]{
+    accent-color: red;
+}
