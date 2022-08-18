@@ -35,4 +35,88 @@ user2.sayHi();
 
 
 
+//now what if someone call the constructor without new..?
+//let see
+
+let user3 = User("vanshika");
+console.log(user3); //undefined, because if func is not retutning anything its returning undefined
+
+//ok but where thus name vanshika and func sayHi is?
+//its in the global object and why u know that
+
+//here
+console.log(name);
+sayHi();
+
+//but now what to do how can we know if the constructor is invoked with new or not.?
+
+//we have something 'new.target' this property gives undefined if called without new and the function itself if called with new.
+
+
+function Product(){
+    console.log(new.target);
+}
+
+let pro1 = new Product();  //product function itself
+
+let pro2 = Product();  //undefined
+
+
+//we can use it and make our function work in both cases!
+
+function Device(brand, color){
+    if( !new.target ){
+        return new Device(brand, color);
+    }
+
+    this.brand = brand;
+    this.color = color;
+    this.showColor = function(){
+        console.log("my color is " +this.color);
+    }
+}
+
+let dev1 = new Device("apple", "white");  //fine
+let dev2 = Device("samsung", "gray");   //fine as well
+
+console.log(dev1, dev2);
+
+
+
+//can we return something from these constructors..? absolutely yes! as they are nothing but normal functions
+
+//there are just some simple rules
+//return primitives doesnt matter 'this' will be return but if u return an object that object will be returned not 'this'
+
+function Sister(name, age){
+    this.name = name;
+    this.age = age;
+    return 2+3;
+}
+
+let sis1 = new Sister("ishui", 20);
+console.log(sis1);  //correct we are getting the obj
+
+//but if we return the object that object will be returned and not 'this'
+
+function Car(color){
+    this.color =  color;
+    return {
+        name: "krishna ji",
+        birthday: "kl h..."
+    }
+}
+
+let car1 = new Car("black");
+
+console.log(car1);   //not the car but kanha ji
+
+
+
+
+//achha ye constructor to simple function se return krke bhi bn hi skta h fr constructor kyu mujhe nhi pta pr abhi ke liye lgra h ki kyunki ye jada shi lgra h..haha
+
+
+
+
 
