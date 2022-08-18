@@ -17,7 +17,7 @@ user.sayHi();
 //sayHi is a function but when a function is aproperty of object it known as method.
 
 //but there is a short syntax for creating methods in object literals
-//obj literals are just this let obj = {}, another one is constructure which will be discussed later
+//obj literals are just this let obj = {}, another one is constructor which we will be discussed later
 
 let user2 = {
     name: "tamanna",
@@ -67,7 +67,7 @@ admin2.displayName();  //stilll vannu becuase its not hard caoded like the previ
 
 
 //"this" is not bound means in other languages "this" is only in methods and if you try to access "this" in anormal function it will not give error
-//in such cases the "this" will be replaced by globalobject (window in browsers) kya hota h ki bhale hi file khhali ho pr ek global onject bnta h or ye bnata kn h engine jse v8 chrome ka ingine h ye bnata h window ke naam se isme bhot saare functions variables hote h jse alert or jo hum sbse top level pr bnate h mtlb jse adim user variables kisi ke andr nhi hna file mai hi h seedha to ye sb bhi global object mai hi hota h hum ise uer ya fir window.user krke bhi print kra skte h user likh ke ye isliye ho jata h kyunki agr hum kisi variable ya kisi ke peeche kuch nhi lgate to vo khud hi window. lga leta h ya fir aasam bhaasha mai ye maan leta h ki aap global object mai se hi access krre ho to jb hum kisi aise function jo ki function h method nhi usme this ko accesss krne ka try krte h to vo window dedeta h ab smjh gye kyunki this run time pr hi hota h replace or agr uske peeche kuch nhi h to window. h to this kisse replace hota h yaad hna word before dot to bss window aa jaata h
+//in such cases the "this" will be replaced by globalobject (window in browsers) kya hota h ki bhale hi file khhali ho pr ek global onject bnta h or ye bnata kn h engine jse v8 chrome ka ingine h ye bnata h window ke naam se isme bhot saare functions variables hote h jse alert or jo hum sbse top level pr bnate h mtlb jse adim user variables kisi ke andr nhi hna file mai hi h seedha to ye sb bhi global object mai hi hota h hum ise user ya fir window.user krke bhi print kra skte h user likh ke ye isliye ho jata h kyunki agr hum kisi variable ya kisi ke peeche kuch nhi lgate to vo khud hi window. lga leta h ya fir aasam bhaasha mai ye maan leta h ki aap global object mai se hi access krre ho to jb hum kisi aise function jo ki function h method nhi usme this ko accesss krne ka try krte h to dot ke peehe wo dekhta h ki kya h kyunki whi to this bn jaata hna to ab jb kuch nhi hota to vo window dedeta h ab smjh gye kyunki this run time pr hi hota h replace or agr uske peeche kuch nhi h to window. h to this kisse replace hota h yaad hna word before dot to bss window aa jaata h
 
 function func(){
     console.log(this);  //when it will be called it will find thw ord before dot

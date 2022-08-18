@@ -76,3 +76,35 @@ for(let key in constObj){
 }
 console.log(constObj);  //yes i can we can modify and delete and can do everything with the const obj but can;t assign a new one or change the reference 
 // constObj = obj;  //error
+
+
+
+
+
+
+
+
+//IMPORTANT H KUCH MAJEDAAR SA
+
+
+
+let a = {};
+let b = {};
+
+console.log(a == b);  //false
+console.log(a === b);  //false
+
+// ab tum sochoge kyu bhai barabar to h or type bhi same h fir ye false kyu kyunki objects comparer or pass sb kuch by value nhi by reference hota h
+
+// yahan pr {} == {}. ye compare nhi hora inka address kya h memory mai wo compare hora h to inka address to algb hna
+
+let c = {};
+let d = c;
+console.log(c == d);  //true
+console.log(c === d);   //true
+
+//kyunki ab maine d = c kr diya mtlb, c kya h {...} ye nhi blki memory address to maine ab kyakr diya d ke andr c ka address rkh diya to is;iye wo barabar h 
+
+//aa gya na smjh
+
+
