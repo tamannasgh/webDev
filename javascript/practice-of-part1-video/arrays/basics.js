@@ -56,6 +56,24 @@ console.log(arr);   //ye add kr deta h huru mai in sbko
 
 
 
+//or ek bilkul hi mst hota h spread operator 3dots or variable name(that must be iterable)
+let array = [1,2,3,4,5];
+let cloneOfArray = [...array];
+console.log(cloneOfArray); //haina ek dum mst achha ye spread opr srf iterable cheezo ke saath chlta h jaise strings, objects etc..
+
+
+//now how to concat two or more arrays
+
+let arr1 = [1,2,3,4,5, 6];
+let arrSecond = [6,7,8,9,10];
+let arrThird = ["tamanna", "ishika"];
+
+let concatenatedArr = arr1.concat(arrSecond, arrThird, "thats it");   //concat function returns the array without modifying it
+console.log(concatenatedArr);
+
+
+
+
 
 
 
