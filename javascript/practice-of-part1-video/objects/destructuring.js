@@ -69,7 +69,7 @@ let n1, n2;
 console.log(n1, n2);
 
 
-//mtlb vars upe decalare kr diye or neeche use krre h pr objects mai nhi ho skta aise kyunki {} ke andr seedha agr likhte hna to wo ek nested block bn jata h uska ek alg skope ho jata h bhar ke use access nhi kr skte to isliye bss
+//mtlb vars upe decalare kr diye or neeche use krre h pr objects mai nhi ho skta aise kyunki {} ke andr seedha agr likhte hna to wo ek nested block bn jata h uska ek alg skope ho jata h bhar ke use access nhi kr skte to isliye bss pr haan ek trika h usko poori line ko () mai wrap kr skte ho
 
 
 
