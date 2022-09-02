@@ -23,3 +23,6 @@ for(let index in arr){
     console.log(`${index} : ${arr[index]}`);  //it will give index
 }
 
+
+//for each
+arr.forEach( (element, index) => console.log(index, element) );

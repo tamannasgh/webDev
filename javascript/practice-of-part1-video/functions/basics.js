@@ -22,3 +22,9 @@ let sayHello = () => console.log("hello");
 sayHello();
 
 //revision ho gyii
+
+
+//first class citizen/function is when functions are treated as value like they can be assigned to a variable, passed as argument, returned as vale
+
+//and higher order functions are the functions that take a function as argument or return a function as a value, some popular higher order function are map, filter, reduce they take function as an argument.
+//aise smjh lo ki bhai mai maamuli sa function nhi hu normal values nhi leta mst function leta hu
