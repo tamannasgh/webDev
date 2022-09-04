@@ -151,3 +151,49 @@ let compare2 = function(a, b){
 arr6.sort( (a, b) => a - b );
 console.log("with our own compare method ", arr6);
 
+
+
+
+
+//reverse--------------------
+
+const arr8 = [1,2,3,4,5];
+
+//reverses the real array and returns the reversed array also
+
+console.log( arr8.reverse(), arr8 );
+
+
+
+
+
+
+//split and join -----------------------
+
+//split convert a string into array and join convert an array into string
+
+//dono ke andr ek param dete h usse hi split or join krta h jse split(' ') to isse kya hoga ki string mai jahan jahan space wahan se ek element bn jaega array mein or same arr ko join krenge to jse likha join(', ') to hr element ko isse jodkr string bna dega
+
+let str = "tamanna sharma is best!! hehe";
+
+const arr9 = str.split(' ');  //ek ek word
+console.log(str, "->" ,arr9);
+
+const arr9_2 = str.split('');   //hr ek word
+console.log(str, "->" ,arr9_2);
+
+const arr9_3 = str.split();  //arr mein ek hi elm h puri ki puri string
+console.log(str, "->" ,arr9_3);
+
+
+
+//join -------
+
+let str2 = arr9.join('');
+console.log(str2);
+
+let str3 = arr9.join(' ');
+console.log(str3);
+
+let str4 = arr9.join();
+console.log(str4);  //wse ka wsa hi aa jaega bina space ke
