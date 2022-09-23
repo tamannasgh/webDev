@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dom</title>
+
+    <!-- <script src="access.js" defer></script> -->
+    <!-- <script src="domTree.js" defer></script> -->
+    <!-- <script src="element.js" defer></script> -->
+    <script src="createElm-add-rmv...js" defer></script>
+</head>
+
+<style>
+    .dark{
+        background-color: #333;
+        color: #efefef;
+    }
+
+    .fancyText{
+        font-family: 'Courier New', Courier, monospace;
+    }
+    .todo-list{
+        list-style-type: none;
+    }
+    .todo-list li{
+        background-color: #333;
+        color: #efefef;
+        font-size: 1.5rem;
+        margin-top: 10px;
+        padding: 5px;
+    }
+</style>
+
+
+<body>
+    <div id="firCont" class="cont">
+        im the big div <span style="display: none;">haha</span>
+        <h1 class="heading fancyText">hey im h1</h1>
+        <p>hey im p</p>
+    </div>
+
+    <div id="secCont" class="cont">
+        <ul id="list">
+            <li class="listItem"><a href="#">first link</a></li>
+            <li class="listItem"><a href="#">second link</a></li>
+            <li class="listItem"><a href="#">third link</a></li>
+            <li class="listItem"><a href="#">forth link</a></li>
+        </ul>
+    </div>
+
+    <div class="thirdCont">
+        <ul class="todo-list">
+            <li class="list-item">todo 1</li>
+            <li class="list-item">todo 2</li>
+        </ul>
+    </div>
+
+</body>
+</html>
