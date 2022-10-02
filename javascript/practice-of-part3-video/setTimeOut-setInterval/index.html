@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>setTimeout and setInterval</title>
+
+    <script src="script.js" defer></script>
+
+</head>
+
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    body{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+
+    .dark{
+        background-color: #121212;
+        color: #efefef;
+    }
+
+    .btn{
+        padding: .5em 1em;
+        font-size: 2rem;
+        border: none;
+        border-radius: 5px;
+    }
+
+    .btn:hover{
+        background-color: #272727;
+        cursor: pointer;
+    }
+
+    .text{
+        display: none;
+        margin-top: 1em;
+        padding: .5em;
+        border-radius: 5px;
+        font-size: 1.5rem;
+    }
+</style>
+
+<body>
+    <button class="btn dark">stop!!</button>
+    <p class="text dark"></p>
+</body>
+</html>
