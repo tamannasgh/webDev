@@ -1,0 +1,89 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: grid;
+    place-content: center;
+    min-height: 100vh;
+    background-color: black;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.box{
+    background-color: aliceblue;
+    width: 399px;
+    height: 399px;
+    display: grid;
+    grid-template-columns: repeat(3, 130px);
+    grid-template-rows: repeat(3, 130px);
+    gap: .3em;
+    color: aliceblue;
+}
+
+.cell{
+    border: 2px solid aliceblue;
+    background-color: black;
+    display: grid;
+    place-content: center;
+    font-size: 5rem;
+}
+
+.cell:hover{
+    cursor: pointer;
+}
+
+.no-left-border{
+    border-left: 2px solid black;
+}
+
+.no-top-border{
+    border-top: 2px solid black;
+}
+
+.no-right-border{
+    border-right: 2px solid black;
+}
+
+.no-bottom-border{
+    border-bottom: 2px solid black;
+}
+
+.pop-up{
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: grid;
+    place-content: center;
+    display: none;
+}
+
+.pop-up-main{
+    background-color: aliceblue;
+    text-align: center;
+    padding: 2em 3em;
+    border-radius: 10px;
+    margin-bottom: -200px;
+    opacity: 0;
+    transition: margin-bottom 0.3s;
+}
+.active{
+    margin-bottom: 0;
+    opacity: 1;
+}
+
+
+.pop-up-main p{
+    font-size: 2rem;
+    margin-bottom: 1em;
+}
+.pop-up-main .buttons .btn{
+    padding: .5em 1em;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    border: 2px solid gray;
+    margin: .5em;
+    cursor: pointer;
+}
