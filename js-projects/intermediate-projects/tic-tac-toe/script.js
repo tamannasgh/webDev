@@ -25,6 +25,20 @@ const wins = [
 ];
 
 
+function runAfterDom(callback, ...params){
+    // console.log(callback, params);
+    setTimeout( () => callback(...params), 150 );
+}
+
+// function test(a, b){
+//     console.log(a + b);
+// }
+
+// function fun(){
+//     runAfterDom(test, 2, 3);
+// }
+
+// love you javascript!!!!
 
 
 // checking if players are 1 or 2 so that in case of 1 i can run bot and otherwise just..
@@ -32,8 +46,9 @@ const wins = [
 let players = 1;
 
 const popUp = document.querySelector(".pop-up");
-document.addEventListener("mousemove", (e) => {
-    
+document.addEventListener("mousemove", ask, {once: true} );
+
+function ask(){
     const popUpMain = popUp.querySelector(".pop-up-main");
 
     popUp.style.display = "grid";
@@ -41,8 +56,7 @@ document.addEventListener("mousemove", (e) => {
     setTimeout(() => {
         popUpMain.classList.add("active");
     }, 100);
-
-}, {once: true} );
+}
 
 document.querySelector(".pop-up .buttons").addEventListener("click", (e) => {
     if( e.target.classList.contains("alone") ){
@@ -62,6 +76,7 @@ document.querySelector(".pop-up .buttons").addEventListener("click", (e) => {
 // adding click listener in box
 
 let clickCount = 0;
+
 const box = document.querySelector(".box");
 
 box.addEventListener("click", (e) => {
@@ -71,6 +86,7 @@ box.addEventListener("click", (e) => {
         withFriend(e);
     }
 });
+
 
 // game specific functions
 
@@ -88,9 +104,14 @@ function resetGame(){
     }
     clickCount = 0;
     players = 1;
+    
+    setTimeout(ask, 0);
+    
 }
 
-function someoneWin(){
+// result stuff
+
+function getResult(){
     let caseNo = 0;
     
     for(let winCase of wins){
@@ -107,27 +128,51 @@ function someoneWin(){
         }
 
         if(win){
-            return {win: true, withCase: wins[caseNo]};
+            return {win: "win", withCase: wins[caseNo]};
         }
 
         caseNo++;
     }
 
-    return {win: false};
+    if(gameDone()){
+        return {win: "draw"};
+    }
+
+    return {win: "lost"};
 }
 
+function showResultnReset(result){
+   console.log(result);
+
+   runAfterDom(resetGame);
+}
+
+
+// click
 function click(cell){
     if(cell.textContent === "0" || cell.textContent === "X") return;
     cell.textContent = clickCount % 2 === 0 ? "0" : "X"; 
-    clickCount++;
+    clickCount++;   
 
 
-    const win = someoneWin();
-    if(win.win){
-        alert("win!")
+    if(clickCount > 3){
+
+        const result = getResult();
+
+        if(gameDone()){
+            runAfterDom(showResultnReset, result);
+            return "gameDone";
+        }
+    
+        if( result.win === "win" ){
+            runAfterDom(showResultnReset, result);
+            return "gameDone";
+        }
+
+        
     }
 
-    
+
     return true;
 }
 
@@ -136,29 +181,48 @@ function click(cell){
 
 function withBot(e){
     const cell = e.target;
-    click(cell);
-
-    if(gameDone()){
-        resetGame();
+    const clicked = click(cell);
+    if(clicked === "gameDone"){
         return;
     }
 
-    setTimeout(botClick, 500);
+    setTimeout(botClick, 300);
 }
 
 function botClick(){
     const randomNum = Math.floor( Math.random() * 9 ) + 1;
     const cell = box.querySelector(`.cell${randomNum}`);
     const clicked = click(cell);
-    if(!clicked && !gameDone()){
-        botClick();
-    }
+
+    if(clicked) return;
+    botClick();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function withFriend(e){
     const cell = e.target;
     click(cell);
+
 }
 
 
