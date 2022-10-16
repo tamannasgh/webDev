@@ -62,12 +62,15 @@ body{
 
 .pop-up-main{
     background-color: aliceblue;
+    position: relative;
     text-align: center;
     padding: 2em 3em;
     border-radius: 10px;
     margin-bottom: -200px;
     opacity: 0;
-    transition: margin-bottom 0.3s;
+    transition: margin-bottom 0.3s, opacity 0.3s;
+
+    min-width: 300px;
 }
 .active{
     margin-bottom: 0;
@@ -75,9 +78,9 @@ body{
 }
 
 
-.pop-up-main p{
+.pop-up-main .text{
     font-size: 2rem;
-    margin-bottom: 1em;
+    
 }
 .pop-up-main .buttons .btn{
     padding: .5em 1em;
@@ -85,5 +88,22 @@ body{
     border-radius: 5px;
     border: 2px solid gray;
     margin: .5em;
+    margin-top: 2em;
+    cursor: pointer;
+}
+
+.cross{
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    width: 20px;
+    height: 20px;
+    display: grid;
+    place-content: center;
+
+    background-color: rgb(248, 76, 76);
+    color: aliceblue;
+    border: none;
+    border-radius: 50%;
     cursor: pointer;
 }

@@ -48,28 +48,56 @@ let players = 1;
 const popUp = document.querySelector(".pop-up");
 document.addEventListener("mousemove", ask, {once: true} );
 
-function ask(){
+function showPopUp(textInnerHTML = "", buttonsInnerHTML = ""){
     const popUpMain = popUp.querySelector(".pop-up-main");
 
+    const textDom = popUpMain.querySelector(".text");
+    textDom.innerHTML = textInnerHTML;
+
+    const buttonsDom = popUpMain.querySelector(".buttons");
+    buttonsDom.innerHTML = buttonsInnerHTML;
+
+
     popUp.style.display = "grid";
-    
+
     setTimeout(() => {
         popUpMain.classList.add("active");
     }, 100);
 }
 
+function ask(){
+    
+    const text = `<p>How are you playing?</p>`;
+
+    const buttons = `<button class="btn alone">Alone</button>
+    <button class="btn with-friend">With friend</button>`;
+
+    showPopUp(text, buttons);
+}
+
 document.querySelector(".pop-up .buttons").addEventListener("click", (e) => {
+
+    if(e.target.classList.contains("cross")){
+        removePopUp();
+        resetGame();
+    }
+
     if( e.target.classList.contains("alone") ){
-        popUp.style.display = "none";
+        removePopUp();
     }
 
     if( e.target.classList.contains("with-friend") ){
         players = 2;
-        popUp.style.display = "none";
+        removePopUp();
     }
-});
+});      //removing pop-up and starting game.
 
-// for checking no of players
+function removePopUp(){
+    popUp.style.display = "none";
+    const popUpMain = popUp.querySelector(".pop-up-main");
+    popUpMain.classList.remove("active")
+    return true;
+}
 
 
 
@@ -138,17 +166,21 @@ function getResult(){
         return {win: "draw"};
     }
 
-    return {win: "lost"};
+    return "playing";
 }
 
 function showResultnReset(result){
-   console.log(result);
+    const whoWin = result.withCase ? Object.values(result.withCase)[0] : "";
+    const text = `${whoWin} ${result.win}!`;
 
-   runAfterDom(resetGame);
+    runAfterDom(showPopUp, text, '<button class="cross">X</button>');
 }
 
 
+
+
 // click
+
 function click(cell){
     if(cell.textContent === "0" || cell.textContent === "X") return;
     cell.textContent = clickCount % 2 === 0 ? "0" : "X"; 
@@ -171,7 +203,6 @@ function click(cell){
 
         
     }
-
 
     return true;
 }
@@ -197,26 +228,6 @@ function botClick(){
     if(clicked) return;
     botClick();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 function withFriend(e){
