@@ -1,0 +1,121 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    max-width: 65rem;
+    margin: auto;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* utilities classes -------------------------- */
+.middle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* nav -------------------------------- */
+
+nav{
+    background-color: red;
+    color: aliceblue;
+    padding: 1.5em;
+}
+
+.search{
+    text-align: center;
+}
+.search input{
+    padding: .5em 1em;
+    width: 80%;
+    border: none;
+    border-radius: 50px;
+    margin: .5em;
+    box-shadow: 1px 1px 5px rgba(167, 162, 162, 0.8);
+}
+
+.search button{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    background-color: aliceblue;
+    cursor: pointer;
+}
+.search button:hover{
+    background-color: rgb(232, 232, 232);
+}
+
+.selections{
+    display: flex;
+    justify-content: space-between;
+    margin-top: .5em;
+}
+.selections p i{
+    margin-left: .3em;
+}
+
+
+
+
+/* main ----------------------------- */
+main{
+    padding: 1.5em;
+}
+
+.meal{
+    background-color: rgba(247, 251, 255, 0.915);
+    padding: .7em;
+    border-radius: 5px;
+    box-shadow: 1px 1px 7px rgba(207, 206, 206, 0.8);
+    margin: 1em 0;
+}
+
+/* meal image section ------------------------ */
+
+.meal .image{
+    width: 40%;   
+    margin: auto;
+}
+.image img{
+    width: 100%;
+    border-radius: 50%;
+    border: 3px solid red;
+}
+
+
+/* meal main section ------------------------ */
+
+.meal .main{
+    margin: .7em 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.meal .main .save{
+    border: none;
+    background-color: transparent;
+    font-size: 1.1rem;
+    color: red;
+}
+
+.meal .text .instructions{
+    color: gray;
+}
+
+
+/* footer ---------------------------- */
+footer{
+    margin-top: auto;
+    text-align: center;
+    color: aliceblue;
+    background-color: red;
+    padding: 1em;
+}
