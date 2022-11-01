@@ -1,11 +1,20 @@
 class Meal{
     constructor(meal){
-        this.id = meal.meals[0].idMeal;
-        this.name = meal.meals[0].strMeal;
-        this.img = meal.meals[0].strMealThumb;
-        this.instructions = meal.meals[0].strInstructions;
+        this.id = meal.idMeal;
+        this.name = meal.strMeal;
+        this.img = meal.strMealThumb;
+        this.instructions = meal.strInstructions;
     }
 }
+
+const navLinksDiv = document.querySelector(".selections");
+const bookmarkedMeals = new Set();
+
+const mealsDom = document.querySelector(".meals");
+const popUp = document.querySelector(".pop-up");
+const popUpMain = popUp.querySelector(".pop-up-main");
+
+const bookmarkedMealsDom = document.querySelector(".bookmarkedMeals");
 
 
 
@@ -20,58 +29,95 @@ async function getDetailsById(mealId){
 async function fetchRandomMeal(){
     const res = await fetch("https://www.themealdb.com/api/json/v1/1/random.php");
     const data = await res.json();
-    return data;
+    return data.meals[0];
+}
+
+async function getList(list){
+    const res = await fetch(`https://www.themealdb.com/api/json/v1/1/list.php?${list}=list`);
+    const data = await res.json();
+    return data.meals;
 }
 
 
 // nav bar ----------------------
- 
 
 
+document.querySelector("nav").addEventListener("click", (e) => {
+    if(e.target.classList.contains("logo-text")) start();
 
+    if(e.target.classList.contains("expandNavBtn" ) || e.target.classList.contains("expandNavBtn-span")){
+        handleNavbar(true);
+    }
 
+    // links
 
+    if(e.target.classList.contains("bookmarks") || e.target.classList.contains("fa-bookmark")){
+        if(navLinksDiv.classList.contains("expandNav")){
+            handleNavbar(false);
+        }
+        // console.log("bookmarks clicked");
+        mealsDom.style.display = "none";
+        bookmarkedMealsDom.innerHTML = "";
+        bookmarkedMealsDom.style.display = "flex";
 
+        if (bookmarkedMeals.size === 0){
+            const bookmarkedMealsDomPlaceholder = document.createElement("p");
+            bookmarkedMealsDomPlaceholder.textContent = "your bookmarked meals will be here!";
+            bookmarkedMealsDomPlaceholder.style.color = "gray";
+            bookmarkedMealsDom.append(bookmarkedMealsDomPlaceholder);
+            return;
+        }
 
+        bookmarkedMeals.forEach( function(bookmarkMealId){
+            getDetailsById(bookmarkMealId).then(function(mealData){
+                const meal = new Meal(mealData);
+                addMealInDom(meal, bookmarkedMealsDom);
+            })
+        });
 
+    }
 
+    if(e.target.classList.contains("expandNavLinkDetails") || e.target.classList.contains("fa-angle-down")){
+        const clickedLink = e.target.classList[0];
+        console.log(clickedLink, "clicked");
+        getList(clickedLink).then(function(list){
+            console.log(list);
+        });
+    }
+});
 
-
-
-
-
-
-
-
+navLinksDiv.addEventListener("click", (e) => {
+    if(e.target.classList.contains("expandNav")){
+        handleNavbar(false);
+    }
+});
 
 
 
 // dom---------------------
 
-const bookmarked = new Set();
-
-const meals = document.querySelector(".meals");
-const popUp = document.querySelector(".pop-up");
-const popUpMain = popUp.querySelector(".pop-up-main");
 
 
 function start(){
+    mealsDom.innerHTML = "";
+    mealsDom.style.display = "flex";
+    bookmarkedMealsDom.style.display = "none";
+
     for(let i = 0 ; i < 10 ; i++){
         fetchRandomMeal().then(function(data){
             const meal = new Meal(data);
             return meal;
         }).then(function(meal){
-            addMealInDom(meal);
+            addMealInDom(meal, mealsDom);
         });
     }
 }
-start();
 
 
 // adding meal stuff -----------------------
 
 
-function addMealInDom(meal){    
+function addMealInDom(meal, dom){    
     const mealDom = document.createElement("div");
     mealDom.classList.add("meal");
     mealDom.dataset.id = meal.id;
@@ -82,63 +128,27 @@ function addMealInDom(meal){
     <div class="text">
         <div class="main">
             <p class="name">${meal.name}</p>
-            <button data-id="${meal.id}" class="save"><i class="save fa ${bookmarked.has(meal.id) ? "fa-bookmark" : "fa-bookmark-o"}"></i></button>
+            <button data-id="${meal.id}" class="save"><i class="save fa ${bookmarkedMeals.has(meal.id) ? "fa-bookmark" : "fa-bookmark-o"}"></i></button>
         </div>
         <p class="instructions">${meal.instructions.substring(0, 50) + "..."}</p>
-        <button class="showDetails">Let's make this</button>
     </div>
+    <button class="showDetails">Let's make this</button>
     `;
 
-    meals.append(mealDom);
+    dom.append(mealDom);
 }
 
-meals.addEventListener("click", (e) => {
-    if(e.target.classList.contains("showDetails")){
-        const mealClicked = e.target.parentNode.parentNode;
-        console.dir(mealClicked);
-        const mealId = mealClicked.dataset.id;
-        showDetails(mealId);  
-    }
-
-    if(e.target.classList.contains("save")){
-        const mealId = e.target.parentNode.dataset.id;
-       if(e.target.classList.contains("fa-bookmark")) removeBookmark(mealId, [e.target]);
-       else bookmarkMeal(mealId, [e.target]);
-    }
-      
-});
-
-function bookmarkMeal(mealId, icons){
-    bookmarked.add(mealId);
-    console.log(bookmarked);
-
-    console.log(icons, mealId);
-
-    for(let icon of icons){
-        icon.classList.remove("fa-bookmark-o");
-        icon.classList.add("fa-bookmark");
-    }
-}
-
-function removeBookmark(mealId, icons){
-    bookmarked.delete(mealId);
-    console.log(bookmarked);
-
-    console.log(icons, mealId);
-
-
-    for(let icon of icons){
-        icon.classList.remove("fa-bookmark");
-        icon.classList.add("fa-bookmark-o");
-    }
-}
+mealsDom.addEventListener("click", (e) => {handleMealClicks(e)});
+bookmarkedMealsDom.addEventListener("click", (e) => {handleMealClicks(e)});
 
 
 // pop-up stuff --------------------------------
 
 function showDetails(mealId){
+
     getDetailsById(mealId).then(function(mealDetails){
-        console.log(mealDetails);
+        // console.log(mealDetails);
+
         let ingredients = "";
         for(let i = 1; i < 21 ; i++){
             const ingredient = mealDetails[`strIngredient${i}`];
@@ -161,7 +171,7 @@ function showDetails(mealId){
         <p class="instructions">Instructions : <span class="instructions-text">${mealDetails.strInstructions}<span></p>
 
         <div id="topOfCard"  class="buttons middle">
-            <button data-id=${mealDetails.idMeal} class="save"><i class="save fa ${bookmarked.has(mealDetails.idMeal) ? "fa-bookmark" : "fa-bookmark-o"}"></i></button>
+            <button data-id=${mealDetails.idMeal} class="save"><i class="save fa ${bookmarkedMeals.has(mealDetails.idMeal) ? "fa-bookmark" : "fa-bookmark-o"}"></i></button>
             <button class="cross">X</button>
         </div>  
         
@@ -173,7 +183,7 @@ function showDetails(mealId){
     .then(function(){
         popUpMain.querySelector(".buttons").addEventListener("click", (e) => {
             const target = e.target;
-            console.log(e.target);
+            // console.log(e.target);
 
             if(target.classList.contains("cross")){
                 popUpMain.classList.remove("active");
@@ -182,9 +192,10 @@ function showDetails(mealId){
 
             if(e.target.classList.contains("save")){
                 const mealId = e.target.parentNode.dataset.id;
-                const mealDomIcon = meals.querySelector(`.meal[data-id="${mealId}"] .text .main .save i`);
-               if(e.target.classList.contains("fa-bookmark")) removeBookmark(mealId, [e.target, mealDomIcon]);
-               else bookmarkMeal(mealId, [e.target, mealDomIcon]);
+                const mealDomIcon = mealsDom.querySelector(`.meal[data-id="${mealId}"] .text .main .save i`);
+
+                if(e.target.classList.contains("fa-bookmark")) handleBookmarks(false, mealId, [e.target, mealDomIcon]);
+                else handleBookmarks(true, mealId, [e.target, mealDomIcon]);
             }
 
 
@@ -192,11 +203,56 @@ function showDetails(mealId){
     });
 }
 
+// handlers --------------------------
+
+function handleNavbar(expand){
+    // console.log(navLinks);
+    navLinksDiv.classList.toggle("expandNav");
+    const navLinks = navLinksDiv.children[0];
+    navLinks.style.display = expand ? "block" : "none";
+    navLinks.classList.toggle("expandNavLinks");
+}
+
+function handleMealClicks(e){
+    if(e.target.classList.contains("showDetails")){
+        const mealClicked = e.target.parentNode;
+        // console.dir(mealClicked);
+        const mealId = mealClicked.dataset.id;
+        showDetails(mealId);  
+    }
+
+    if(e.target.classList.contains("save")){
+        const mealId = e.target.parentNode.dataset.id;
+       if(e.target.classList.contains("fa-bookmark")) handleBookmarks(false, mealId, [e.target]);
+       else handleBookmarks(true, mealId, [e.target]);
+    }
+}
+
+function handleBookmarks(add, mealId, icons){
+    add ? bookmarkedMeals.add(mealId) : bookmarkedMeals.delete(mealId);
+    if(!add) {
+        const meal = bookmarkedMealsDom.querySelector(`.meal[data-id="${mealId}"]`);
+        if(meal) meal.remove();
+        if (bookmarkedMeals.size === 0){
+            const bookmarkedMealsDomPlaceholder = document.createElement("p");
+            bookmarkedMealsDomPlaceholder.textContent = "your bookmarked meals will be here!";
+            bookmarkedMealsDomPlaceholder.style.color = "gray";
+            bookmarkedMealsDom.append(bookmarkedMealsDomPlaceholder);
+        }
+    }
+    // console.log(bookmarkedMeals);
+
+    // console.log(icons, mealId);
+
+    for(let icon of icons){
+        icon.classList.toggle("fa-bookmark-o");
+        icon.classList.toggle("fa-bookmark");
+    }
+}
 
 
 
 
-
-
+start();
 
 

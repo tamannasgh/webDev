@@ -27,47 +27,91 @@ nav{
     background-color: red;
     color: aliceblue;
     padding: 1.5em;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
 }
 
 .logo{
     text-align: center;
-    margin-bottom: 1em;
 }
 
 .logo-text{
     font-size: 1.5rem;
     font-weight: 900;
     text-decoration: aliceblue wavy underline;
+    cursor: pointer;
 }
 
-.selections{
-    display: flex;
-    justify-content: space-between;
-    margin: .5em auto 0;
-    max-width: 30rem;
+nav .expandNavBtn{
+    cursor: pointer;
+}
+nav .expandNavBtn span{
+    display: block;
+    background-color: aliceblue;
+    height: 3px;
+    width: 30px;
+}
+nav .expandNavBtn span:last-child{
+    margin-top: .3em;
+}
+
+.selections .main{
+    display: none;
+}
+.selections p{
+    cursor: pointer;
+    margin: auto;
+    padding: 0 .4em;
+}
+.selections p:hover{
+    color: rgb(226, 228, 231);
 }
 .selections p i{
     margin-left: .3em;
 }
 
-@media (min-width: 800px){
+.expandNav{
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.expandNavLinks{
+    display: block;
+    background-color: aliceblue;
+    color: red;
+    width: 35%;
+    height: 100%;
+    margin-left: auto;
+    padding: 1em 0
+}
+.expandNavLinks p + p{
+    margin-top: 3em;
+}
+.expandNavLinks p:hover{
+    color: rgb(235, 70, 70);
+}
+
+
+@media (min-width: 900px){
     nav{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
         padding: 1.5em 4em;
     }
 
-    .logo{
-        margin: 0;
+    nav .expandNavBtn{
+        display: none;
     }
 
-    .selections{
-        margin: 0;
+    .selections .main{
+        display: flex !important;
+        justify-content: space-between;
     }
 
     .selections p{
-        margin-left: 4em;
+        margin-left: 3em;
     }
 }
 
@@ -76,8 +120,9 @@ nav{
 main{
     padding: 1.5em;
 }
-.meals{
+.meals, .bookmarkedMeals{
     max-width: 73rem;
+    flex-direction: column;
 }
 .meal{
     background-color: rgba(247, 251, 255, 0.915);
@@ -88,8 +133,9 @@ main{
 }
 
 @media (min-width: 500px){
-    .meals{
+    .meals, .bookmarkedMeals{
         display: flex;
+        flex-direction: row;
         flex-wrap: wrap;
         max-width: 70rem;
         justify-content: center;
@@ -99,6 +145,13 @@ main{
         flex: 1 1 350px;
         margin: 1em .7em;
         max-width: 500px;
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    .meal > *{
+        flex: 1 1 auto;
     }
 }
 
@@ -139,14 +192,16 @@ main{
     color: gray;
 }
 
-.meal .text .showDetails{
+.meal .showDetails{
     border: none;
     border-radius: 5px;
     background-color: red;
     color: aliceblue;
     padding: .5em 1em;
-    margin-top: 1em;
+    margin-top: 1.3em;
     cursor: pointer;
+    align-self: flex-start;
+    max-height: 2.2em;
 }
 
 
