@@ -43,7 +43,7 @@ hackBtn.addEventListener("click", (e) => {
             }, 0);
 
             
-        }, 500*i);
+        }, 1000*i);
         
     }
 });
@@ -59,7 +59,7 @@ function adminLogin(){
 
     setTimeout(() => {
         formDiv.classList.add("active-login");
-    }, 0);
+    }, 100);
 }
 
 form.addEventListener("submit", (e) => {
