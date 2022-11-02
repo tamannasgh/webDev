@@ -1,0 +1,150 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none;
+}
+
+body{
+    background-image: url(./bg.jpg);
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    overflow: hidden;
+
+}
+
+
+.cursor{
+    width: 50px;
+    height: 50px;
+    background-color: rgba(137, 250, 24, 0.496);
+    border-radius: 50%;
+    position: absolute;
+}
+.inner-cursor{
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    border-radius: 50%;
+}
+
+
+main{
+    /* background-color: #121212; */
+    background-image: url("https://www.transparenttextures.com/patterns/3px-tile.png");
+    height: 100vh;
+
+    display: grid;
+    place-content: center;
+}
+
+button.hack{
+    font-family: 'Press Start 2P', cursive;
+    padding: 1em 2em;
+    border: none;
+    border-radius: 5px;
+    font-size: 2rem;
+    background-color: #212121;
+    color: rgba(137, 250, 24, 0.865);
+    transform: rotate(-13deg);
+    border: 1px solid rgba(137, 250, 24, 0.865);
+    box-shadow: 1px 2px 10px rgba(137, 250, 24, 0.865);  
+    transition: transform 0.3s, box-shadow 0.2s;
+}
+
+button.hack:hover{
+    transform: rotate(0deg);
+    box-shadow: 1px 2px 20px rgba(137, 250, 24, 0.865);  
+}
+
+.login{
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: -200px;
+    transition: margin 0.5s;
+    display: none;
+}
+.active-login{
+    margin-bottom: 0;
+}
+
+@keyframes wrong{
+    50%{background-color: rgba(255, 0, 0, 0.308);}
+}
+
+.login p{
+    color: rgba(137, 250, 24, 0.865);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 2rem;
+    margin-bottom: 1.5em;
+}
+
+.login form{
+    transition: display 0.3s;
+}
+
+.login form input{
+    display: block;
+    padding: .5em 1em;
+    font-size: 1.2rem;
+    border: 1px solid rgba(137, 250, 24, 0.496);
+    background-color: transparent;
+    border-radius: 5px;
+    margin: 1em 0;
+    color: rgba(137, 250, 24, 0.865);
+    accent-color: rgba(137, 250, 24, 0.865);
+}
+.login form input:hover{
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.login form input[type="submit"]{
+    margin: 1em auto;
+}
+
+.images{
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: stretch;
+    align-items: stretch;
+    padding: 2em;
+
+    display: none;
+}
+.images .overlay{
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    
+    display: grid;
+    place-content: center;
+}
+.images .overlay p{
+    font-size: 5rem;
+    font-family: 'Press Start 2P', cursive;
+    animation: text 0.5s infinite;    
+}
+
+@keyframes text{
+    0%{
+        color: rgba(137, 250, 24, 0.865);
+        text-shadow: 1px 1px 5px rgba(137, 250, 24, 0.706); 
+    }
+    50%{
+        color: transparent;
+        text-shadow: 1px 1px 5px transparent;
+    }
+}
+.images img{
+    width: 100%;
+    display: block;
+    transform: translateY(1000px);
+    transition: all 0.5s;
+}
+
+.active-image{
+    transform: translateY(-1000px) !important;
+}
