@@ -15,6 +15,7 @@ document.addEventListener("mousemove", (e) => {
 
 const imagesDiv = document.querySelector(".images");
 const hackBtn = document.querySelector(".hack");
+
 hackBtn.addEventListener("click", (e) => {
     
     const img = imagesDiv.querySelector("img");
@@ -25,22 +26,21 @@ hackBtn.addEventListener("click", (e) => {
     for(let i = 1 ; i < 8 ; i++){
         setTimeout(() => {
 
-            setTimeout(() => {
-                img.setAttribute("src", `./b${i}.jpg`);
-                img.classList.add("active-image");
+            
+            img.setAttribute("src", `./b${i}.jpg`);
+            img.classList.add("active-image");
 
-                if(i === 7){
-                    img.remove();
-                    imagesDiv.children[0].children[0].textContent = "HACKED!!";
-                    imagesDiv.children[0].children[0].style.color = "red";
-                    setTimeout(adminLogin, 1000);
+            if(i === 7){
+                img.remove();
+                imagesDiv.children[0].children[0].textContent = "HACKED!!";
+                imagesDiv.children[0].children[0].style.color = "red";
+                setTimeout(adminLogin, 1000);
+            }
 
-                }
-
-                img.addEventListener("transitionend", (e) => {
-                    img.classList.remove("active-image");
-                })
-            }, 0);
+            img.addEventListener("transitionend", (e) => {
+                img.classList.remove("active-image");
+            });
+        
 
             
         }, 1000*i);
@@ -53,13 +53,13 @@ const form = formDiv.children[1];
 const main = document.querySelector("main");
 
 function adminLogin(){
-    imagesDiv.style.display = "none";
+    imagesDiv.remove();
     hackBtn.remove();
     formDiv.style.display = "block";
 
     setTimeout(() => {
         formDiv.classList.add("active-login");
-    }, 100);
+    }, 0);
 }
 
 form.addEventListener("submit", (e) => {
@@ -69,7 +69,7 @@ form.addEventListener("submit", (e) => {
     const password = form.children[1].value.toLowerCase();
 
     if(username === "admin" && password === "password"){
-        form.style.display = "none";
+        form.remove();
         formDiv.children[0].textContent = "Check The Console Hacker!";
         console.log("HAPPIEST BIRTHDAY ICHU HACKER !!! (sorry yrr thodi der lg gyi)");
     } else{
@@ -79,6 +79,6 @@ form.addEventListener("submit", (e) => {
             main.style.animation = "";
         });
 
-       form.reset();
+        form.reset();
     }
 })

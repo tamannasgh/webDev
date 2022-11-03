@@ -69,7 +69,7 @@ button.hack:hover{
     border-radius: 5px;
     text-align: center;
     margin-bottom: -200px;
-    transition: margin 0.5s;
+    transition: margin-bottom 0.5s;
     display: none;
 }
 .active-login{
@@ -87,9 +87,6 @@ button.hack:hover{
     margin-bottom: 1.5em;
 }
 
-.login form{
-    transition: display 0.3s;
-}
 
 .login form input{
     display: block;
@@ -128,6 +125,8 @@ button.hack:hover{
 .images .overlay p{
     font-size: 5rem;
     font-family: 'Press Start 2P', cursive;
+    color: rgba(137, 250, 24, 0.865);
+    text-shadow: 1px 1px 5px rgba(137, 250, 24, 0.706); 
     animation: text 0.5s infinite;    
 }
 
@@ -143,12 +142,10 @@ button.hack:hover{
 
 @keyframes text{
     0%{
-        color: rgba(137, 250, 24, 0.865);
-        text-shadow: 1px 1px 5px rgba(137, 250, 24, 0.706); 
+        opacity: 1;
     }
     50%{
-        color: transparent;
-        text-shadow: 1px 1px 5px transparent;
+        opacity: 0;
     }
 }
 .images img{
