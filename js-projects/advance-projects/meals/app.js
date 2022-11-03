@@ -17,6 +17,7 @@ const popUpMain = popUp.querySelector(".pop-up-main");
 const bookmarkedMealsDom = document.querySelector(".bookmarkedMeals");
 
 
+const naam = "tamanna sharma";
 
 //functions ------------------------------
 
@@ -254,5 +255,4 @@ function handleBookmarks(add, mealId, icons){
 
 
 start();
-
 
