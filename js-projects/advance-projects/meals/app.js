@@ -17,7 +17,6 @@ const popUpMain = popUp.querySelector(".pop-up-main");
 const bookmarkedMealsDom = document.querySelector(".bookmarkedMeals");
 
 
-const naam = "tamanna sharma";
 
 //functions ------------------------------
 
@@ -58,6 +57,7 @@ document.querySelector("nav").addEventListener("click", (e) => {
         }
         // console.log("bookmarks clicked");
         mealsDom.style.display = "none";
+        
         bookmarkedMealsDom.innerHTML = "";
         bookmarkedMealsDom.style.display = "flex";
 
