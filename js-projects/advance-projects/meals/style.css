@@ -179,13 +179,15 @@ main{
     justify-content: space-between;
 }
 
-.meal .main .save{
+.meal .main .saveBtn{
     border: none;
     background-color: transparent;
     font-size: 1.1rem;
     color: red;
-    cursor: pointer;
     width: 10%
+}
+.meal .main button i{
+    cursor: pointer;
 }
 
 .meal .text .instructions{
@@ -227,7 +229,7 @@ main{
     
     transform: translateY(100px);
     opacity: 0;
-    transition: transform 0.3s , opacity 0.3s;
+    transition: transform 0.5s , opacity 0.5s;
 }
 
 .active{
