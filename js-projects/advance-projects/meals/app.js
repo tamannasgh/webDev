@@ -14,7 +14,6 @@ export class Meal{
 }
 
 
-
 // nav bar ----------------------
 
 
