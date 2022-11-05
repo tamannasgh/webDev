@@ -2,6 +2,7 @@ import {getDetailsById} from "./apiCalls.js";
 import {mealsDom, bookmarkedMeals, popUp, popUpMain, bookmarkedMealsDom} from "./elements.js";
 import {handleBookmarks, renderBookmarkPage} from "./bookmark.js";
 
+//this function is showing a pop up with the details of meal that is clicked, we have to call this with the mealId then it will get the details of that id from api and then show the pop up(we are not using the Meal class here because we want the extra props also)
 export function showPopUp(mealId){
 
     getDetailsById(mealId).then(function(mealDetails){

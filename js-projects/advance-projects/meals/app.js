@@ -1,9 +1,10 @@
 import {fetchRandomMeal, getList} from "./scripts/apiCalls.js";
-import {mealsDom, bookmarkedMeals, bookmarkedMealsDom, navLinksDiv} from "./scripts/elements.js";
+import {bookmarkedMeals, navLinksDiv, mealsDom, bookmarkedMealsDom,} from "./scripts/elements.js";
 import {showPopUp} from "./scripts/popUp.js";
 import {renderBookmarkPage, handleBookmarks} from "./scripts/bookmark.js";
 
 
+//this is a meal class that is returning an obj, that have the props that we need from the data that api returned
 export class Meal{
     constructor(meal){
         this.id = meal.idMeal;
@@ -16,7 +17,7 @@ export class Meal{
 
 // nav bar ----------------------
 
-
+//this is the code for navbar like expanding and hiding on small screens, the links of navbar like bookmarks and the three..
 document.querySelector("nav").addEventListener("click", (e) => {
     if(e.target.classList.contains("logo-text")) start();
 
@@ -30,7 +31,7 @@ document.querySelector("nav").addEventListener("click", (e) => {
         if(navLinksDiv.classList.contains("expandNav")){
             handleNavbar(false);
         }
-        renderBookmarkPage();
+        renderBookmarkPage();  //this is an imported function from bookmark.js that is adding stuff in the bookmarkedMealDom and removing the other divs  see in details in the scripts/boookmark.js
     }
 
     if(e.target.classList.contains("expandNavLinkDetails") || e.target.classList.contains("fa-angle-down")){
@@ -53,7 +54,7 @@ navLinksDiv.addEventListener("click", (e) => {
 // dom---------------------
 
 
-
+//this is a function that is loading the main view, its adding 10 random meals in the mealsDom and removing other divs.
 function start(){
     bookmarkedMealsDom.style.display = "none";
 
@@ -73,7 +74,7 @@ function start(){
 
 // adding meal stuff -----------------------
 
-
+//this func is adding meal in any dom, you have to give meal object (that we get from Meal class), and the dom (the div like mealsDom, bookmarkedMealDom etc)
 export function addMealInDom(meal, dom){    
     const mealDom = document.createElement("div");
     mealDom.classList.add("meal");
@@ -113,13 +114,13 @@ export function handleMealClicks(e){
         const mealClicked = e.target.parentNode;
         // console.dir(mealClicked);
         const mealId = mealClicked.dataset.id;
-        showPopUp(mealId);  
+        showPopUp(mealId);  //this is an impoerted func from scripts/popUp.js that is showing a pop up with details of meal you have to pass the id of that meal and this will get the details by the api
     }
 
     if(e.target.classList.contains("save")){
         const mealId = e.target.parentNode.dataset.id;
         if(e.target.classList.contains("fa-bookmark")) handleBookmarks(false, mealId, [e.target]);
-        else handleBookmarks(true, mealId, [e.target]);
+        else handleBookmarks(true, mealId, [e.target]);   //this is an imported function from scripts/bookmark.js that is handling the bookmraks, you have to pass a bool value acc to you're adding or removing, the mealId and the icons that you want to update.
     }
 }
 
