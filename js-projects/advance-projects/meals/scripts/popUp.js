@@ -1,5 +1,5 @@
 import {getDetailsById} from "./apiCalls.js";
-import {mealsDom, bookmarkedMeals, popUp, popUpMain, bookmarkedMealsDom} from "./elements.js";
+import {mealsDom, bookmarkedMeals, popUp, popUpMain, bookmarkedMealsDom, accToListMealsDom} from "./elements.js";
 import {handleBookmarks, renderBookmarkPage} from "./bookmark.js";
 
 //this function is showing a pop up with the details of meal that is clicked, we have to call this with the mealId then it will get the details of that id from api and then show the pop up(we are not using the Meal class here because we want the extra props also)
@@ -54,11 +54,14 @@ export function showPopUp(mealId){
             if(e.target.classList.contains("save")){
                 const mealId = e.target.parentNode.dataset.id;
 
-                const mealDomIcon = mealsDom.querySelector(`.meal[data-id="${mealId}"] .text .main .save i`);
+                const mealDomIcon = mealsDom.querySelector(`.meal[data-id="${mealId}"] .text .main .saveBtn i`);
+                const accToMealDomIcon = accToListMealsDom.querySelector(`.meal[data-id="${mealId}"] .text .main .saveBtn i`);
 
-                if(e.target.classList.contains("fa-bookmark")) handleBookmarks(false, mealId, [e.target, mealDomIcon]);
+                console.log(mealDomIcon);
+
+                if(e.target.classList.contains("fa-bookmark")) handleBookmarks(false, mealId, [e.target, mealDomIcon, accToMealDomIcon]);
                 else{
-                    handleBookmarks(true, mealId, [e.target, mealDomIcon]);
+                    handleBookmarks(true, mealId, [e.target, mealDomIcon, accToMealDomIcon]);
                     if(bookmarkedMealsDom.style.display === "flex"){
                         renderBookmarkPage();
                     }

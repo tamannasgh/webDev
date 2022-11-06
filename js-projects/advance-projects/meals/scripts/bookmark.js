@@ -1,11 +1,11 @@
 import {getDetailsById,} from "./apiCalls.js";
 import {Meal, addMealInDom, handleMealClicks} from "../app.js";
-import {bookmarkedMeals, bookmarkedMealsDom, mealsDom} from "./elements.js";
+import {bookmarkedMeals, bookmarkedMealsDom, mealsDom, accToListMealsDom} from "./elements.js";
 
 //this function is adding stuff in bookmarkedMealsDom and removing all the other divs, and accessing doms/divs from scripts/elements.js
 export function renderBookmarkPage(){
     
-    
+    accToListMealsDom.style.display = "none";
     mealsDom.style.display = "none";  
 
     bookmarkedMealsDom.innerHTML = "";
@@ -23,6 +23,9 @@ export function renderBookmarkPage(){
         });
     });
 }
+
+bookmarkedMealsDom.addEventListener("click", (e) => handleMealClicks(e));
+
 
 //this function is handling the bookmark like adding or removing ids from the bookmarkedMeals set and handling the 2 senarios like what if we're in the bookmarks page? as soon as we unBookmark a meal that meal should be removed from the page so this is doing that also and what if when removing the meal the page is empty we need to also then show the placeholder so this is also handled here
 export function handleBookmarks(add, mealId, icons){
@@ -53,5 +56,4 @@ function showBookmarkPlaceholder(){
     bookmarkedMealsDom.append(bookmarkedMealsDomPlaceholder);
 }
 
-bookmarkedMealsDom.addEventListener("click", (e) => {handleMealClicks(e)});
 

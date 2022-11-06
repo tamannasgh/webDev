@@ -5,6 +5,17 @@
     scroll-behavior: smooth;
 }
 
+::-webkit-scrollbar{
+    width: 5px;
+}
+::-webkit-scrollbar-track{
+    background-color: rgba(227, 225, 225, 0.798);
+}
+::-webkit-scrollbar-thumb{
+    background-color: red;
+    border-radius: 5px;
+}
+
 body{
     margin: auto;
     font-family: 'Poppins', sans-serif;
@@ -65,6 +76,7 @@ nav .expandNavBtn span:last-child{
     cursor: pointer;
     margin: auto;
     padding: 0 .4em;
+    position: relative;
 }
 .selections p:hover{
     color: rgb(226, 228, 231);
@@ -95,6 +107,34 @@ nav .expandNavBtn span:last-child{
     color: rgb(235, 70, 70);
 }
 
+/* showing the list of nav links */
+
+.navLinkList{
+    position: absolute;
+    z-index: 1;
+    height: 30vh;
+    overflow-y: scroll;
+    top: calc(100% + .3em);
+    background-color: aliceblue;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(110, 109, 109, 0.582);
+    color: red;
+    transform: translateY(10px);
+    opacity: 0;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.navLinkList li{
+    padding: .5em;
+}
+.navLinkList li:hover{
+    background-color: rgba(223, 226, 229, 0.855);
+}
+
+.activeNavLinkList{
+    transform: translateY(0);
+    opacity: 1;
+}
 
 @media (min-width: 900px){
     nav{
@@ -120,7 +160,7 @@ nav .expandNavBtn span:last-child{
 main{
     padding: 1.5em;
 }
-.meals, .bookmarkedMeals{
+.meals, .bookmarkedMeals, .accToListMeals{
     max-width: 73rem;
     flex-direction: column;
 }
@@ -133,7 +173,7 @@ main{
 }
 
 @media (min-width: 500px){
-    .meals, .bookmarkedMeals{
+    .meals, .bookmarkedMeals, .accToListMeals{
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;

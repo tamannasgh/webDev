@@ -6,3 +6,4 @@ export const popUp = document.querySelector(".pop-up");
 export const popUpMain = popUp.querySelector(".pop-up-main");
 
 export const bookmarkedMealsDom = document.querySelector(".bookmarkedMeals");
+export const accToListMealsDom = document.querySelector(".accToListMeals");

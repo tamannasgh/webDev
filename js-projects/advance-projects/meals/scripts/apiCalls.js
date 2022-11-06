@@ -18,3 +18,9 @@ export async function getList(list){
     const data = await res.json();
     return data.meals;
 }
+
+export async function getMealsAcc(mealType, maelSubType){
+    const res = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?${mealType}=${maelSubType}`)
+    const data = await res.json();
+    return data.meals;
+}
