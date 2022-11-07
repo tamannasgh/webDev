@@ -43,9 +43,12 @@ export function handleBookmarks(add, mealId, icons){
     // console.log(icons, mealId);
 
     for(let icon of icons){
-        if(!icon) continue;
-        icon.classList.toggle("fa-bookmark-o");
-        icon.classList.toggle("fa-bookmark");
+       console.log("im running for", mealId);
+
+        if(icon){
+            icon.classList.toggle("fa-bookmark-o");
+            icon.classList.toggle("fa-bookmark");
+        }
     }
 }
 

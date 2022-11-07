@@ -1,7 +1,8 @@
-import {fetchRandomMeal, getList, getMealsAcc} from "./scripts/apiCalls.js";
+import {fetchRandomMeal, } from "./scripts/apiCalls.js";
 import {bookmarkedMeals, navLinksDiv, mealsDom, bookmarkedMealsDom, accToListMealsDom} from "./scripts/elements.js";
 import {showPopUp} from "./scripts/popUp.js";
 import {renderBookmarkPage, handleBookmarks} from "./scripts/bookmark.js";
+import {handleNavLinkClick} from "./scripts/accToListMeal.js";
 
 
 //this is a meal class that is returning an obj, that have the props that we need from the data that api returned
@@ -35,59 +36,10 @@ document.querySelector("nav").addEventListener("click", (e) => {
     }
 
     if(e.target.classList.contains("expandNavLinkDetails") || e.target.classList.contains("fa-angle-down")){
-        const clickedLinkClassList = e.target.classList; //this is the classlist of p(the link in navbar) or the icon of p so in the both i have added 2 classes 1 is for the api call as api need c or a or i, and the other class is for accessing the data of the returned data like strArea or strCategory or strIngredients.
-
-        console.log(clickedLinkClassList[0], "clicked");
-        const linkPTag = e.target.tagName.toLowerCase() === "p" ? e.target : e.target.parentNode;
-
-        if(linkPTag.querySelector("ul")){
-            linkPTag.querySelector("ul").remove();
-            return;
+        if(navLinksDiv.classList.contains("expandNav")){
+            handleNavbar(false);
         }
-
-        getList(clickedLinkClassList[0]).then(function(listData){
-            console.log(listData);
-
-            const listDom = handleList(listData, clickedLinkClassList[1]);  //this will make list 
-            
-            linkPTag.append(listDom);
-
-            setTimeout(() => {
-                listDom.classList.add("activeNavLinkList");
-            }, 30);
-
-            return [clickedLinkClassList[0], listDom];
-
-        }).then(function([mealType, mealTypeList]){
-
-            //added click event listener to the ul 
-            mealTypeList.addEventListener("click", (e) => {
-                mealTypeList.remove();
-                const mealSubType = e.target.textContent; 
-
-                getMealsAcc(mealType, mealSubType).then(function(data){ 
-
-                    mealsDom.style.display = "none";
-                    bookmarkedMealsDom.style.display = "none";
-
-                    accToListMealsDom.innerHTML = "";
-                    accToListMealsDom.style.display = "flex";
-
-                    for(let i = 0 ; i < 10 ; i++){
-                        // console.log(data[i]);
-                        if(!data[i]) return;
-                        
-                        const meal = new Meal(data[i]);
-                        addMealInDom(meal, accToListMealsDom);
-                    }
-
-                }).then(function(){
-                    accToListMealsDom.addEventListener("click", (e) => handleMealClicks(e));
-                });
-
-            });
-
-        });
+        handleNavLinkClick(e);
     }
 });
 
@@ -167,22 +119,14 @@ export function handleMealClicks(e){
 
     if(e.target.classList.contains("save")){
         const mealId = e.target.parentNode.dataset.id;
-        if(e.target.classList.contains("fa-bookmark")) handleBookmarks(false, mealId, [e.target]);
-        else handleBookmarks(true, mealId, [e.target]);   //this is an imported function from scripts/bookmark.js that is handling the bookmraks, you have to pass a bool value acc to you're adding or removing, the mealId and the icons that you want to update.
+        if(e.target.classList.contains("fa-bookmark")){
+            handleBookmarks(false, mealId, [e.target]);
+        } else{
+            handleBookmarks(true, mealId, [e.target]);   //this is an imported function from scripts/bookmark.js that is handling the bookmraks, you have to pass a bool value acc to you're adding or removing, the mealId and the icons that you want to update.
+        } 
     }
 }
 
-function handleList(listData, clickedLinktext){
-    const list = document.createElement("ul");
-    list.classList.add("navLinkList");
-
-    for(let listItemData of listData){
-        const listItem = document.createElement("li");
-        listItem.textContent = listItemData[`str${clickedLinktext}`];
-        list.append(listItem);
-    }
-    return list;
-}
 
 start();
 

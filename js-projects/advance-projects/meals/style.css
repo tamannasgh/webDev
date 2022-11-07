@@ -112,7 +112,7 @@ nav .expandNavBtn span:last-child{
 .navLinkList{
     position: absolute;
     z-index: 1;
-    height: 30vh;
+    max-height: 30vh;
     overflow-y: scroll;
     top: calc(100% + .3em);
     background-color: aliceblue;
@@ -123,6 +123,17 @@ nav .expandNavBtn span:last-child{
     opacity: 0;
     transition: transform 0.3s, opacity 0.3s;
 }
+
+.navLinkList input{
+    border: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: .5em;
+    font-size: .95rem;
+    outline: none;
+}
+
 
 .navLinkList li{
     padding: .5em;
