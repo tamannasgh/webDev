@@ -2,7 +2,7 @@ import {fetchRandomMeal, } from "./scripts/apiCalls.js";
 import {bookmarkedMeals, navLinksDiv, mealsDom, bookmarkedMealsDom, accToListMealsDom} from "./scripts/elements.js";
 import {showPopUp} from "./scripts/popUp.js";
 import {renderBookmarkPage, handleBookmarks} from "./scripts/bookmark.js";
-import {handleNavLinkClick} from "./scripts/accToListMeal.js";
+import {showNavLinkDropDown, removeNavLinkList} from "./scripts/accToListMeal.js";
 
 
 //this is a meal class that is returning an obj, that have the props that we need from the data that api returned
@@ -36,10 +36,7 @@ document.querySelector("nav").addEventListener("click", (e) => {
     }
 
     if(e.target.classList.contains("expandNavLinkDetails") || e.target.classList.contains("fa-angle-down")){
-        if(navLinksDiv.classList.contains("expandNav")){
-            handleNavbar(false);
-        }
-        handleNavLinkClick(e);
+        showNavLinkDropDown(e);
     }
 });
 

@@ -147,7 +147,7 @@ nav .expandNavBtn span:last-child{
     opacity: 1;
 }
 
-@media (min-width: 900px){
+@media (min-width: 950px){
     nav{
         padding: 1.5em 4em;
     }

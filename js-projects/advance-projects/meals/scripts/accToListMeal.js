@@ -1,10 +1,10 @@
 import {getList, getMealsAcc} from "./apiCalls.js";
-import {Meal, addMealInDom, handleMealClicks} from "../app.js";
-import {mealsDom, bookmarkedMealsDom, accToListMealsDom} from "./elements.js";
+import {Meal, addMealInDom, handleMealClicks, handleNavbar} from "../app.js";
+import {navLinksDiv, mealsDom, bookmarkedMealsDom, accToListMealsDom} from "./elements.js";
 
 
 
-export function handleNavLinkClick(e){
+export function showNavLinkDropDown(e){
     const clickedLinkClassList = e.target.classList; //this is the classlist of p(the link in navbar) or the icon of p so in the both i have added 2 classes 1 is for the api call as api need c or a or i, and the other class is for accessing the data of the returned data like strArea or strCategory or strIngredients.
 
     // console.log(clickedLinkClassList[0], "clicked");
@@ -12,8 +12,7 @@ export function handleNavLinkClick(e){
     const linkPTag = e.target.tagName.toLowerCase() === "p" ? e.target : e.target.parentNode;
 
     if(linkPTag.querySelector("ul")){
-        linkPTag.classList.remove("activeNavLinkList");
-        linkPTag.querySelector("ul").remove();
+        removeNavLinkList(linkPTag);
         return;
     }
 
@@ -26,7 +25,7 @@ export function handleNavLinkClick(e){
 
         setTimeout(() => {
             listDom.classList.add("activeNavLinkList");
-        }, 30);   //the transition happens only when applied in setTimeout maybe the reason is the thread or something.. 
+        }, 10);   //the transition happens only when applied in setTimeout maybe the reason is the thread or something.. 
 
         return [clickedLinkClassList[0], listDom];   //returning this beacuse again a,c or i needed for the api call and list to add and handle the event listener
 
@@ -42,6 +41,10 @@ export function handleNavLinkClick(e){
 
             } else{
                 mealTypeList.remove();
+                if(navLinksDiv.classList.contains("expandNav")){
+                    handleNavbar(false);
+                }
+
                 const mealSubType = e.target.textContent;   //need this for the api call this will be what user clicked like Indian, Seafood ...
 
                 getMealsAcc(mealType, mealSubType).then(function(data){  //api call for getting the meals acc to what user clicked
@@ -70,6 +73,11 @@ export function handleNavLinkClick(e){
 }
 
 accToListMealsDom.addEventListener("click", (e) => handleMealClicks(e));
+
+export function removeNavLinkList(linkPTag){
+    linkPTag.classList.remove("activeNavLinkList");
+    linkPTag.querySelector("ul").remove();
+}
 
 function search(query, list){
     console.log(query, list);
