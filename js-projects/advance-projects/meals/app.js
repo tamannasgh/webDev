@@ -15,9 +15,6 @@ export class Meal{
     }
 }
 
-
-
-
 // nav bar ----------------------
 
 //this is the code for navbar like expanding and hiding on small screens, the links of navbar like bookmarks and the three..

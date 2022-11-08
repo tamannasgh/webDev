@@ -42,6 +42,13 @@ export function showPopUp(mealId){
         }, 50);
     })
     .then(function(){
+        popUp.addEventListener("click", (e) => {
+            if(popUpMain && e.target.classList.contains("pop-up")){
+                popUpMain.classList.remove("active");
+                popUp.style.display = "none";
+            }
+        })
+
         popUpMain.querySelector(".buttons").addEventListener("click", (e) => {
             const target = e.target;
             // console.log(e.target);
