@@ -7,13 +7,19 @@ import {navLinksDiv, mealsDom, bookmarkedMealsDom, accToListMealsDom} from "./el
 export function showNavLinkDropDown(e){
     const clickedLinkClassList = e.target.classList; //this is the classlist of p(the link in navbar) or the icon of p so in the both i have added 2 classes 1 is for the api call as api need c or a or i, and the other class is for accessing the data of the returned data like strArea or strCategory or strIngredients.
 
-    // console.log(clickedLinkClassList[0], "clicked");
-
     const linkPTag = e.target.tagName.toLowerCase() === "p" ? e.target : e.target.parentNode;
 
     if(linkPTag.querySelector("ul")){
-        removeNavLinkList(linkPTag);
+        console.log("its already there from function itself");
         return;
+    }
+
+    //this is because when we open a dropdown other all should be closed
+    const allPTags = linkPTag.parentNode.children;
+    for(let i =0 ; i < allPTags.length ; i++){
+        if(allPTags[i].querySelector("ul")){
+            removeNavLinkList(allPTags[i]);
+        }
     }
 
     getList(clickedLinkClassList[0]).then(function(listData){   //passing classlist[0] because in the api call i need a, c or i for area category and ingredient so i have settted the class on the element so passing that and getting my data then catching it with then
@@ -27,6 +33,24 @@ export function showNavLinkDropDown(e){
             listDom.classList.add("activeNavLinkList");
         }, 10);   //the transition happens only when applied in setTimeout maybe the reason is the thread or something.. 
 
+        //adding an event listener to the ul so that when user leave that it will removed
+        let listVisited;
+        listDom.addEventListener("mouseenter", () => {
+            listVisited = true;
+            listDom.addEventListener("mouseleave", (e) => {
+                listDom.remove();
+            });
+        });
+
+        setTimeout(() => {
+            if(!listVisited){
+                if(listDom){
+                    listDom.remove();
+                }
+            }
+        }, 1000);
+        
+
         return [clickedLinkClassList[0], listDom];   //returning this beacuse again a,c or i needed for the api call and list to add and handle the event listener
 
     }).then(function([mealType, mealTypeList]){
@@ -34,6 +58,7 @@ export function showNavLinkDropDown(e){
         //added click event listener to the ul 
         mealTypeList.addEventListener("click", (e) => {
 
+            //searchingg partttt
             if(e.target.tagName === "INPUT"){
                 e.target.addEventListener("keyup", (e) => {
                     search(e.target.value.toLowerCase(), mealTypeList);
@@ -75,7 +100,6 @@ export function showNavLinkDropDown(e){
 accToListMealsDom.addEventListener("click", (e) => handleMealClicks(e));
 
 export function removeNavLinkList(linkPTag){
-    linkPTag.classList.remove("activeNavLinkList");
     linkPTag.querySelector("ul").remove();
 }
 

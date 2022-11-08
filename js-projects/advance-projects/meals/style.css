@@ -75,7 +75,6 @@ nav .expandNavBtn span:last-child{
 .selections p{
     cursor: pointer;
     margin: auto;
-    padding: 0 .4em;
     position: relative;
 }
 .selections p:hover{

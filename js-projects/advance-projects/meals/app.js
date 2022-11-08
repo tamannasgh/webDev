@@ -16,6 +16,8 @@ export class Meal{
 }
 
 
+
+
 // nav bar ----------------------
 
 //this is the code for navbar like expanding and hiding on small screens, the links of navbar like bookmarks and the three..
@@ -35,9 +37,14 @@ document.querySelector("nav").addEventListener("click", (e) => {
         renderBookmarkPage();  //this is an imported function from bookmark.js that is adding stuff in the bookmarkedMealDom and removing the other divs  see in details in the scripts/boookmark.js
     }
 
-    if(e.target.classList.contains("expandNavLinkDetails") || e.target.classList.contains("fa-angle-down")){
+});
+
+navLinksDiv.querySelectorAll("p").forEach(pTag => {
+
+    pTag.addEventListener('mouseover', (e) => {        
         showNavLinkDropDown(e);
-    }
+    });
+
 });
 
 navLinksDiv.addEventListener("click", (e) => {
