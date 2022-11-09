@@ -2,7 +2,7 @@ import {fetchRandomMeal, } from "./scripts/apiCalls.js";
 import {bookmarkedMeals, navLinksDiv, mealsDom, bookmarkedMealsDom, accToListMealsDom} from "./scripts/elements.js";
 import {showPopUp} from "./scripts/popUp.js";
 import {renderBookmarkPage, handleBookmarks} from "./scripts/bookmark.js";
-import {showNavLinkDropDown, removeNavLinkList} from "./scripts/accToListMeal.js";
+import {showNavLinkDropDown, removeAllNavLinkList} from "./scripts/accToListMeal.js";
 
 
 //this is a meal class that is returning an obj, that have the props that we need from the data that api returned
@@ -19,7 +19,10 @@ export class Meal{
 
 //this is the code for navbar like expanding and hiding on small screens, the links of navbar like bookmarks and the three..
 document.querySelector("nav").addEventListener("click", (e) => {
-    if(e.target.classList.contains("logo-text")) start();
+    if(e.target.classList.contains("logo-text")){
+        removeAllNavLinkList();
+        start();
+    }
 
     if(e.target.classList.contains("expandNavBtn" ) || e.target.classList.contains("expandNavBtn-span")){
         handleNavbar(true);
@@ -34,12 +37,22 @@ document.querySelector("nav").addEventListener("click", (e) => {
         renderBookmarkPage();  //this is an imported function from bookmark.js that is adding stuff in the bookmarkedMealDom and removing the other divs  see in details in the scripts/boookmark.js
     }
 
+    if(e.target.classList.contains("expandNavLinkDetails") || e.target.classList.contains("fa-angle-down")){
+        // console.log("im clicked", e.target);
+        console.log("im from click event");
+        showNavLinkDropDown(e);
+    }
+
 });
 
+//nav link list on hover ---------------------
 navLinksDiv.querySelectorAll("p").forEach(pTag => {
 
-    pTag.addEventListener('mouseover', (e) => {        
-        showNavLinkDropDown(e);
+    pTag.addEventListener('mouseover', (e) => {
+        if(e.target.tagName === "P"){
+            console.log("im from hover event");
+            showNavLinkDropDown(e);
+        }
     });
 
 });
@@ -48,12 +61,17 @@ navLinksDiv.addEventListener("click", (e) => {
     if(e.target.classList.contains("expandNav")){
         handleNavbar(false);
     }
+    if(e.target.classList.contains("main")) removeAllNavLinkList();
 });
+
 
 
 
 // dom---------------------
 
+document.querySelector("main").addEventListener("mouseenter", (e) => {
+    removeAllNavLinkList();
+})
 
 //this is a function that is loading the main view, its adding 10 random meals in the mealsDom and removing other divs.
 function start(){
@@ -127,6 +145,7 @@ export function handleMealClicks(e){
         } 
     }
 }
+
 
 
 start();

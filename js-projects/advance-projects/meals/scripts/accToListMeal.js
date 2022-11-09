@@ -2,54 +2,44 @@ import {getList, getMealsAcc} from "./apiCalls.js";
 import {Meal, addMealInDom, handleMealClicks, handleNavbar} from "../app.js";
 import {navLinksDiv, mealsDom, bookmarkedMealsDom, accToListMealsDom} from "./elements.js";
 
-
+let navLinkActivated = false;
 
 export function showNavLinkDropDown(e){
+
+    if(navLinkActivated) return;
+
+    console.log(e.target);
+
     const clickedLinkClassList = e.target.classList; //this is the classlist of p(the link in navbar) or the icon of p so in the both i have added 2 classes 1 is for the api call as api need c or a or i, and the other class is for accessing the data of the returned data like strArea or strCategory or strIngredients.
 
     const linkPTag = e.target.tagName.toLowerCase() === "p" ? e.target : e.target.parentNode;
 
-    if(linkPTag.querySelector("ul")){
-        console.log("its already there from function itself");
-        return;
-    }
-
     //this is because when we open a dropdown other all should be closed
-    const allPTags = linkPTag.parentNode.children;
-    for(let i =0 ; i < allPTags.length ; i++){
-        if(allPTags[i].querySelector("ul")){
-            removeNavLinkList(allPTags[i]);
-        }
-    }
+    removeAllNavLinkList();
 
     getList(clickedLinkClassList[0]).then(function(listData){   //passing classlist[0] because in the api call i need a, c or i for area category and ingredient so i have settted the class on the element so passing that and getting my data then catching it with then
         console.log(listData);
 
         const listDom = handleList(listData, clickedLinkClassList[1]);  //this will make list, take data and because the data is an oject and the prop where the item text is written is strArea, strIngredient and strCategory so seeted these classes as well and passing these 
-        
-        linkPTag.append(listDom);
 
-        setTimeout(() => {
-            listDom.classList.add("activeNavLinkList");
-        }, 10);   //the transition happens only when applied in setTimeout maybe the reason is the thread or something.. 
+        if(!navLinkActivated){
+            linkPTag.append(listDom);
+            navLinkActivated = true;
+
+            setTimeout(() => {
+                listDom.classList.add("activeNavLinkList");
+                console.log("added the list");
+            }, 10);   //the transition happens only when applied in setTimeout maybe the reason is the thread or something.. 
+        }
+        
 
         //adding an event listener to the ul so that when user leave that it will removed
-        let listVisited;
-        listDom.addEventListener("mouseenter", () => {
-            listVisited = true;
-            listDom.addEventListener("mouseleave", (e) => {
-                listDom.remove();
-            });
+        listDom.addEventListener("mouseleave", (e) => {
+            if(!listDom.querySelector("input").value === "") return;
+            console.log(listDom.querySelector("input").value);
+            listDom.remove();
+            navLinkActivated = false;
         });
-
-        setTimeout(() => {
-            if(!listVisited){
-                if(listDom){
-                    listDom.remove();
-                }
-            }
-        }, 1000);
-        
 
         return [clickedLinkClassList[0], listDom];   //returning this beacuse again a,c or i needed for the api call and list to add and handle the event listener
 
@@ -61,11 +51,13 @@ export function showNavLinkDropDown(e){
             //searchingg partttt
             if(e.target.tagName === "INPUT"){
                 e.target.addEventListener("keyup", (e) => {
-                    search(e.target.value.toLowerCase(), mealTypeList);
+                    if( !(e.target.value.trim() === "") ) 
+                    search(e.target.value.trim().toLowerCase(), mealTypeList);
                 });
 
             } else{
                 mealTypeList.remove();
+                navLinkActivated = false;
                 if(navLinksDiv.classList.contains("expandNav")){
                     handleNavbar(false);
                 }
@@ -100,11 +92,13 @@ export function showNavLinkDropDown(e){
 accToListMealsDom.addEventListener("click", (e) => handleMealClicks(e));
 
 export function removeNavLinkList(linkPTag){
+    // linkPTag.querySelectorAll("ul").forEach(ul => ul.remove());
     linkPTag.querySelector("ul").remove();
+    navLinkActivated = false;
 }
 
 function search(query, list){
-    console.log(query, list);
+    // console.log(query, list  );
 
     const items = list.querySelectorAll("li");
     // console.log(Object.values(items));
@@ -137,4 +131,10 @@ function handleList(listData, clickedLinktext){
         list.append(listItem);
     }
     return list;
+}
+
+export function removeAllNavLinkList(){
+    navLinksDiv.querySelectorAll("p").forEach(pTag => {
+        if(pTag.querySelector("ul")) removeNavLinkList(pTag);
+    });
 }
