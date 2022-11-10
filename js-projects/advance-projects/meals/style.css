@@ -94,7 +94,7 @@ nav .expandNavBtn span:last-child{
     display: block;
     background-color: aliceblue;
     color: red;
-    width: 35%;
+    width: calc(35% + 1em);
     height: 100%;
     margin-left: auto;
     padding: 1em 0
@@ -172,7 +172,7 @@ main{
 }
 .meals, .bookmarkedMeals, .accToListMeals{
     max-width: 73rem;
-    flex-direction: column;
+    flex-direction: column;    /* because we are adding display flex in js when rendering this so here w can do flex direction column */
 }
 .meal{
     background-color: rgba(247, 251, 255, 0.915);
@@ -182,7 +182,7 @@ main{
     margin: 1.5em 0;
 }
 
-@media (min-width: 500px){
+@media (min-width: 550px){
     .meals, .bookmarkedMeals, .accToListMeals{
         display: flex;
         flex-direction: row;

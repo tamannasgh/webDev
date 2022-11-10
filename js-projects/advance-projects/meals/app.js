@@ -41,6 +41,7 @@ document.querySelector("nav").addEventListener("click", (e) => {
         // console.log("im clicked", e.target);
         console.log("im from click event");
         showNavLinkDropDown(e);
+        
     }
 
 });
@@ -52,7 +53,7 @@ navLinksDiv.querySelectorAll("p").forEach(pTag => {
         if(e.target.tagName === "P"){
             console.log("im from hover event");
             showNavLinkDropDown(e);
-        }
+        }    
     });
 
 });

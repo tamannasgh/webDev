@@ -6,13 +6,16 @@ let navLinkActivated = false;
 
 export function showNavLinkDropDown(e){
 
-    if(navLinkActivated) return;
-
-    console.log(e.target);
+    console.log(e.target, e.type+"ed");
 
     const clickedLinkClassList = e.target.classList; //this is the classlist of p(the link in navbar) or the icon of p so in the both i have added 2 classes 1 is for the api call as api need c or a or i, and the other class is for accessing the data of the returned data like strArea or strCategory or strIngredients.
 
     const linkPTag = e.target.tagName.toLowerCase() === "p" ? e.target : e.target.parentNode;
+
+    if(navLinkActivated && linkPTag === getActiveP()){
+        console.log(linkPTag, getActiveP());
+        return;
+    }
 
     //this is because when we open a dropdown other all should be closed
     removeAllNavLinkList();
@@ -29,16 +32,15 @@ export function showNavLinkDropDown(e){
             setTimeout(() => {
                 listDom.classList.add("activeNavLinkList");
                 console.log("added the list");
-            }, 10);   //the transition happens only when applied in setTimeout maybe the reason is the thread or something.. 
-        }
+            }, 10);   //the transition happens only when applied in setTimeout maybe the reason is the thread or something..
+        } 
         
 
         //adding an event listener to the ul so that when user leave that it will removed
         listDom.addEventListener("mouseleave", (e) => {
-            if(!listDom.querySelector("input").value === "") return;
+            if(!(listDom.querySelector("input").value === "")) return;
             console.log(listDom.querySelector("input").value);
-            listDom.remove();
-            navLinkActivated = false;
+            removeNavLinkList(linkPTag);
         });
 
         return [clickedLinkClassList[0], listDom];   //returning this beacuse again a,c or i needed for the api call and list to add and handle the event listener
@@ -56,10 +58,10 @@ export function showNavLinkDropDown(e){
                 });
 
             } else{
-                mealTypeList.remove();
-                navLinkActivated = false;
+                removeNavLinkList(mealTypeList.parentNode);  //removing list as user has selected something
+
                 if(navLinksDiv.classList.contains("expandNav")){
-                    handleNavbar(false);
+                    handleNavbar(false);  //closing navbar in mobile view
                 }
 
                 const mealSubType = e.target.textContent;   //need this for the api call this will be what user clicked like Indian, Seafood ...
@@ -97,6 +99,18 @@ export function removeNavLinkList(linkPTag){
     navLinkActivated = false;
 }
 
+export function removeAllNavLinkList(){
+    navLinksDiv.querySelectorAll("p").forEach(pTag => {
+        if(pTag.querySelector("ul")) removeNavLinkList(pTag);
+    });
+}
+
+function getActiveP(){
+    navLinksDiv.querySelectorAll("p").forEach(pTag => {
+        if(pTag.querySelector("ul")) return pTag;
+    });
+}
+
 function search(query, list){
     // console.log(query, list  );
 
@@ -131,10 +145,4 @@ function handleList(listData, clickedLinktext){
         list.append(listItem);
     }
     return list;
-}
-
-export function removeAllNavLinkList(){
-    navLinksDiv.querySelectorAll("p").forEach(pTag => {
-        if(pTag.querySelector("ul")) removeNavLinkList(pTag);
-    });
 }
