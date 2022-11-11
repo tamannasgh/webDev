@@ -1,6 +1,6 @@
 import {getDetailsById,} from "./apiCalls.js";
-import {Meal, addMealInDom, handleMealClicks} from "../app.js";
-import {bookmarkedMeals, bookmarkedMealsDom, mealsDom, accToListMealsDom} from "./elements.js";
+import {Meal, addMealInDom, handleMealClicks, removeTemplateAndShowData} from "../app.js";
+import {bookmarkedMeals, bookmarkedMealsDom, mealsDom, accToListMealsDom, template} from "./elements.js";
 
 //this function is adding stuff in bookmarkedMealsDom and removing all the other divs, and accessing doms/divs from scripts/elements.js
 export function renderBookmarkPage(){
@@ -8,19 +8,28 @@ export function renderBookmarkPage(){
     accToListMealsDom.style.display = "none";
     mealsDom.style.display = "none";  
 
+    template.style.display = "flex";
+
     bookmarkedMealsDom.innerHTML = "";
-    bookmarkedMealsDom.style.display = "flex";
 
     if (bookmarkedMeals.size === 0){   //bookmarkedMeals is a aset of ids of the bookmarled meals
+        removeTemplateAndShowData(bookmarkedMealsDom);
         showBookmarkPlaceholder();   //its a function showing a placeholder if there's no bookmarks
         return;
     }
 
-    bookmarkedMeals.forEach( function(bookmarkMealId){
+    const lastBookmarkedMealId = Array.from(bookmarkedMeals).at(-1);
+    // console.log(lastBookmarkedMeal);
+
+    bookmarkedMeals.forEach( function(bookmarkMealId, ){
         getDetailsById(bookmarkMealId).then(function(mealData){
             const meal = new Meal(mealData);
             addMealInDom(meal, bookmarkedMealsDom);  //this is a function that is adding the meal in the given dom (meal is an object that we get from Meal class) this Meal class and addMealInDom func is imported from app.js
-        });
+        }).then(function(){
+            if(!(lastBookmarkedMealId === bookmarkMealId)) return;
+
+            removeTemplateAndShowData(bookmarkedMealsDom);
+        })
     });
 }
 

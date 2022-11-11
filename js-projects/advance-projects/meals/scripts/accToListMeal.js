@@ -1,6 +1,6 @@
 import {getList, getMealsAcc} from "./apiCalls.js";
-import {Meal, addMealInDom, handleMealClicks, handleNavbar} from "../app.js";
-import {navLinksDiv, mealsDom, bookmarkedMealsDom, accToListMealsDom} from "./elements.js";
+import {Meal, addMealInDom, handleMealClicks, handleNavbar, removeTemplateAndShowData} from "../app.js";
+import {navLinksDiv, mealsDom, bookmarkedMealsDom, accToListMealsDom, template} from "./elements.js";
 
 let navLinkActivated = false;
 
@@ -58,6 +58,8 @@ export function showNavLinkDropDown(e){
                 });
 
             } else{
+                template.style.display = "flex";
+
                 removeNavLinkList(mealTypeList.parentNode);  //removing list as user has selected something
 
                 if(navLinksDiv.classList.contains("expandNav")){
@@ -72,7 +74,6 @@ export function showNavLinkDropDown(e){
                     bookmarkedMealsDom.style.display = "none";
 
                     accToListMealsDom.innerHTML = "";
-                    accToListMealsDom.style.display = "flex";
 
                     for(let i = 0 ; i < 10 ; i++){
                         // console.log(data[i]);
@@ -83,7 +84,10 @@ export function showNavLinkDropDown(e){
                         addMealInDom(meal, accToListMealsDom);  //this will add meal in the accToListMealsDom
                     }
 
-                });
+                }).then(function(){
+                    console.log("data loaded");
+                    setTimeout(() => removeTemplateAndShowData(accToListMealsDom), 1000);
+                })
             }
 
         });

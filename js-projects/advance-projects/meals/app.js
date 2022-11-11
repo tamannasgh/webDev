@@ -1,5 +1,5 @@
 import {fetchRandomMeal, } from "./scripts/apiCalls.js";
-import {bookmarkedMeals, navLinksDiv, mealsDom, bookmarkedMealsDom, accToListMealsDom} from "./scripts/elements.js";
+import {bookmarkedMeals, navLinksDiv, mealsDom, bookmarkedMealsDom, accToListMealsDom, template} from "./scripts/elements.js";
 import {showPopUp} from "./scripts/popUp.js";
 import {renderBookmarkPage, handleBookmarks} from "./scripts/bookmark.js";
 import {showNavLinkDropDown, removeAllNavLinkList} from "./scripts/accToListMeal.js";
@@ -50,7 +50,7 @@ document.querySelector("nav").addEventListener("click", (e) => {
 navLinksDiv.querySelectorAll("p").forEach(pTag => {
 
     pTag.addEventListener('mouseover', (e) => {
-        if(e.target.tagName === "P"){
+        if(e.target.tagName === "P" && !(e.target.classList.contains("bookmarks")) ){
             console.log("im from hover event");
             showNavLinkDropDown(e);
         }    
@@ -79,8 +79,9 @@ function start(){
     bookmarkedMealsDom.style.display = "none";
     accToListMealsDom.style.display = "none";
 
+    template.style.display = "flex";
+
     mealsDom.innerHTML = "";
-    mealsDom.style.display = "flex";
 
     for(let i = 0 ; i < 10 ; i++){
         fetchRandomMeal().then(function(data){
@@ -88,7 +89,12 @@ function start(){
             return meal;
         }).then(function(meal){
             addMealInDom(meal, mealsDom);
-        });
+
+            return i;
+        }).then(function(){
+            if(i < 9) return;
+            removeTemplateAndShowData(mealsDom);
+        })
     }
 }
 
@@ -147,6 +153,14 @@ export function handleMealClicks(e){
     }
 }
 
+
+export function removeTemplateAndShowData(dataDom){
+    console.log("data loaded", dataDom);
+
+    template.style.display = "none";
+
+    dataDom.style.display = "flex";
+}
 
 
 start();
