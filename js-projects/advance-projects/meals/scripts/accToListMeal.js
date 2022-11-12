@@ -75,19 +75,40 @@ export function showNavLinkDropDown(e){
 
                     accToListMealsDom.innerHTML = "";
 
-                    for(let i = 0 ; i < 10 ; i++){
-                        // console.log(data[i]);
-                        
-                        if(!data[i]) break;
-                        
-                        const meal = new Meal(data[i]);
-                        addMealInDom(meal, accToListMealsDom);  //this will add meal in the accToListMealsDom
+                    const noOfPages = Math.floor(data.length / 10);  //in programmer way (stsrt from 0)
+
+                    fetchDataAndAddInDom(0, data);
+
+                    if(noOfPages > 0){
+
+                        const nextPages = document.createElement("ul");
+                        nextPages.classList.add("next-pages", "middle");
+                        for(let i =0 ; i <= noOfPages ; i++){
+                            const li = document.createElement("li");
+                            li.classList.add("middle");
+                            li.textContent = i;
+
+                            nextPages.append(li);
+                        }
+                        accToListMealsDom.append(nextPages);
+
+                        accToListMealsDom.querySelector("ul").addEventListener("click", (e) => {
+                            if( !(e.target.tagName === "LI")) return;
+
+                            accToListMealsDom.innerHTML = "";
+
+                            fetchDataAndAddInDom(e.target.textContent, data);
+                            accToListMealsDom.append(nextPages);
+
+                            window.scrollTo(0, 0);
+
+                        });
                     }
 
+
                 }).then(function(){
-                    console.log("data loaded");
                     setTimeout(() => removeTemplateAndShowData(accToListMealsDom), 1000);
-                })
+                });
             }
 
         });
@@ -96,6 +117,18 @@ export function showNavLinkDropDown(e){
 }
 
 accToListMealsDom.addEventListener("click", (e) => handleMealClicks(e));
+
+function fetchDataAndAddInDom(i, data){
+    
+    for(let j = i *10 ; j < (i*10) + 10 ; j++){
+        // console.log(data[i]);
+
+        if(!data[j]) break;
+        
+        const meal = new Meal(data[j]);
+        addMealInDom(meal, accToListMealsDom);  //this will add meal in the accToListMealsDom
+    }
+}
 
 export function removeNavLinkList(linkPTag){
     // linkPTag.querySelectorAll("ul").forEach(ul => ul.remove());
