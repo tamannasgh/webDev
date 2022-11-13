@@ -5,6 +5,17 @@
     scroll-behavior: smooth;
 }
 
+::-webkit-scrollbar{
+    width: 5px;
+}
+::-webkit-scrollbar-track{
+    background-color: rgba(227, 225, 225, 0.798);
+}
+::-webkit-scrollbar-thumb{
+    background-color: red;
+    border-radius: 5px;
+}
+
 body{
     margin: auto;
     font-family: 'Poppins', sans-serif;
@@ -64,7 +75,7 @@ nav .expandNavBtn span:last-child{
 .selections p{
     cursor: pointer;
     margin: auto;
-    padding: 0 .4em;
+    position: relative;
 }
 .selections p:hover{
     color: rgb(226, 228, 231);
@@ -83,7 +94,7 @@ nav .expandNavBtn span:last-child{
     display: block;
     background-color: aliceblue;
     color: red;
-    width: 35%;
+    width: calc(35% + 1em);
     height: 100%;
     margin-left: auto;
     padding: 1em 0
@@ -95,8 +106,47 @@ nav .expandNavBtn span:last-child{
     color: rgb(235, 70, 70);
 }
 
+/* showing the list of nav links */
 
-@media (min-width: 900px){
+.navLinkList{
+    position: absolute;
+    z-index: 1;
+    max-height: 30vh;
+    overflow-y: scroll;
+    top: calc(100% + .3em);
+    background-color: aliceblue;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(110, 109, 109, 0.582);
+    color: red;
+    transform: translateY(10px);
+    opacity: 0;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.navLinkList input{
+    border: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: .5em;
+    font-size: .95rem;
+    outline: none;
+}
+
+
+.navLinkList li{
+    padding: .5em;
+}
+.navLinkList li:hover{
+    background-color: rgba(223, 226, 229, 0.855);
+}
+
+.activeNavLinkList{
+    transform: translateY(0);
+    opacity: 1;
+}
+
+@media (min-width: 950px){
     nav{
         padding: 1.5em 4em;
     }
@@ -116,15 +166,50 @@ nav .expandNavBtn span:last-child{
 }
 
 
+/* template loading ----------------------------------- */
+
+.card{
+    animation: template-animation 1s infinite alternate;
+}
+
+.card .image{
+    width: 130px;
+    height: 130px;
+    background-color: rgba(128, 128, 128, 0.499);
+    border-radius: 50%;
+    margin: 0 auto 2em;
+}
+
+.card p{
+    background-color: rgba(128, 128, 128, 0.6);
+    height: 20px;
+    margin: 1em;
+}
+.card p:first-child{
+    width: 70%;
+}
+
+@keyframes template-animation{
+    0%{
+        opacity: 1;
+    } 
+    50%{
+        opacity: 0.5;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
 /* main ----------------------------- */
 main{
     padding: 1.5em;
 }
-.meals, .bookmarkedMeals{
+.template, .meals, .bookmarkedMeals, .accToListMeals{
     max-width: 73rem;
-    flex-direction: column;
+    flex-direction: column;    /* because we are adding display flex in js when rendering this so here w can do flex direction column */
 }
-.meal{
+.card, .meal{
     background-color: rgba(247, 251, 255, 0.915);
     padding: .7em;
     border-radius: 5px;
@@ -132,8 +217,8 @@ main{
     margin: 1.5em 0;
 }
 
-@media (min-width: 500px){
-    .meals, .bookmarkedMeals{
+@media (min-width: 550px){
+    .template, .meals, .bookmarkedMeals, .accToListMeals{
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
@@ -141,7 +226,7 @@ main{
         justify-content: center;
         margin: 2em auto;
     }
-    .meal{
+    .card, .meal{
         flex: 1 1 350px;
         margin: 1em .7em;
         max-width: 500px;
@@ -179,13 +264,15 @@ main{
     justify-content: space-between;
 }
 
-.meal .main .save{
+.meal .main .saveBtn{
     border: none;
     background-color: transparent;
     font-size: 1.1rem;
     color: red;
-    cursor: pointer;
     width: 10%
+}
+.meal .main button i{
+    cursor: pointer;
 }
 
 .meal .text .instructions{
@@ -202,6 +289,26 @@ main{
     cursor: pointer;
     align-self: flex-start;
     max-height: 2.2em;
+}
+
+/* next pages ------------------ */
+.next-pages{
+    width: 100%;
+}
+
+.next-pages li{
+    list-style-type: none;
+    background-color: red;
+    color: aliceblue;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    margin: 1em;
+    cursor: pointer;
+}
+
+.next-pages li:hover{
+    background-color: rgba(244, 19, 19, 0.851);
 }
 
 
@@ -227,7 +334,7 @@ main{
     
     transform: translateY(100px);
     opacity: 0;
-    transition: transform 0.3s , opacity 0.3s;
+    transition: transform 0.5s , opacity 0.5s;
 }
 
 .active{

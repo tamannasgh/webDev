@@ -1,4 +1,12 @@
-class Meal{
+import {fetchRandomMeal, } from "./scripts/apiCalls.js";
+import {bookmarkedMeals, navLinksDiv, mealsDom, bookmarkedMealsDom, accToListMealsDom, template} from "./scripts/elements.js";
+import {showPopUp} from "./scripts/popUp.js";
+import {renderBookmarkPage, handleBookmarks} from "./scripts/bookmark.js";
+import {showNavLinkDropDown, removeAllNavLinkList} from "./scripts/accToListMeal.js";
+
+
+//this is a meal class that is returning an obj, that have the props that we need from the data that api returned
+export class Meal{
     constructor(meal){
         this.id = meal.idMeal;
         this.name = meal.strMeal;
@@ -7,43 +15,14 @@ class Meal{
     }
 }
 
-const navLinksDiv = document.querySelector(".selections");
-const bookmarkedMeals = new Set();
-
-const mealsDom = document.querySelector(".meals");
-const popUp = document.querySelector(".pop-up");
-const popUpMain = popUp.querySelector(".pop-up-main");
-
-const bookmarkedMealsDom = document.querySelector(".bookmarkedMeals");
-
-
-
-//functions ------------------------------
-
-async function getDetailsById(mealId){
-    const res = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`);
-    const data = await res.json();
-    return data.meals[0];
-}
-
-async function fetchRandomMeal(){
-    const res = await fetch("https://www.themealdb.com/api/json/v1/1/random.php");
-    const data = await res.json();
-    return data.meals[0];
-}
-
-async function getList(list){
-    const res = await fetch(`https://www.themealdb.com/api/json/v1/1/list.php?${list}=list`);
-    const data = await res.json();
-    return data.meals;
-}
-
-
 // nav bar ----------------------
 
-
+//this is the code for navbar like expanding and hiding on small screens, the links of navbar like bookmarks and the three..
 document.querySelector("nav").addEventListener("click", (e) => {
-    if(e.target.classList.contains("logo-text")) start();
+    if(e.target.classList.contains("logo-text")){
+        removeAllNavLinkList();
+        start();
+    }
 
     if(e.target.classList.contains("expandNavBtn" ) || e.target.classList.contains("expandNavBtn-span")){
         handleNavbar(true);
@@ -55,53 +34,54 @@ document.querySelector("nav").addEventListener("click", (e) => {
         if(navLinksDiv.classList.contains("expandNav")){
             handleNavbar(false);
         }
-        // console.log("bookmarks clicked");
-        mealsDom.style.display = "none";
-        bookmarkedMealsDom.innerHTML = "";
-        bookmarkedMealsDom.style.display = "flex";
-
-        if (bookmarkedMeals.size === 0){
-            const bookmarkedMealsDomPlaceholder = document.createElement("p");
-            bookmarkedMealsDomPlaceholder.textContent = "your bookmarked meals will be here!";
-            bookmarkedMealsDomPlaceholder.style.color = "gray";
-            bookmarkedMealsDom.append(bookmarkedMealsDomPlaceholder);
-            return;
-        }
-
-        bookmarkedMeals.forEach( function(bookmarkMealId){
-            getDetailsById(bookmarkMealId).then(function(mealData){
-                const meal = new Meal(mealData);
-                addMealInDom(meal, bookmarkedMealsDom);
-            })
-        });
-
+        renderBookmarkPage();  //this is an imported function from bookmark.js that is adding stuff in the bookmarkedMealDom and removing the other divs  see in details in the scripts/boookmark.js
     }
 
     if(e.target.classList.contains("expandNavLinkDetails") || e.target.classList.contains("fa-angle-down")){
-        const clickedLink = e.target.classList[0];
-        console.log(clickedLink, "clicked");
-        getList(clickedLink).then(function(list){
-            console.log(list);
-        });
+        // console.log("im clicked", e.target);
+        console.log("im from click event");
+        showNavLinkDropDown(e);
+        
     }
+
+});
+
+//nav link list on hover ---------------------
+navLinksDiv.querySelectorAll("p").forEach(pTag => {
+
+    pTag.addEventListener('mouseover', (e) => {
+        if(e.target.tagName === "P" && !(e.target.classList.contains("bookmarks")) ){
+            console.log("im from hover event");
+            showNavLinkDropDown(e);
+        }    
+    });
+
 });
 
 navLinksDiv.addEventListener("click", (e) => {
     if(e.target.classList.contains("expandNav")){
         handleNavbar(false);
     }
+    if(e.target.classList.contains("main")) removeAllNavLinkList();
 });
+
 
 
 
 // dom---------------------
 
+document.querySelector("main").addEventListener("mouseenter", (e) => {
+    removeAllNavLinkList();
+})
 
-
+//this is a function that is loading the main view, its adding 10 random meals in the mealsDom and removing other divs.
 function start(){
-    mealsDom.innerHTML = "";
-    mealsDom.style.display = "flex";
     bookmarkedMealsDom.style.display = "none";
+    accToListMealsDom.style.display = "none";
+
+    template.style.display = "flex";
+
+    mealsDom.innerHTML = "";
 
     for(let i = 0 ; i < 10 ; i++){
         fetchRandomMeal().then(function(data){
@@ -109,15 +89,20 @@ function start(){
             return meal;
         }).then(function(meal){
             addMealInDom(meal, mealsDom);
-        });
+
+            return i;
+        }).then(function(){
+            if(i < 9) return;
+            removeTemplateAndShowData(mealsDom);
+        })
     }
 }
 
 
 // adding meal stuff -----------------------
 
-
-function addMealInDom(meal, dom){    
+//this func is adding meal in any dom, you have to give meal object (that we get from Meal class), and the dom (the div like mealsDom, bookmarkedMealDom etc)
+export function addMealInDom(meal, dom){    
     const mealDom = document.createElement("div");
     mealDom.classList.add("meal");
     mealDom.dataset.id = meal.id;
@@ -128,84 +113,21 @@ function addMealInDom(meal, dom){
     <div class="text">
         <div class="main">
             <p class="name">${meal.name}</p>
-            <button data-id="${meal.id}" class="save"><i class="save fa ${bookmarkedMeals.has(meal.id) ? "fa-bookmark" : "fa-bookmark-o"}"></i></button>
+            <button data-id="${meal.id}" class="saveBtn"><i class="save fa ${bookmarkedMeals.has(meal.id) ? "fa-bookmark" : "fa-bookmark-o"}"></i></button>
         </div>
-        <p class="instructions">${meal.instructions.substring(0, 50) + "..."}</p>
+        <p class="instructions">${meal.instructions ? meal.instructions.substring(0, 50) + "..." : "to read the instruction of this meal, click on the button below!.."}</p>
     </div>
     <button class="showDetails">Let's make this</button>
     `;
-
     dom.append(mealDom);
 }
 
-mealsDom.addEventListener("click", (e) => {handleMealClicks(e)});
-bookmarkedMealsDom.addEventListener("click", (e) => {handleMealClicks(e)});
+mealsDom.addEventListener("click", (e) => handleMealClicks(e));
 
-
-// pop-up stuff --------------------------------
-
-function showDetails(mealId){
-
-    getDetailsById(mealId).then(function(mealDetails){
-        // console.log(mealDetails);
-
-        let ingredients = "";
-        for(let i = 1; i < 21 ; i++){
-            const ingredient = mealDetails[`strIngredient${i}`];
-            if(ingredient === null || ingredient === "") break;
-            ingredients += ingredient + ", "; 
-        }
-        ingredients = ingredients.substring(0, ingredients.length-2) + ".";
-
-        popUpMain.innerHTML = `<div class="image middle">
-            <img src="${mealDetails.strMealThumb}" alt="meal-image">
-        </div>
-    
-        <div class="main">
-            <p class="name">${mealDetails.strMeal}</p>
-            <p class="country">${mealDetails.strArea}</p>
-        </div>
-
-        <p class="ingredients">Ingredients : <span class="ingredients-text">${ingredients}</span> </p>
-
-        <p class="instructions">Instructions : <span class="instructions-text">${mealDetails.strInstructions}<span></p>
-
-        <div id="topOfCard"  class="buttons middle">
-            <button data-id=${mealDetails.idMeal} class="save"><i class="save fa ${bookmarkedMeals.has(mealDetails.idMeal) ? "fa-bookmark" : "fa-bookmark-o"}"></i></button>
-            <button class="cross">X</button>
-        </div>  
-        
-        <a href="#topOfCard" class="goToTopCard"><i class="fa fa-angle-up"></i></a>`;
-
-        popUp.style.display = "flex";
-        popUpMain.classList.add("active");
-    })
-    .then(function(){
-        popUpMain.querySelector(".buttons").addEventListener("click", (e) => {
-            const target = e.target;
-            // console.log(e.target);
-
-            if(target.classList.contains("cross")){
-                popUpMain.classList.remove("active");
-                popUp.style.display = "none";
-            }
-
-            if(e.target.classList.contains("save")){
-                const mealId = e.target.parentNode.dataset.id;
-                const mealDomIcon = mealsDom.querySelector(`.meal[data-id="${mealId}"] .text .main .save i`);
-
-                if(e.target.classList.contains("fa-bookmark")) handleBookmarks(false, mealId, [e.target, mealDomIcon]);
-                else handleBookmarks(true, mealId, [e.target, mealDomIcon]);
-            }
-
-
-        });
-    });
-}
 
 // handlers --------------------------
 
-function handleNavbar(expand){
+export function handleNavbar(expand){
     // console.log(navLinks);
     navLinksDiv.classList.toggle("expandNav");
     const navLinks = navLinksDiv.children[0];
@@ -213,46 +135,33 @@ function handleNavbar(expand){
     navLinks.classList.toggle("expandNavLinks");
 }
 
-function handleMealClicks(e){
+export function handleMealClicks(e){
     if(e.target.classList.contains("showDetails")){
         const mealClicked = e.target.parentNode;
-        // console.dir(mealClicked);
+        console.dir(mealClicked);
         const mealId = mealClicked.dataset.id;
-        showDetails(mealId);  
+        showPopUp(mealId);  //this is an impoerted func from scripts/popUp.js that is showing a pop up with details of meal you have to pass the id of that meal and this will get the details by the api
     }
 
     if(e.target.classList.contains("save")){
         const mealId = e.target.parentNode.dataset.id;
-       if(e.target.classList.contains("fa-bookmark")) handleBookmarks(false, mealId, [e.target]);
-       else handleBookmarks(true, mealId, [e.target]);
-    }
-}
-
-function handleBookmarks(add, mealId, icons){
-    add ? bookmarkedMeals.add(mealId) : bookmarkedMeals.delete(mealId);
-    if(!add) {
-        const meal = bookmarkedMealsDom.querySelector(`.meal[data-id="${mealId}"]`);
-        if(meal) meal.remove();
-        if (bookmarkedMeals.size === 0){
-            const bookmarkedMealsDomPlaceholder = document.createElement("p");
-            bookmarkedMealsDomPlaceholder.textContent = "your bookmarked meals will be here!";
-            bookmarkedMealsDomPlaceholder.style.color = "gray";
-            bookmarkedMealsDom.append(bookmarkedMealsDomPlaceholder);
-        }
-    }
-    // console.log(bookmarkedMeals);
-
-    // console.log(icons, mealId);
-
-    for(let icon of icons){
-        icon.classList.toggle("fa-bookmark-o");
-        icon.classList.toggle("fa-bookmark");
+        if(e.target.classList.contains("fa-bookmark")){
+            handleBookmarks(false, mealId, [e.target]);
+        } else{
+            handleBookmarks(true, mealId, [e.target]);   //this is an imported function from scripts/bookmark.js that is handling the bookmraks, you have to pass a bool value acc to you're adding or removing, the mealId and the icons that you want to update.
+        } 
     }
 }
 
 
+export function removeTemplateAndShowData(dataDom){
+    console.log("data loaded", dataDom);
+
+    template.style.display = "none";
+
+    dataDom.style.display = "flex";
+}
 
 
 start();
-
 
