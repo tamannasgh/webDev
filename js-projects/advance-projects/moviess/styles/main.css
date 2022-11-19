@@ -1,0 +1,143 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root{
+    --primary-bg-color : #404258;
+    --secondary-bg-color: #474E68;
+    --primary-color: #EFF5F5;
+    --secondary-color: #969bac;
+}
+
+body{
+    min-height: 200vh;
+    background-color: var(--primary-bg-color);
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* utility classes --------------------------------- */
+
+.flexbox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    max-width: 65rem;
+    margin: auto;
+}
+
+
+/* ----------------------------------- navbar ------------------------------- */
+
+.navbar-wraper{
+    padding: 1.3em 1em;
+    font-size: 1.3rem;
+    background-color: var(--secondary-bg-color);
+    color: var(--primary-color);
+    position: sticky;
+    top: 0;
+}
+
+#navbar{
+    justify-content: space-between;
+}
+
+#navbar .logo{
+    font-family: 'Rubik Distressed', cursive;
+}
+
+#navbar .logo i{
+    margin-right: .3em;
+}
+
+
+
+            /* expand btn ---------------------------------- */
+
+.expand-btn{
+    flex-direction: column;
+    cursor: pointer;
+}
+.expand-btn span{
+    height: 3px;
+    width: 35px;
+    border-radius: 10px;
+    background-color: var(--primary-color);
+}
+.expand-btn span:first-child{
+    margin-bottom: .3em;
+}
+
+            /* nav links ---------------------------------------*/
+
+.nav-links-div{
+    display: none;
+}
+
+            
+.nav-links-div ul > *{
+    margin-right: 2.5em;
+    cursor: pointer;
+}
+
+.nav-links-div ul p{
+    color: rgb(254, 165, 50);
+}
+
+.nav-links-div ul > *:hover{
+    color: var(--secondary-color);
+}
+
+.nav-links-div ul p:hover{
+    color: rgb(224, 135, 19);
+}
+
+.active-nav-links-div{
+    display: initial;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.active-nav-links{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    justify-content: start;
+    background-color: var(--secondary-bg-color);
+    min-height: 100vh;
+}
+
+.active-nav-links > *{
+    margin: 1.5em .5em !important;
+
+}
+
+@media (min-width: 800px){
+    .expand-btn{
+        display: none;
+    }
+
+    .nav-links-div{
+        display: flex;
+    }
+}
+
+
+
+
+/* footer ------------------------------------------- */
+footer{
+    margin-top: auto;
+    background-color: var(--secondary-bg-color);
+    color: var(--primary-color);
+    padding: 1em;
+    text-align: center;
+}
