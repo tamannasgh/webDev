@@ -43,6 +43,7 @@ body{
     color: var(--primary-color);
     position: sticky;
     top: 0;
+    z-index: 1;
 }
 
 #navbar{
@@ -103,7 +104,7 @@ body{
     display: initial;
     position: fixed;
     inset: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 .active-nav-links{
@@ -130,6 +131,88 @@ body{
     }
 }
 
+
+/* main part --------------------------------------------- */
+
+main{
+    margin: 2em auto;
+    text-align: center;
+}
+
+section h2{
+    color: var(--primary-color);
+    position: relative;
+}
+
+section h2::after{
+    content: '';
+    left: 0;
+    top: calc(50% - 3px);
+    position: absolute;
+    height: 3px;
+    width: 40%;
+    background-color: var(--secondary-color);
+}
+
+section h2::before{
+    content: '';
+    right: 0;
+    top: calc(50% - 3px);
+    position: absolute;
+    height: 3px;
+    width: 40%;
+    background-color: var(--secondary-color);
+}
+
+.cards{
+    margin: 1em;
+}
+
+.card{
+    border-radius: 10px;
+    width: fit-content;
+    position: relative;
+    margin: 2em auto;
+    overflow: hidden;
+
+}
+
+.card img{
+    border-radius: 10px;
+    width: 100%;
+}
+
+.card .overlay{
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    text-align: center;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.card .overlay:hover{
+    opacity: 1;
+    transform: translateY(0);
+    cursor: pointer;
+}
+
+@media (min-width: 400px) {
+    .cards{
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+    }
+
+    .cards > *{
+        flex: 1 1 200px;
+        max-width: 220px;
+        margin-inline: 1em;
+    }
+}
 
 
 

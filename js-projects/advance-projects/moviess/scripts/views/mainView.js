@@ -20,10 +20,15 @@ export default class MainView{
     expandNavbar(){
         if( document.body.clientWidth >= 800 ) return;
 
-        this.animateUsingClass(this.navLinksDiv, "active-nav-links-div");
-        this.animateUsingClass(this.navLinks, "active-nav-links");
+        this.navLinksDiv.classList.toggle("active-nav-links-div");
+        this.navLinks.classList.toggle("active-nav-links");
+
     }
 
+    // page --------------------------------
 
+    addCard(card, dom){
+        dom.append(card);
+    }
 
 }
