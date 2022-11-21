@@ -18,19 +18,4 @@ homeView.renderPage();
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 homeView.addEventListeners();

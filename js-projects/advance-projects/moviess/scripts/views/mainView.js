@@ -5,6 +5,10 @@ export default class MainView{
     navLinksDiv = document.querySelector(".nav-links-div");
     navLinks = document.querySelector(".nav-links");
 
+    pageTitle = document.querySelector(".page-title");
+
+
+
     animateUsingClass(el, cls){
         setTimeout(() => {
             el.classList.toggle(cls);
@@ -26,6 +30,7 @@ export default class MainView{
     }
 
     // page --------------------------------
+
 
     addCard(card, dom){
         dom.append(card);
