@@ -1,3 +1,5 @@
+import { discoverTvs, discoverMovies } from "./model.js";
+
 import homeView from "./views/homeView.js";
 
 
@@ -7,7 +9,18 @@ import homeView from "./views/homeView.js";
 
 // home view  ------------------------------
 
-homeView.renderPage();
+
+async function start(){
+    try{
+        const moviesData = await discoverMovies();
+        const tvsData = await discoverTvs();
+        homeView.renderPage(moviesData, tvsData);
+    } catch(err) {
+        console.log(err);
+    }
+    
+}
+
 
 
 
@@ -19,3 +32,8 @@ homeView.renderPage();
 
 
 homeView.addEventListeners();
+
+
+
+// starting the code
+start();

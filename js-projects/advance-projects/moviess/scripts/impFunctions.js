@@ -2,6 +2,7 @@ import { imgUrl, bckdrpUrl } from "./config.js";
 
 // this function will take the data of movie or tv from that we're getting from api and return the card made out of it
 export function makeCard(movieOrTvObj){
+    
     const card = document.createElement("div");
     card.classList.add("card");
     card.dataset.id = movieOrTvObj.id;

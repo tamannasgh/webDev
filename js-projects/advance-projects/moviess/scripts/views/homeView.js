@@ -1,6 +1,5 @@
 import mainView from "./mainView.js";
 import { getSliderImages, makeCard } from "../impFunctions.js";
-import { discoverMovies, discoverTvs } from "../model.js";
 
 class HomeView extends mainView{
     
@@ -12,37 +11,24 @@ class HomeView extends mainView{
     sliderImages = [];
 
 
-    renderPage(){
+    renderPage(moviesData, tvsData){
 
-        // this.pageTitle.textContent = "Discover Movies and Tvs";
+        // console.log(moviesData, tvsData);
 
-        discoverMovies().then( (data) => {
+        this.sliderImages = getSliderImages(moviesData);
 
-            console.log(data);
+        // console.log("slider iamges", this.sliderImages)
 
-            this.sliderImages = getSliderImages(data);
+        this.handleSlider();
 
-            console.log("slider iamges", this.sliderImages)
-
-            data.forEach( d => {
-                const card = makeCard(d);
-                this.addCard(card, this.moviesSection );
-            });
-
-        }).then( () => {
-            this.handleSlider();
+        moviesData.forEach( d => {
+            const card = makeCard(d);
+            this.addCard(card, this.moviesSection );
         });
 
-
-        discoverTvs().then( (data) => {
-
-            console.log(data);
-
-            data.forEach( d => {
-                const card = makeCard(d);
-                this.addCard(card, this.tvsSection);
-            });
-
+        tvsData.forEach( d => {
+            const card = makeCard(d);
+            this.addCard(card, this.tvsSection);
         });
 
 

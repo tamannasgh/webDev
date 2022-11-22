@@ -155,7 +155,7 @@ body{
     margin-bottom: 2em;
     min-height: 400px;
     background-size: cover;
-    transition: background-image 1s;
+    transition: background-image 3s;
     position: relative;
 }
 
