@@ -6,6 +6,9 @@ export function makeCard(movieOrTvObj){
     const card = document.createElement("div");
     card.classList.add("card");
     card.dataset.id = movieOrTvObj.id;
+
+    // card.dataset.type = movieOrTvObj.title ? "movie" : "tv";
+    card.dataset.type = movieOrTvObj.media_type ? movieOrTvObj.media_type : movieOrTvObj.title ? "movie" : "tv";
     
     card.innerHTML = `
 

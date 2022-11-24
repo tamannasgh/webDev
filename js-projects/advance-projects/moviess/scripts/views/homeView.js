@@ -1,5 +1,5 @@
 import mainView from "./mainView.js";
-import { getSliderImages, makeCard } from "../impFunctions.js";
+import { getSliderImages } from "../impFunctions.js";
 
 class HomeView extends mainView{
     
@@ -11,9 +11,13 @@ class HomeView extends mainView{
     sliderImages = [];
 
 
-    renderPage(moviesData, tvsData){
+    renderPage(moviesData = "", tvsData = ""){
+
+        super.renderPage(".home");
 
         // console.log(moviesData, tvsData);
+
+        if(this.sliderImages.length > 0) return;
 
         this.sliderImages = getSliderImages(moviesData);
 
@@ -21,16 +25,9 @@ class HomeView extends mainView{
 
         this.handleSlider();
 
-        moviesData.forEach( d => {
-            const card = makeCard(d);
-            this.addCard(card, this.moviesSection );
-        });
+        this.makeAndAddCards(moviesData, this.moviesSection);
 
-        tvsData.forEach( d => {
-            const card = makeCard(d);
-            this.addCard(card, this.tvsSection);
-        });
-
+        this.makeAndAddCards(tvsData, this.tvsSection);
 
     }
 
@@ -38,12 +35,13 @@ class HomeView extends mainView{
 
         let i = imgNum >= this.sliderImages.length ? 0 : imgNum;
 
-        this.slider.style.backgroundImage = `url(${this.sliderImages[i]})`
+        this.slider.style.backgroundImage = `url(${this.sliderImages[i]})`;
 
         
         setTimeout(() => {
+            // console.log("im changing bg", i);
             this.handleSlider(i+1);
-        }, 5000);
+        }, 4000);
     }
 
 

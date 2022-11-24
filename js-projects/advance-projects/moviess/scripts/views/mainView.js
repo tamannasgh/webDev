@@ -1,3 +1,6 @@
+import { makeCard } from "../impFunctions.js";
+
+
 export default class MainView{
     
     navbar = document.querySelector("nav");
@@ -5,8 +8,7 @@ export default class MainView{
     navLinksDiv = document.querySelector(".nav-links-div");
     navLinks = document.querySelector(".nav-links");
 
-    pageTitle = document.querySelector(".page-title");
-
+    pageContents = document.querySelectorAll(".page-content");
 
 
     animateUsingClass(el, cls){
@@ -16,13 +18,14 @@ export default class MainView{
     }
 
     addEventListeners(){
-        this.expandBtn.addEventListener("click", (e) => this.expandNavbar() );
+        this.expandBtn.addEventListener("click", (e) => this.expandNavbar(e) );
 
-        this.navLinksDiv.addEventListener("click", (e) => this.expandNavbar() );
+        this.navLinksDiv.addEventListener("click", (e) => this.expandNavbar(e) );
     }
 
-    expandNavbar(){
+    expandNavbar(e){
         if( document.body.clientWidth >= 800 ) return;
+        if(e.target.classList.contains("nav-links")) return;
 
         this.navLinksDiv.classList.toggle("active-nav-links-div");
         this.navLinks.classList.toggle("active-nav-links");
@@ -31,9 +34,23 @@ export default class MainView{
 
     // page --------------------------------
 
+    makeAndAddCards(data, dom){
+        data.forEach( d => {
+            const card = makeCard(d);
+            this.addCard(card, dom );
+        });
+    }
 
     addCard(card, dom){
         dom.append(card);
+    }
+
+    renderPage(page){
+        this.pageContents.forEach( page => {
+            page.style.display = "none";
+        });
+
+        document.querySelector(page).style.display = "block";
     }
 
 }

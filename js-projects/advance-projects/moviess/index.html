@@ -33,11 +33,11 @@
         <nav class="flexbox container" id="navbar">
             <div class="nav-links-div">
                 <ul class="nav-links flexbox">
-                    <i data-name="Movies" class="fa fa-film"></i>
-                    <i data-name="Tvs" class="fa fa-television"></i>
-                    <i data-name="Trending" class="fa fa-bolt"></i>
-                    <i data-name="Bookmarks" class="fa fa-bookmark"></i>
-                    <p data-name="kids shows">Kids</p>
+                    <i data-name="Movies" class="fa fa-film other-pages-link"></i>
+                    <i data-name="Tvs" class="fa fa-television other-pages-link"></i>
+                    <i data-name="Trending" class="fa fa-bolt other-pages-link"></i>
+                    <i data-name="Bookmarks" class="fa fa-bookmark other-pages-link"></i>
+                    <p data-name="kids" class="other-pages-link">Kids</p>
                 </ul>
 
             </div>
@@ -55,8 +55,6 @@
    
 
     <main>
-        <h1 class="page-title"></h1>
-
         <!-- home ------------------------------------ -->
         <div class="home page-content">
 
@@ -72,16 +70,15 @@
 
             </div>
 
-            <section class="movies">
-                <h2>Movies</h2>
-    
+            <section class="movies ">
+                <h2 class="page-title"> <span class="page-title-text">Movies</span> </h2>
                 <div class="movies-card cards">
                 </div>
     
             </section>
     
             <section class="tvs">
-                <h2>Tvs</h2>
+                <h2 class="page-title"> <span class="page-title-text">Tvs</span> </h2>
     
                 <div class="tvs-card cards">
                 </div>
@@ -89,7 +86,12 @@
             </section>
         </div>
 
+        <div class="other-pages page-content">
 
+            <h1 class="page-title"> <span class="page-title-text"></span> </h1>
+            <div class="cards"></div>
+            
+        </div>
 
 
     </main>
