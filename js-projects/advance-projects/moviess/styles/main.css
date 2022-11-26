@@ -49,6 +49,22 @@ body{
     margin: auto;
 }
 
+.btn{
+    border: none;
+    padding: .5em 1em;
+    border-radius: 5px;
+    box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5);
+    background-color: var(--primary-bg-color);
+    color: var(--primary-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn:hover{
+    cursor: pointer;
+    color: var(--primary-bg-color);
+    background-color: var(--primary-color);
+}
+
 
 /* ----------------------------------- navbar ------------------------------- */
 
@@ -92,6 +108,7 @@ body{
 .expand-btn span:first-child{
     margin-bottom: .3em;
 }
+
 
         /* nav links ---------------------------------------*/
 
@@ -247,8 +264,10 @@ section{
     padding: 0 1em;
 }
 
+/* cards ------------------------------------------------ */
+
 .cards{
-    margin: 1em;
+    margin: 1em 0;
 }
 
 .card{
@@ -257,7 +276,7 @@ section{
     position: relative;
     margin: 2em auto;
     overflow: hidden;
-
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
 }
 
 .card img{
@@ -288,18 +307,174 @@ section{
 @media (min-width: 400px) {
     .cards{
         display: flex;
-        justify-content: space-evenly;
+        justify-content: space-evenly; 
+        align-content: stretch;  
         flex-wrap: wrap;
     }
 
     .cards > *{
         flex: 1 1 200px;
-        max-width: 220px;
+        max-width: 200px;
         margin-inline: 1em;
     }
+
+}
+
+.page-content{
+    display: none;
+    transform: translateY(100px);
+    transition: transform 0.3s;
+}
+
+.active-page{
+    display: initial;
+    transform: translateY(0px);
 }
 
 
+/*  expand card ----------------------------------------------- */
+
+.expand-card{
+    text-align: left;
+    max-width: 80rem;
+    padding: 0 2em;
+    margin: auto;
+}
+
+
+.back{
+    padding-inline: 2em;
+    margin: 1.5em 0;
+    font-size: 1rem;
+}
+.back i{
+    margin-right: .5em;
+}
+
+.expand-card-main{
+    width: 100vw;
+    height: 60vh;
+    left: calc(-50vw + 50%);
+
+    min-height: 500px;
+    background-image: url("https://image.tmdb.org/t/p/w1280/bQXAqRx2Fgc46uCVWgoPz5L5Dtr.jpg");
+    background-size: cover;
+    background-position: center center;
+    
+    position: relative;
+    
+}
+
+.expand-card-main .video{
+    position: absolute;
+    inset: 0;
+    display: none;
+}
+
+.expand-card-main .video .cross{
+    position: absolute;
+    top: -30px;
+    right: 0;
+    background-color: red;
+    color: white;
+    font-size: 1rem;
+}
+
+.expand-card-main .main-content{    
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 2em;
+
+    background-color: rgba(10, 40, 116, 0.642);
+    color: var(--primary-color);
+
+}
+
+.expand-card-main .main-content .name{
+    font-size: 1.5rem;
+    margin-bottom: .5em;
+    max-width: 70%;
+    text-align: left;
+}
+
+
+button.watch-trailer i{
+    margin-right: .7em;
+}
+
+/* genres ----------- */
+
+.genres{
+    display: flex;
+    flex-wrap: wrap;
+    margin: .5em;
+}
+
+.genres span{
+    background-color: var(--secondary-bg-color);
+    color: var(--primary-color);
+    padding: .5em 1em;
+    border-radius: 23px;
+    margin-block: .5em;
+    margin-right: 1em;
+    width: calc(max-content + 2em);
+}
+
+.expand-card .info{
+    color: var(--secondary-color);
+    margin: 1em;
+}
+
+.expand-card .info span{
+    color: var(--primary-color);
+}
+
+.expand-card .info a{
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.expand-card .info a:hover{
+    color: var(--secondary-color);
+}
+
+.expand-card .intro{
+    margin: 1em;
+    color: var(--primary-color);
+}
+
+.expand-card .intro .tag-line{
+    font-size: 1.5rem;
+    margin-bottom: .7em;
+}
+
+.expand-card .intro .overview{
+    color: var(--secondary-color);
+}
+
+@media (min-width : 500px){
+
+    .expand-card-main .main-content{
+        padding: 3em;
+    }
+
+    .expand-card-main .main-content .name{
+        font-size: 2rem;
+    }
+
+    button.watch-trailer{
+        font-size: 1.1rem;
+    }
+
+    .expand-card .info{
+        margin-right: 3em;
+        float: left;
+    }
+}
 
 /* footer ------------------------------------------- */
 footer{

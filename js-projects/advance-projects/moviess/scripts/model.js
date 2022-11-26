@@ -11,37 +11,21 @@ export async function discoverTvs(){
 export async function getDataAcc(reqText){
     if(reqText === "Movies"){
 
-        return popularMovies();
+        return getData(apis.popularMovies);
 
     } else if(reqText === "Tvs"){
 
-        return popularTvs();
+        return getData(apis.popularTvs);
 
     } else if(reqText === "Trending"){
 
-        return trending();
+        return getData(apis.trending);
 
     } else{
 
-        return kids();
+        return getData(apis.kids);
 
     }
-}
-
-export async function popularMovies(){
-    return getData(apis.popularMovies);
-}
-
-export async function popularTvs(){
-    return getData(apis.popularTvs);
-}
-
-export async function trending(){
-    return getData(apis.trending);
-}
-
-export async function kids(){
-    return getData(apis.kids);
 }
 
 async function getData(api){

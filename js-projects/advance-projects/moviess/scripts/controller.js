@@ -62,17 +62,6 @@ async function start(){
 
 
 
-
-
-
-
-
-
-
-
-homeView.addEventListeners();
-
-
-
 // starting the code
 start();
+homeView.addEventListeners(); //adding event listener that's it!!

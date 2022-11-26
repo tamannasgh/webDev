@@ -14,10 +14,11 @@ export default class MainView{
     animateUsingClass(el, cls){
         setTimeout(() => {
             el.classList.toggle(cls);
-        }, 10);
+        }, 0);
     }
 
     addEventListeners(){
+
         this.expandBtn.addEventListener("click", (e) => this.expandNavbar(e) );
 
         this.navLinksDiv.addEventListener("click", (e) => this.expandNavbar(e) );
@@ -47,10 +48,13 @@ export default class MainView{
 
     renderPage(page){
         this.pageContents.forEach( page => {
-            page.style.display = "none";
+            page.classList.remove("active-page");
         });
 
-        document.querySelector(page).style.display = "block";
+
+        this.animateUsingClass(document.querySelector(page), "active-page");
+
+        window.scrollTo(0, 0);
     }
 
 }

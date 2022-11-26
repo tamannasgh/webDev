@@ -12,7 +12,7 @@ export function makeCard(movieOrTvObj){
     
     card.innerHTML = `
 
-    <img src="${imgUrl}/${movieOrTvObj.poster_path}" alt="img">
+    <img src="${imgUrl}/${movieOrTvObj.poster_path ?? movieOrTvObj.profile_path}" alt="img">
     <div class="overlay flexbox">
         <p>${movieOrTvObj.title ? movieOrTvObj.title : movieOrTvObj.name}</p>
     </div>
