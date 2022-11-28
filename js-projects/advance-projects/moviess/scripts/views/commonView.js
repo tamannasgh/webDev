@@ -6,8 +6,8 @@ class CommonView extends mainView{
     pageTitle = this.page.querySelector(".page-title-text");
     pageCardsDom = this.page.querySelector(".cards");
 
-    renderPage(title, data){
-        super.renderPage(".other-pages");
+    renderPage(title, data, scrollTo){
+        super.renderPage(this.page, scrollTo);
         
         this.pageTitle.textContent = title;
         this.pageCardsDom.innerHTML = "";

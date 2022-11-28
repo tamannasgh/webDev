@@ -4,6 +4,7 @@ import { imgUrl, bckdrpUrl } from "./config.js";
 export function makeCard(movieOrTvObj){
     
     const card = document.createElement("div");
+    card.setAttribute("id", movieOrTvObj.id);
     card.classList.add("card");
     card.dataset.id = movieOrTvObj.id;
 

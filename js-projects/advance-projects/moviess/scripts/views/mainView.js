@@ -46,15 +46,19 @@ export default class MainView{
         dom.append(card);
     }
 
-    renderPage(page){
+    renderPage(page, scrollTo){
         this.pageContents.forEach( page => {
             page.classList.remove("active-page");
         });
 
 
-        this.animateUsingClass(document.querySelector(page), "active-page");
+        this.animateUsingClass(page, "active-page");
 
-        window.scrollTo(0, 0);
+        if(scrollTo){
+            window.scrollTo(scrollTo);
+        } else{
+            window.scrollTo(0, 0);
+        }
     }
 
 }

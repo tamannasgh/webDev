@@ -232,16 +232,13 @@ body{
 
 /* main part --------------------------------------------- */
 
-main{
-    text-align: center;
-}
-
-
 section{
     margin: 0 auto 5em;
 }
 
 .page-title{
+    text-align: center;
+
     color: var(--primary-color);
     position: relative;
     margin: 2em 0;
@@ -310,6 +307,7 @@ section{
         justify-content: space-evenly; 
         align-content: stretch;  
         flex-wrap: wrap;
+        clear: both;
     }
 
     .cards > *{
@@ -346,9 +344,17 @@ section{
     padding-inline: 2em;
     margin: 1.5em 0;
     font-size: 1rem;
+    font-weight: 600;
+    background-color: var(--primary-color);
+    color: var(--primary-bg-color);
 }
 .back i{
     margin-right: .5em;
+}
+
+.back:hover{
+    color: var(--primary-color);
+    background-color: var(--primary-bg-color);
 }
 
 .expand-card-main{
@@ -426,7 +432,7 @@ button.watch-trailer i{
 
 .expand-card .info{
     color: var(--secondary-color);
-    margin: 1em;
+    margin: 2em 1em;
 }
 
 .expand-card .info span{
@@ -443,7 +449,7 @@ button.watch-trailer i{
 }
 
 .expand-card .intro{
-    margin: 1em;
+    margin: 2em 1em;
     color: var(--primary-color);
 }
 
@@ -470,9 +476,15 @@ button.watch-trailer i{
         font-size: 1.1rem;
     }
 
+    .genres{
+        margin-inline: 3em;
+    }
+
     .expand-card .info{
+        margin-inline: 3em;
         margin-right: 3em;
         float: left;
+
     }
 }
 

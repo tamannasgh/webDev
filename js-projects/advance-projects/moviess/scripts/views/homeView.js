@@ -11,9 +11,9 @@ class HomeView extends mainView{
     sliderImages = [];
 
 
-    renderPage(moviesData = "", tvsData = ""){
+    renderPage(moviesData = "", tvsData = "", scrollTo){
 
-        super.renderPage(".home");
+        super.renderPage(this.homeDom, scrollTo);
 
         // console.log(moviesData, tvsData);
 
