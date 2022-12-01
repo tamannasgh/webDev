@@ -1,4 +1,4 @@
-import { discoverTvs, discoverMovies, getDataAcc } from "./model.js";
+import { discoverTvs, discoverMovies, getDataAcc, getMovieOrTvDetail } from "./model.js";
 
 import homeView from "./views/homeView.js";
 import commonView from "./views/commonView.js"
@@ -60,19 +60,23 @@ async function start(scrollTo){
 }
 
 
+
 // cards ---------------------------------
 
 const cards = document.querySelectorAll(".cards");
 cards.forEach( cardsDiv => cardsDiv.addEventListener("click", handleCardClick ) );
 
-function handleCardClick(e){
+async function handleCardClick(e){
     // console.log(this, this.parentNode,  "im clikced");
     if( !(e.target.classList.contains("overlay") || e.target.parentNode.classList.contains("overlay")) ) return;
 
     const cardClicked = e.target.classList.contains("overlay") ? e.target.parentNode : e.target.parentNode.parentNode;
     const clickedFromPage = this.parentNode;
 
-    expandCardView.renderPage(cardClicked, clickedFromPage);
+
+    const data = await getMovieOrTvDetail(cardClicked.getAttribute("id") , cardClicked.dataset.type );
+    
+    expandCardView.renderPage(data, cardClicked, clickedFromPage);
 
 }
 

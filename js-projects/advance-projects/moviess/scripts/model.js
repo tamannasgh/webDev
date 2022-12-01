@@ -1,35 +1,51 @@
 import {apis} from "./config.js";
 
 export async function discoverMovies(){
-    return getData(apis.discoverMovies);
+    const data = await getData(apis.discoverMovies);
+    return data.results;
 }
 
 export async function discoverTvs(){
-    return getData(apis.discoverTvs);
+    const data = await getData(apis.discoverTvs);
+    return data.results;
 } 
 
+export async function getMovieOrTvDetail(id, type){
+    let api;
+    if(type === "movie"){
+        api = apis.movieDetail.replace("ID", id);
+    } else{
+        api = apis.tvDetail.replace("ID", id);
+    }
+
+    return getData(api);
+}
+
 export async function getDataAcc(reqText){
+    let data;
     if(reqText === "Movies"){
 
-        return getData(apis.popularMovies);
+        data = await getData(apis.popularMovies);
 
     } else if(reqText === "Tvs"){
 
-        return getData(apis.popularTvs);
+        data = await getData(apis.popularTvs);
 
     } else if(reqText === "Trending"){
 
-        return getData(apis.trending);
+        data = await getData(apis.trending);
 
     } else{
 
-        return getData(apis.kids);
+        data = await getData(apis.kids);
 
     }
+
+    return data.results;
 }
 
 async function getData(api){
     const res = await fetch(api);
     const data = await res.json();
-    return data.results;
+    return data;
 }

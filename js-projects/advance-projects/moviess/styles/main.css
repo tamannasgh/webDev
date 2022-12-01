@@ -293,6 +293,7 @@ section{
     transform: translateY(100px);
     opacity: 0;
     transition: opacity 0.3s, transform 0.3s;
+    padding: .5em;
 }
 
 .card .overlay:hover{
@@ -377,6 +378,10 @@ section{
     display: none;
 }
 
+.active-video{
+    display: block;
+}
+
 .expand-card-main .video .cross{
     position: absolute;
     top: -30px;
@@ -418,6 +423,7 @@ button.watch-trailer i{
     display: flex;
     flex-wrap: wrap;
     margin: .5em;
+    margin-left: 1.5em;
 }
 
 .genres span{
@@ -433,6 +439,7 @@ button.watch-trailer i{
 .expand-card .info{
     color: var(--secondary-color);
     margin: 2em 1em;
+    margin-left: 1.5em;
 }
 
 .expand-card .info span{
@@ -450,19 +457,20 @@ button.watch-trailer i{
 
 .expand-card .intro{
     margin: 2em 1em;
+    margin-left: 1.5em;
     color: var(--primary-color);
 }
 
 .expand-card .intro .tag-line{
     font-size: 1.5rem;
-    margin-bottom: .7em;
+    margin-bottom: .3em;
 }
 
 .expand-card .intro .overview{
     color: var(--secondary-color);
 }
 
-@media (min-width : 500px){
+@media (min-width : 800px){
 
     .expand-card-main .main-content{
         padding: 3em;
@@ -480,11 +488,19 @@ button.watch-trailer i{
         margin-inline: 3em;
     }
 
-    .expand-card .info{
-        margin-inline: 3em;
-        margin-right: 3em;
-        float: left;
+    .expand-card .info-intro{
+       display: flex;
 
+    }
+
+    .info-intro .info{
+        margin-left: 3em;
+        width: 30%;
+        max-width: 200px;
+    }
+
+    .info-intro .intro{
+        width: 70%;
     }
 }
 
