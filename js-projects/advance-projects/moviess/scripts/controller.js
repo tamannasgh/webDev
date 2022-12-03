@@ -42,15 +42,15 @@ async function handleNavLinkClick(e){
 // home view  ------------------------------
 
 
-async function start(scrollTo){
+async function start(cardClickedId){
     try{
         
         if( !(homeView.moviesSection.children.length > 0) ){
             const moviesData = await discoverMovies();
             const tvsData = await discoverTvs();
-            homeView.renderPage(moviesData, tvsData, scrollTo);
+            homeView.renderPage(moviesData, tvsData, cardClickedId);
         } else{
-            homeView.renderPage("", "", scrollTo);
+            homeView.renderPage("", "", cardClickedId);
         }
 
         
@@ -64,7 +64,7 @@ async function start(scrollTo){
 // cards ---------------------------------
 
 const cards = document.querySelectorAll(".cards");
-cards.forEach( cardsDiv => cardsDiv.addEventListener("click", handleCardClick ) );
+cards.forEach( cardsDiv => !(cardsDiv.classList.contains("casts")) && cardsDiv.addEventListener("click", handleCardClick ) );
 
 async function handleCardClick(e){
     // console.log(this, this.parentNode,  "im clikced");
@@ -89,16 +89,16 @@ expandCardView.backBtn.addEventListener("click", async function(e){
 
         const pageToRender = expandCardView.clickedFromPage.querySelector("h1").textContent;
         
-        console.log("other pages", pageToRender);
+        // console.log("other pages", pageToRender);
 
         const data = await getDataAcc(pageToRender);
-        commonView.renderPage(pageToRender, data);
+        commonView.renderPage(pageToRender, data, expandCardView.cardClicked.getAttribute("id"));
 
 
     } else{
 
-        console.log("home page", expandCardView.cardClicked);
-        start();
+        // console.log("home page", expandCardView.cardClicked);
+        start(expandCardView.cardClicked.getAttribute("id"));
 
     }
 });
@@ -108,3 +108,4 @@ expandCardView.backBtn.addEventListener("click", async function(e){
 // starting the code
 start();
 homeView.addEventListeners(); //adding event listener that's it!!
+expandCardView.addEventListeners();

@@ -11,23 +11,23 @@ class HomeView extends mainView{
     sliderImages = [];
 
 
-    renderPage(moviesData = "", tvsData = "", scrollTo){
-
-        super.renderPage(this.homeDom, scrollTo);
+    renderPage(moviesData = "", tvsData = "", cardClickedId){
 
         // console.log(moviesData, tvsData);
 
-        if(this.sliderImages.length > 0) return;
+        if( !(this.sliderImages.length > 0) ){
+            this.sliderImages = getSliderImages(moviesData);
 
-        this.sliderImages = getSliderImages(moviesData);
+            // console.log("slider iamges", this.sliderImages)
+    
+            this.handleSlider();
+    
+            this.makeAndAddCards(moviesData, this.moviesSection);
+    
+            this.makeAndAddCards(tvsData, this.tvsSection);
+        }
 
-        // console.log("slider iamges", this.sliderImages)
-
-        this.handleSlider();
-
-        this.makeAndAddCards(moviesData, this.moviesSection);
-
-        this.makeAndAddCards(tvsData, this.tvsSection);
+        super.renderPage(this.homeDom, cardClickedId);
 
     }
 

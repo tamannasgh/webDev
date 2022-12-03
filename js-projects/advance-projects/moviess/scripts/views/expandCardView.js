@@ -6,7 +6,7 @@ class ExpandCardView extends mainView{
     page = document.querySelector(".expand-card");
     backBtn = this.page.querySelector(".back");
 
-    cardMain = this.page.querySelector(".expand-card-main");
+    expandCardMain = this.page.querySelector(".expand-card-main");
     genres = this.page.querySelector(".genres");
     infoIntro = this.page.querySelector(".info-intro");
     casts = this.page.querySelector(".casts");
@@ -14,10 +14,10 @@ class ExpandCardView extends mainView{
     clickedFromPage;
     cardClicked;
 
-    renderPage(data, cardClicked, clickedFromPage, scrollTo){
-        super.renderPage(this.page, scrollTo);
+    renderPage(data, cardClicked, clickedFromPage){
+        super.renderPage(this.page);
 
-        makeExpandCard(data, this.cardMain, this.genres, this.infoIntro, this.casts);
+        makeExpandCard(data, this.expandCardMain, this.genres, this.infoIntro, this.casts);
 
 
         this.cardClicked = cardClicked;
@@ -25,6 +25,19 @@ class ExpandCardView extends mainView{
         
     }
 
+    addEventListeners(){
+        this.expandCardMain.addEventListener("click", this.handleTrailer.bind(this) );
+    }
+
+    handleTrailer(e){
+        if( !(e.target.classList.contains("watch-trailer") || e.target.classList.contains("fa-play") || e.target.classList.contains("cross")) ) return;
+
+        this.expandCardMain.querySelector(".video").classList.toggle("active-video");
+
+        if(e.target.classList.contains("cross")){
+            this.stopVideo();                
+        }
+    }
 }
 
 export default new ExpandCardView();

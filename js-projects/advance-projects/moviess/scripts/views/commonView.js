@@ -6,8 +6,7 @@ class CommonView extends mainView{
     pageTitle = this.page.querySelector(".page-title-text");
     pageCardsDom = this.page.querySelector(".cards");
 
-    renderPage(title, data, scrollTo){
-        super.renderPage(this.page, scrollTo);
+    renderPage(title, data, cardClickedId){
         
         this.pageTitle.textContent = title;
         this.pageCardsDom.innerHTML = "";
@@ -15,6 +14,9 @@ class CommonView extends mainView{
         // console.log(data);
 
         this.makeAndAddCards(data, this.pageCardsDom);
+
+        super.renderPage(this.page, cardClickedId);
+
     }
 
 }

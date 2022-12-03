@@ -269,11 +269,14 @@ section{
 
 .card{
     border-radius: 10px;
-    width: fit-content;
+    width: 200px;
+    height: 300px;
     position: relative;
     margin: 2em auto;
     overflow: hidden;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+    color: var(--secondary-color);
+    text-align: center;
 }
 
 .card img{
@@ -366,7 +369,7 @@ section{
     min-height: 500px;
     background-image: url("https://image.tmdb.org/t/p/w1280/bQXAqRx2Fgc46uCVWgoPz5L5Dtr.jpg");
     background-size: cover;
-    background-position: center center;
+    background-position: center top;
     
     position: relative;
     
@@ -375,17 +378,20 @@ section{
 .expand-card-main .video{
     position: absolute;
     inset: 0;
+    background-color: var(--secondary-bg-color);
+    color: var(--primary-color);
+
     display: none;
 }
 
 .active-video{
-    display: block;
+    display: flex !important;
 }
 
 .expand-card-main .video .cross{
     position: absolute;
     top: -30px;
-    right: 0;
+    right: 10px;
     background-color: red;
     color: white;
     font-size: 1rem;
