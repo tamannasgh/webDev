@@ -12,7 +12,7 @@ export function makeCard(data){
     
     card.innerHTML = `
 
-    ${data.poster_path || data.profile_path ? `<img src="${imgUrl}/${data.poster_path || data.profile_path }" alt="img"></img>` : "Sorry, Image is not Available!"}
+    ${data.poster_path || data.profile_path || data.backdrop_path ? `<img src="${imgUrl}/${data.poster_path || data.profile_path || data.backdrop_path}" alt="img"></img>` : "Sorry, Image is not Available!"}
 
     
     <div class="overlay flexbox">

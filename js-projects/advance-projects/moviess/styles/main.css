@@ -127,11 +127,11 @@ body{
 }
 
 .nav-links-div ul > *:hover{
-    color: var(--secondary-color);
+    color: var(--secondary-color) !important;
 }
 
 .nav-links-div ul p:hover{
-    color: rgb(224, 135, 19);
+    color: rgb(224, 135, 19) !important;
 }
 
 .active-nav-links-div{
@@ -265,6 +265,7 @@ section{
 
 .cards{
     margin: 1em 0;
+    color: var(--primary-color);
 }
 
 .card{

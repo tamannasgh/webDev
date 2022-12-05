@@ -14,4 +14,5 @@ export const apis = {
     kids: `${baseApi}/discover/movie?api_key=${apiKey}&with_genres=16`,
     movieDetail: `${baseApi}/movie/ID?api_key=${apiKey}&append_to_response=videos,credits`,
     tvDetail: `${baseApi}/tv/ID?api_key=${apiKey}&append_to_response=videos,credits`,
+    search: `${baseApi}/search/movie?api_key=${apiKey}&query=QUERY`
 }

@@ -44,6 +44,12 @@ export async function getDataAcc(reqText){
     return data.results;
 }
 
+export async function search(query){
+    const data = await getData(apis.search.replace("QUERY", query) );
+    return data.results;
+
+}
+
 async function getData(api){
     const res = await fetch(api);
     const data = await res.json();

@@ -12,11 +12,11 @@ export default class MainView{
     pageContents = document.querySelectorAll(".page-content");
 
 
-    animateUsingClass(el, cls){
-        setTimeout(() => {
-            el.classList.toggle(cls);
-        }, 0);
-    }
+    // animateUsingClass(el, cls){
+    //     setTimeout(() => {
+    //         el.classList.toggle(cls);
+    //     }, 0);
+    // }
 
     addEventListeners(){
 
@@ -65,12 +65,13 @@ export default class MainView{
         });
 
 
-        this.animateUsingClass(page, "active-page");
+        page.classList.add("active-page");
+
         this.stopVideo();
 
         if(cardClickedId){
             const cardClicked = document.getElementById(cardClickedId);
-            console.log(cardClickedId, cardClicked.getBoundingClientRect() );
+            cardClicked.scrollIntoView();
         } else{
             window.scrollTo(0, 0);
         }

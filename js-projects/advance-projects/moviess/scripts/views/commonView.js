@@ -6,15 +6,21 @@ class CommonView extends mainView{
     pageTitle = this.page.querySelector(".page-title-text");
     pageCardsDom = this.page.querySelector(".cards");
 
-    renderPage(title, data, cardClickedId){
+    renderPage(title, data = "", cardClickedId){
+
+        if(!(data === "") ){
+            this.pageTitle.textContent = title;
+            this.pageCardsDom.innerHTML = "";
+    
+            // console.log(data);
+    
+            this.makeAndAddCards(data, this.pageCardsDom);
+        }
         
-        this.pageTitle.textContent = title;
-        this.pageCardsDom.innerHTML = "";
-
-        // console.log(data);
-
-        this.makeAndAddCards(data, this.pageCardsDom);
-
+        if(data.length === 0){
+            this.pageCardsDom.innerHTML = "Sorry, no results found!"
+        }
+       
         super.renderPage(this.page, cardClickedId);
 
     }
