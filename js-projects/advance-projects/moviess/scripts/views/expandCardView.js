@@ -11,8 +11,6 @@ class ExpandCardView extends mainView{
     infoIntro = this.page.querySelector(".info-intro");
     casts = this.page.querySelector(".casts");
 
-    clickedFromPage;
-    cardClicked;
 
     renderPage(data, cardClicked, clickedFromPage){
         super.renderPage(this.page);

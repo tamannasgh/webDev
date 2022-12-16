@@ -17,7 +17,7 @@ class CommonView extends mainView{
             this.makeAndAddCards(data, this.pageCardsDom);
         }
         
-        if(data.length === 0){
+        if(data.length === 0 && (Array.isArray(data)) ){
             this.pageCardsDom.innerHTML = "Sorry, no results found!"
         }
        

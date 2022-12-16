@@ -10,7 +10,9 @@ export default class MainView{
 
 
     pageContents = document.querySelectorAll(".page-content");
-
+    
+    clickedFromPage;
+    cardClicked;
 
     // animateUsingClass(el, cls){
     //     setTimeout(() => {

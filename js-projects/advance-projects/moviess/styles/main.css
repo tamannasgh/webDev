@@ -10,7 +10,7 @@
     --primary-bg-color : #404258;
     --secondary-bg-color: #474E68;
     --primary-color: #EFF5F5;
-    --secondary-color: #969bac;
+    --secondary-color: #9fa0a7;
 }
 
 /*  scrollbar ------------------------------- */
@@ -253,7 +253,7 @@ section{
     position: absolute;
     height: 2px;
     width: 100%;
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
 }
 
 .page-title-text{
@@ -334,6 +334,71 @@ section{
     transform: translateY(0px);
 }
 
+/* pagination --------------------------- */
+.pagination{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 3em 0;
+}
+
+.pagination > *{
+    color: var(--primary-color);
+    margin-inline: 1em;
+    transition: color 0.3s, background-color 0.3s;
+    cursor: pointer;
+}
+
+.pagination p{
+    color: var(--secondary-bg-color);
+    background-color: var(--primary-color);
+    padding: .5em 1em;
+    border-radius: 23px;
+    font-weight: 600;
+    
+}
+
+.pagination p:hover{
+    background-color: var(--secondary-bg-color);
+    color: var(--primary-color);
+}
+
+.pagination .pages{
+    margin-inline: 1em;
+}
+
+.pagination .pages span{
+    margin-inline: .3em;
+    padding: .3em;
+    border-radius: 23px;
+    cursor: pointer;
+    transition: color 0.3s, background-color 0.3s;
+
+}
+
+.pagination .pages span:hover, .active-page-no{
+    background-color: var(--primary-color);
+    color: var(--secondary-bg-color);
+}
+
+.pagination #page-btn-1, .pagination #page-btn-2{
+    display: none;
+}
+
+@media (min-width: 700px) {
+    .pagination #page-btn-1, .pagination #page-btn-2{
+        display: initial;
+    }
+
+    .pagination .pages span{
+        margin-inline: .5em;
+        padding: .5em;
+    }
+
+    .pagination .pages{
+        margin-inline: 1.5em;
+    }   
+}
 
 /*  expand card ----------------------------------------------- */
 
