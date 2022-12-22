@@ -12,14 +12,10 @@ class ExpandCardView extends mainView{
     casts = this.page.querySelector(".casts");
 
 
-    renderPage(data, cardClicked, clickedFromPage){
+    renderPage(data){
         super.renderPage(this.page);
 
         makeExpandCard(data, this.expandCardMain, this.genres, this.infoIntro, this.casts);
-
-
-        this.cardClicked = cardClicked;
-        this.clickedFromPage = clickedFromPage;
         
     }
 

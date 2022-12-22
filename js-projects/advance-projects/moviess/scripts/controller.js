@@ -1,4 +1,4 @@
-import { discoverTvs, discoverMovies, getDataAcc, getMovieOrTvDetail, search} from "./model.js";
+import { discoverTvs, discoverMovies, getDataAcc, getMovieOrTvDetail, search, data} from "./model.js";
 
 import homeView from "./views/homeView.js";
 import commonView from "./views/commonView.js"
@@ -51,12 +51,13 @@ navLinks.addEventListener("click", function(e){
 async function handleNavLinkClick(e, pageNum){
 
     const title = e.target.dataset.name;
-    const data = await getDataAcc(title, pageNum);
-    
-    commonView.renderPage(title, data);
+    data.result = await getDataAcc(title, pageNum);
+    data.page = "other-pages";
+
+    commonView.renderPage(title, data.result);
 
     //resetting pagination to page 1
-    paginationControlBtns(paginations[2], "page-1");
+    paginationControlBtns(paginations[1], "page-1");
 }
 
 function resetNavLinksColor(){
@@ -75,33 +76,26 @@ function resetNavLinksColor(){
 // home view  ------------------------------
 
 
-async function start(cardClickedId, pageNum, movieOrTv){
+async function start(cardClickedId, pageNum){
     try{
         
-        if( !(homeView.moviesSection.children.length > 0) ){
-
-            let moviesData;
-            let tvsData;
+        if( homeView.cards.children.length === 0 ){
 
             if(pageNum){
-                if(movieOrTv === "movie"){
-                    moviesData = await discoverMovies(pageNum);
-                } else{
-                    tvsData = await discoverTvs(pageNum);
-                }
+                data.result = await discoverMovies(pageNum);
+
             } else{
-                moviesData = await discoverMovies();
-                tvsData = await discoverTvs();
+                data.result = await discoverMovies();
+
             }
 
             //resetting pagination to page 1
             paginationControlBtns(paginations[0], "page-1");
-            paginationControlBtns(paginations[1], "page-1");
             
-            homeView.renderPage(moviesData, tvsData, cardClickedId);
+            homeView.renderPage(data.result, cardClickedId);
 
         } else{
-            homeView.renderPage("", "", cardClickedId);
+            homeView.renderPage("", cardClickedId);
         }
 
         
@@ -124,9 +118,9 @@ async function handleSearching(e){
 
     const query = searchForm.children[0].value.trim();
 
-    const data = await search(query, 1);
+    data.result = await search(query, 1);
 
-    commonView.renderPage("Search Results", data);
+    commonView.renderPage("Search Results", data.result);
 
     searchForm.reset();
 }
@@ -141,13 +135,17 @@ async function handleCardClick(e){
     // console.log(this, this.parentNode,  "im clikced");
     if( !(e.target.classList.contains("overlay") || e.target.parentNode.classList.contains("overlay")) ) return;
 
-    const cardClicked = e.target.classList.contains("overlay") ? e.target.parentNode : e.target.parentNode.parentNode;
-    const clickedFromPage = this.parentNode;
+    expandCardView.cardClicked = e.target.classList.contains("overlay") ? e.target.parentNode : e.target.parentNode.parentNode;
+    expandCardView.CardClickedFromPage = this.parentNode;
+
+    // data.page = this.parentNode.classList.contains("home") ? "home" : this.parentNode.querySelector("h1").textContent;
+
+    // data.pageTitle = page === "home" ? 
 
 
-    const data = await getMovieOrTvDetail(cardClicked.getAttribute("id") , cardClicked.dataset.type );
+    const data = await getMovieOrTvDetail(expandCardView.cardClicked.getAttribute("id") , expandCardView.cardClicked.dataset.type );
     
-    expandCardView.renderPage(data, cardClicked, clickedFromPage);
+    expandCardView.renderPage(data);
 
 }
 
@@ -157,10 +155,10 @@ async function handleCardClick(e){
 
 expandCardView.backBtn.addEventListener("click", async function(e){
 
-    if( expandCardView.clickedFromPage.classList.contains("other-pages") ){
+    if( expandCardView.CardClickedFromPage.classList.contains("other-pages") ){
 
 
-        const pageToRender = expandCardView.clickedFromPage.querySelector("h1").textContent;
+        const pageToRender = expandCardView.CardClickedFromPage.querySelector("h1").textContent;
 
         if(pageToRender === "Search Results"){
             commonView.renderPage(pageToRender, "", expandCardView.cardClicked.getAttribute("id"));
@@ -187,17 +185,17 @@ paginations.forEach( pagination => pagination.addEventListener("click", handlePa
 
 async function handlePaginationClick(e){
 
+    const pageNos = Array.from( this.querySelector(".pages").children );
+    const activePageNo = pageNos.filter( pageNo => pageNo.classList.contains("active-page-no") );
+
     // console.log(e, e.target);
 
     if(e.target.classList.contains("pagination-control-btn") ){
 
         if(e.target.classList.contains("next")){
             paginationControlBtns(this, "next");
-        }
-
-        if(e.target.classList.contains("previous")){
+        } else{
             paginationControlBtns(this, "prev");
-
         }
 
     }
@@ -206,13 +204,20 @@ async function handlePaginationClick(e){
         paginationControlBtns(this, e.target.classList[0]);
     }
 
+    if(e.target.tagName === "SPAN"){
+        activePageNo[0].classList.remove("active-page-no");
+        e.target.classList.add("active-page-no");
+
+        // handlePaginationPages(e.target.textContent, homeView.currentActivePage);
+        console.log(e.target.textContent)
+    }
+
     
 }
 
 function paginationControlBtns(pagination, work){
-
     const pageNos = Array.from( pagination.querySelector(".pages").children );
-    let activePageNo = pageNos.filter( pageNo => pageNo.classList.contains("active-page-no") );
+    const activePageNo = pageNos.filter( pageNo => pageNo.classList.contains("active-page-no") );
 
     if(work === "next"){
 
@@ -247,17 +252,27 @@ function paginationControlBtns(pagination, work){
         for(let i = 1 ; i <= 5 ; i++){
             pageNos[i-1].textContent = i;
         }
+        activePageNo[0].classList.remove("active-page-no");
+        pageNos[0].classList.add("active-page-no");
 
     } else{
 
         for(let i = 496 ; i <= 500 ; i++){
             pageNos[i-496].textContent = i;
         }
-
+        activePageNo[0].classList.remove("active-page-no");
+        pageNos[4].classList.add("active-page-no");
     }
 
 }
 
+async function handlePaginationPages(pageNo, page){
+    if(page === "home"){
+        console.log("its home");
+    } else{
+        console.log("its other pages");
+    }
+}
 
 // starting the code
 start();

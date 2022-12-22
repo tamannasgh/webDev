@@ -11,7 +11,7 @@ export default class MainView{
 
     pageContents = document.querySelectorAll(".page-content");
     
-    clickedFromPage;
+    CardClickedFromPage;
     cardClicked;
 
     // animateUsingClass(el, cls){

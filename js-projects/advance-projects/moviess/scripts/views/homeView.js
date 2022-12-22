@@ -3,31 +3,29 @@ import { getSliderImages } from "../impFunctions.js";
 
 class HomeView extends mainView{
     
-    homeDom = document.querySelector(".home");
-    slider = this.homeDom.querySelector(".slider");
-    moviesSection = this.homeDom.querySelector(".movies-card");
-    tvsSection = this.homeDom.querySelector(".tvs-card");
+    page = document.querySelector(".home");
+    slider = this.page.querySelector(".slider");
+    cards = this.page.querySelector(".movies-card");
 
     sliderImages = [];
 
 
-    renderPage(moviesData = "", tvsData = "", cardClickedId){
+    renderPage(data = "", cardClickedId){
 
-        // console.log(moviesData, tvsData);
+        // console.log(data);
 
-        if( !(this.sliderImages.length > 0) ){
-            this.sliderImages = getSliderImages(moviesData);
+        if(data !== ""){
+            this.sliderImages = getSliderImages(data);
 
             // console.log("slider iamges", this.sliderImages)
     
             this.handleSlider();
     
-            this.makeAndAddCards(moviesData, this.moviesSection);
+            this.makeAndAddCards(data, this.cards);
     
-            this.makeAndAddCards(tvsData, this.tvsSection);
         }
 
-        super.renderPage(this.homeDom, cardClickedId);
+        super.renderPage(this.page, cardClickedId);
 
     }
 

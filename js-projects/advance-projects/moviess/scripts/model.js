@@ -1,51 +1,45 @@
 import {apis} from "./config.js";
 
+export const data = {
+    page: "home",
+    pageTitle: "Discover",
+    result: [],
+    currentPageNos : {
+        Home: 1,
+        Movies: 1,
+        Tvs: 1,
+        Trending: 1,
+        Kids: 1,
+    },
+    cardClicked: undefined,
+    cardClickedFromPage: undefined,
+
+}
+
+
 let api;
 
 export async function discoverMovies(pageNum){
-    
-    api = apis.discoverMovies;
 
-    if(pageNum){
-        api += `&page=${pageNum}`;
-    } else{
-        api += `&page=1`;
-    }
-
-    const data = await getData(api);
+    const data = await getData(apis.discoverMovies, pageNum);
     return data.results;
 }
 
 export async function discoverTvs(pageNum){ 
 
-    api = apis.discoverTvs
-
-    if(pageNum){
-        api += `&page=${pageNum}`;
-    } else{
-        api += `&page=1`;
-    }
-
-    const data = await getData(api);
+    const data = await getData(apis.discoverTvs, pageNum);
     return data.results;
 } 
 
-export async function getMovieOrTvDetail(id, type, pageNum){
+export async function getMovieOrTvDetail(id, type){
       
     if(type === "movie"){
         api = apis.movieDetail;
-        api = api.replace("ID", id);
     } else{
         api = apis.tvDetail;
-        api = api.replace("ID", id);
     }
+    api = api.replace("ID", id);
 
-    if(pageNum){
-        api += `&page=${pageNum}`;
-    } else{
-        api += `&page=1`;
-    }
-    
     return getData(api);
 }
 
@@ -69,32 +63,25 @@ export async function getDataAcc(reqText, pageNum){
 
     }
 
-    if(pageNum){
-        api += `&page=${pageNum}`;
-    } else{
-        api += `&page=1`;
-    }
-
-    const data = await getData(api);
+    const data = await getData(api, pageNum);
     return data.results;
 }
 
 export async function search(query, pageNum){
     
-    api = apis.search;
+    const data = await getData(apis.search.replace("QUERY", query), pageNum );
+    return data.results;
 
+}
+
+async function getData(api, pageNum){
+    
     if(pageNum){
         api += `&page=${pageNum}`;
     } else{
         api += `&page=1`;
     }
 
-    const data = await getData(api.replace("QUERY", query) );
-    return data.results;
-
-}
-
-async function getData(api){
     const res = await fetch(api);
     const data = await res.json();
     return data;
