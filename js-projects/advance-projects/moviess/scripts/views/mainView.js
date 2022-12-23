@@ -8,6 +8,7 @@ export default class MainView{
     navLinks = document.querySelector(".nav-links");
     expandCardMain = document.querySelector(".expand-card-main");
 
+    slider = document.querySelector(".slider");
 
     pageContents = document.querySelectorAll(".page-content");
     

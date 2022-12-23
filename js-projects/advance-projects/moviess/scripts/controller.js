@@ -11,7 +11,7 @@ const navLinks = document.querySelector(".nav-links");
 const searchForm = document.querySelector("form");
 const cards = document.querySelectorAll(".cards");
 
-const paginations = document.querySelectorAll(".pagination");
+const pagination = document.querySelector(".pagination");
 
 
 // navbar ------------------------------------
@@ -52,12 +52,14 @@ async function handleNavLinkClick(e, pageNum){
 
     const title = e.target.dataset.name;
     data.result = await getDataAcc(title, pageNum);
+
     data.page = "other-pages";
+    data.pageTitle = title;
 
     commonView.renderPage(title, data.result);
 
     //resetting pagination to page 1
-    paginationControlBtns(paginations[1], "page-1");
+    paginationControlBtns(pagination, "page-1");
 }
 
 function resetNavLinksColor(){
@@ -78,27 +80,20 @@ function resetNavLinksColor(){
 
 async function start(cardClickedId, pageNum){
     try{
-        
-        if( homeView.cards.children.length === 0 ){
 
-            if(pageNum){
-                data.result = await discoverMovies(pageNum);
-
-            } else{
-                data.result = await discoverMovies();
-
-            }
-
-            //resetting pagination to page 1
-            paginationControlBtns(paginations[0], "page-1");
-            
-            homeView.renderPage(data.result, cardClickedId);
+        if(pageNum){
+            data.result = await discoverMovies(pageNum);
 
         } else{
-            homeView.renderPage("", cardClickedId);
+            data.result = await discoverMovies();
+
         }
 
-        
+        data.page = "home";
+        data.pageTitle = "Discover";
+        homeView.renderPage(data.pageTitle, data.result, cardClickedId);
+
+
     } catch(err) {
         console.log(err);
     }   
@@ -119,8 +114,10 @@ async function handleSearching(e){
     const query = searchForm.children[0].value.trim();
 
     data.result = await search(query, 1);
+    data.pageTitle = "Search Results";
+    data.page = "search";
 
-    commonView.renderPage("Search Results", data.result);
+    commonView.renderPage(data.pageTitle, data.result);
 
     searchForm.reset();
 }
@@ -132,16 +129,11 @@ async function handleSearching(e){
 cards.forEach( cardsDiv => !(cardsDiv.classList.contains("casts")) && cardsDiv.addEventListener("click", handleCardClick ) );
 
 async function handleCardClick(e){
-    // console.log(this, this.parentNode,  "im clikced");
+
     if( !(e.target.classList.contains("overlay") || e.target.parentNode.classList.contains("overlay")) ) return;
 
     expandCardView.cardClicked = e.target.classList.contains("overlay") ? e.target.parentNode : e.target.parentNode.parentNode;
     expandCardView.CardClickedFromPage = this.parentNode;
-
-    // data.page = this.parentNode.classList.contains("home") ? "home" : this.parentNode.querySelector("h1").textContent;
-
-    // data.pageTitle = page === "home" ? 
-
 
     const data = await getMovieOrTvDetail(expandCardView.cardClicked.getAttribute("id") , expandCardView.cardClicked.dataset.type );
     
@@ -155,22 +147,14 @@ async function handleCardClick(e){
 
 expandCardView.backBtn.addEventListener("click", async function(e){
 
-    if( expandCardView.CardClickedFromPage.classList.contains("other-pages") ){
+    console.log(data);
 
-
-        const pageToRender = expandCardView.CardClickedFromPage.querySelector("h1").textContent;
-
-        if(pageToRender === "Search Results"){
-            commonView.renderPage(pageToRender, "", expandCardView.cardClicked.getAttribute("id"));
-        } else{
-
-            const data = await getDataAcc(pageToRender);
-            commonView.renderPage(pageToRender, data, expandCardView.cardClicked.getAttribute("id"));
-        }      
+    if( data.page !== "home"){ 
+        
+        commonView.renderPage(data.pageTitle, data.result, expandCardView.cardClicked.getAttribute("id"));
 
     } else{
 
-        // console.log("home page", expandCardView.cardClicked);
         start(expandCardView.cardClicked.getAttribute("id"));
 
     }
@@ -181,7 +165,7 @@ expandCardView.backBtn.addEventListener("click", async function(e){
 // pagination -------------------------------------------------------------------
 
 
-paginations.forEach( pagination => pagination.addEventListener("click", handlePaginationClick ));
+pagination.addEventListener("click", handlePaginationClick);
 
 async function handlePaginationClick(e){
 
@@ -193,15 +177,15 @@ async function handlePaginationClick(e){
     if(e.target.classList.contains("pagination-control-btn") ){
 
         if(e.target.classList.contains("next")){
-            paginationControlBtns(this, "next");
+            paginationControlBtns("next");
         } else{
-            paginationControlBtns(this, "prev");
+            paginationControlBtns("prev");
         }
 
     }
 
     if(e.target.classList.contains("page-btn")){
-        paginationControlBtns(this, e.target.classList[0]);
+        paginationControlBtns(e.target.classList[0]);
     }
 
     if(e.target.tagName === "SPAN"){
@@ -215,7 +199,7 @@ async function handlePaginationClick(e){
     
 }
 
-function paginationControlBtns(pagination, work){
+function paginationControlBtns(work){
     const pageNos = Array.from( pagination.querySelector(".pages").children );
     const activePageNo = pageNos.filter( pageNo => pageNo.classList.contains("active-page-no") );
 
@@ -276,5 +260,5 @@ async function handlePaginationPages(pageNo, page){
 
 // starting the code
 start();
-homeView.addEventListeners(); //adding event listener for navbar that's it!!
+commonView.addEventListeners(); //adding event listener for navbar that's it!!
 expandCardView.addEventListeners();

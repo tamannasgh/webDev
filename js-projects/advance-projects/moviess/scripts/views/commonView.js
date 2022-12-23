@@ -2,23 +2,29 @@ import mainView from "./mainView.js";
 
 class CommonView extends mainView{
 
-    page = document.querySelector(".other-pages");
+    page = document.querySelector(".page");
     pageTitle = this.page.querySelector(".page-title-text");
-    pageCardsDom = this.page.querySelector(".cards");
+    cards = this.page.querySelector(".cards");
 
-    renderPage(title, data = "", cardClickedId){
+    renderPage(title, data = "", cardClickedId, pageNo){
+
+        if(title === "Discover"){
+            this.slider.style.display = "block";
+        } else{
+            this.slider.style.display = "none";
+        }
 
         if(!(data === "") ){
             this.pageTitle.textContent = title;
-            this.pageCardsDom.innerHTML = "";
+            this.cards.innerHTML = "";
     
             // console.log(data);
     
-            this.makeAndAddCards(data, this.pageCardsDom);
+            this.makeAndAddCards(data, this.cards);
         }
         
         if(data.length === 0 && (Array.isArray(data)) ){
-            this.pageCardsDom.innerHTML = "Sorry, no results found!"
+            this.cards.innerHTML = "Sorry, no results found!"
         }
        
         super.renderPage(this.page, cardClickedId);

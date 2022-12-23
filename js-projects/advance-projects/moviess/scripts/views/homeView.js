@@ -1,31 +1,24 @@
 import mainView from "./mainView.js";
+import commonView from "./commonView.js";
 import { getSliderImages } from "../impFunctions.js";
 
 class HomeView extends mainView{
     
-    page = document.querySelector(".home");
-    slider = this.page.querySelector(".slider");
-    cards = this.page.querySelector(".movies-card");
-
     sliderImages = [];
 
 
-    renderPage(data = "", cardClickedId){
+    renderPage(title, data = "", cardClickedId, pageNo){
 
         // console.log(data);
 
-        if(data !== ""){
-            this.sliderImages = getSliderImages(data);
-
-            // console.log("slider iamges", this.sliderImages)
-    
+        if(this.sliderImages.length === 0){
+            
+            this.sliderImages = getSliderImages(data);    
             this.handleSlider();
-    
-            this.makeAndAddCards(data, this.cards);
     
         }
 
-        super.renderPage(this.page, cardClickedId);
+        commonView.renderPage(title, data, cardClickedId, pageNo);
 
     }
 

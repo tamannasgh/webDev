@@ -13,6 +13,9 @@ class ExpandCardView extends mainView{
 
 
     renderPage(data){
+
+        this.slider.style.display = "none";
+
         super.renderPage(this.page);
 
         makeExpandCard(data, this.expandCardMain, this.genres, this.infoIntro, this.casts);
