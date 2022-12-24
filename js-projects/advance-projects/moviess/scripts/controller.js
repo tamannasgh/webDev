@@ -13,6 +13,8 @@ const cards = document.querySelectorAll(".cards");
 
 const pagination = document.querySelector(".pagination");
 
+const pageNos = Array.from( pagination.querySelector(".pages").children );
+const activePageNo = pageNos.filter( pageNo => pageNo.classList.contains("active-page-no") );
 
 // navbar ------------------------------------
 
@@ -117,6 +119,8 @@ async function handleSearching(e){
     data.pageTitle = "Search Results";
     data.page = "search";
 
+    resetNavLinksColor();
+
     commonView.renderPage(data.pageTitle, data.result);
 
     searchForm.reset();
@@ -169,8 +173,7 @@ pagination.addEventListener("click", handlePaginationClick);
 
 async function handlePaginationClick(e){
 
-    const pageNos = Array.from( this.querySelector(".pages").children );
-    const activePageNo = pageNos.filter( pageNo => pageNo.classList.contains("active-page-no") );
+   
 
     // console.log(e, e.target);
 
@@ -191,17 +194,18 @@ async function handlePaginationClick(e){
     if(e.target.tagName === "SPAN"){
         activePageNo[0].classList.remove("active-page-no");
         e.target.classList.add("active-page-no");
+        
+        activePageNo[0] = e.target;
 
-        // handlePaginationPages(e.target.textContent, homeView.currentActivePage);
-        console.log(e.target.textContent)
     }
+
+    handlePaginationPages(activePageNo[0].textContent, data.page);
 
     
 }
 
 function paginationControlBtns(work){
-    const pageNos = Array.from( pagination.querySelector(".pages").children );
-    const activePageNo = pageNos.filter( pageNo => pageNo.classList.contains("active-page-no") );
+   
 
     if(work === "next"){
 
@@ -252,13 +256,17 @@ function paginationControlBtns(work){
 
 async function handlePaginationPages(pageNo, page){
     if(page === "home"){
-        console.log("its home");
+        console.log("its home", pageNo);
+        start(undefined, pageNo);
     } else{
-        console.log("its other pages");
+        console.log("its other pages", data.pageTitle, pageNo);
+
+        data.result = await getDataAcc(data.pageTitle, pageNo);
+        commonView.renderPage(data.pageTitle, data.result, undefined, pageNo); 
     }
 }
 
 // starting the code
 start();
 commonView.addEventListeners(); //adding event listener for navbar that's it!!
-expandCardView.addEventListeners();
+expandCardView.addEventListeners();  //adding eventlistener for watch trailer and cross btn on expand card

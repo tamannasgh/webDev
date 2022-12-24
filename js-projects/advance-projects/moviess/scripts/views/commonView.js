@@ -8,23 +8,26 @@ class CommonView extends mainView{
 
     renderPage(title, data = "", cardClickedId, pageNo){
 
+        this.slider.style.display = "block";
+
         if(title === "Discover"){
-            this.slider.style.display = "block";
+            this.slider.style.minHeight = "400px";
+            this.slider.style.height = "60vh";
+
         } else{
-            this.slider.style.display = "none";
+            this.slider.style.minHeight = "100px";
+            this.slider.style.height = "15vh";
         }
 
-        if(!(data === "") ){
+        if(data.length === 0 && (Array.isArray(data)) ){
+            this.cards.innerHTML = "Sorry, no results found!"
+        } else{
             this.pageTitle.textContent = title;
             this.cards.innerHTML = "";
     
             // console.log(data);
     
             this.makeAndAddCards(data, this.cards);
-        }
-        
-        if(data.length === 0 && (Array.isArray(data)) ){
-            this.cards.innerHTML = "Sorry, no results found!"
         }
        
         super.renderPage(this.page, cardClickedId);
